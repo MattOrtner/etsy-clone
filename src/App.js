@@ -1,8 +1,9 @@
-import "./App.css";
 import styled from "styled-components";
 import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
+import NavList from "./components/molecules/NavList";
+import NavigationContainer from "./components/organisms/NavigationContainer";
 
 function App() {
   return (
@@ -20,11 +21,21 @@ function App() {
           <CheckoutLink src={shoppingCartIcon} />
         </UserDashboard>
       </HeaderContainer>
+      <NavigationContainer>
+        <NavList />
+      </NavigationContainer>
     </div>
   );
 }
 
 export default App;
+// const NavigationContainer = styled.nav`
+//   height: 34px;
+//   background-color: lavender;
+// `;
+// const NavList = styled.div`
+//   display: flex;
+// `;
 const HeaderContainer = styled.header`
   display: flex;
   flex-direction: row;
