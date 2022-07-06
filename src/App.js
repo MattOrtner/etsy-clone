@@ -4,6 +4,7 @@ import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavList from "./components/molecules/NavList";
 import NavigationContainer from "./components/organisms/NavigationContainer";
+import HighLightList from "./components/molecules/HighLightList";
 
 function App() {
   return (
@@ -21,25 +22,51 @@ function App() {
           <CheckoutLink src={shoppingCartIcon} />
         </UserDashboard>
       </HeaderContainer>
-      <NavigationContainer>
-        <NavList />
-      </NavigationContainer>
+      <NavigationContainer />
+      <GreetingContainer>
+        <BackSplash />
+        <TitleContainer>
+          <Title>Discover fresh summer finds from creative sellers!</Title>
+        </TitleContainer>
+        <HighLightList></HighLightList>
+      </GreetingContainer>
     </div>
   );
 }
 
 export default App;
-// const NavigationContainer = styled.nav`
-//   height: 34px;
-//   background-color: lavender;
-// `;
-// const NavList = styled.div`
-//   display: flex;
-// `;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fdebd2;
+  width: 100%;
+`;
+const Title = styled.h1`
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria,
+    "Noto Serif Light", "Droid Serif", Georgia, serif;
+`;
+const BackSplash = styled.div`
+  background-color: #fdebd2;
+  position: absolute;
+  height: 100px;
+  width: 100%;
+  z-index: -1;
+`;
+const GreetingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const HeaderContainer = styled.header`
   display: flex;
   flex-direction: row;
-  ${"" /* background-color: blue; */}
   align-items: center;
   height: 72px;
   padding: 12px 36px;
@@ -54,10 +81,8 @@ const SearchBar = styled.div`
   flex: 1;
   padding-right: 18px;
   display: flex;
-  ${"" /* justify-content: center; */}
 `;
 const SearchInput = styled.input`
-  ${"" /* flex: 1; */}
   width: 100%;
   padding: 9px 42px 9px 18px;
   background-color: rgba(34, 34, 34, 0.05);
