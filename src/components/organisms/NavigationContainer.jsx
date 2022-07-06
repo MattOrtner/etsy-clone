@@ -13,5 +13,6 @@ const NavigationContainer = () => {
 export default NavigationContainer;
 const NavContainer = styled.nav`
   height: 34px;
+  padding-bottom: 8px;
   border-bottom: 2px solid rgba(121 104 72 / 43%);
 `;
