@@ -1,13 +1,40 @@
 const navTitles = [
-  "Summer Clothing & Accessories",
-  "Jewelry & Accessories",
-  "Clothing & Shoes",
-  "Home and Living",
-  "Wedding & Party",
-  "Toys & Entertainment",
-  "Art & Collectibles",
-  "Craft Supplies",
-  "Gifts & Gift Cards",
+  {
+    id: 1,
+    title: "Summer Clothing & Accessories",
+  },
+  {
+    id: 2,
+    title: "Jewelry & Accessories",
+  },
+  {
+    id: 3,
+    title: "Clothing & Shoes",
+  },
+  {
+    id: 4,
+    title: "Home and Living",
+  },
+  {
+    id: 5,
+    title: " Wedding & Party",
+  },
+  {
+    id: 6,
+    title: "Toys & Entertainment",
+  },
+  {
+    id: 7,
+    title: "Art & Collectibles",
+  },
+  {
+    id: 8,
+    title: "Craft Supplies",
+  },
+  {
+    id: 9,
+    title: "Gifts & Gift Cards",
+  },
 ];
 
 export default navTitles;

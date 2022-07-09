@@ -1,21 +1,27 @@
 const highLights = [
   {
-    title: "Something",
+    id: 1,
+    title: "Personalized Gifts",
   },
   {
-    title: "Something",
+    id: 2,
+    title: "Wedding Gifts & Decor",
   },
   {
-    title: "Something",
+    id: 3,
+    title: "Outdoor Decor",
   },
   {
-    title: "Something",
+    id: 4,
+    title: "Summer Clothing",
   },
   {
-    title: "Something",
+    id: 5,
+    title: "Unique Jewelry",
   },
   {
-    title: "Something",
+    id: 6,
+    title: "On Sale",
   },
 ];
 

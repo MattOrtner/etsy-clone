@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import HighLightListItem from "../atoms/HighLightListItem";
-import highLights from "../../data/highLights";
+import HighLights from "../../data/highLights";
 
 const HighLightList = () => {
-  const [list, setList] = useState(highLights);
+  const [list, setList] = useState(HighLights);
   return (
     <List>
-      {list ? list.map((item) => <HighLightListItem title={item.title} />) : ""}
+      {list
+        ? list.map((item) => (
+            <HighLightListItem title={item.title} key={item.id} />
+          ))
+        : ""}
     </List>
   );
 };
@@ -16,7 +20,7 @@ export default HighLightList;
 
 const List = styled.div`
   display: flex;
-  width: 816;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: space-evenly;
   padding: 0 36;
 `;

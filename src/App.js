@@ -2,7 +2,6 @@ import styled from "styled-components";
 import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
-import NavList from "./components/molecules/NavList";
 import NavigationContainer from "./components/organisms/NavigationContainer";
 import HighLightList from "./components/molecules/HighLightList";
 
@@ -28,7 +27,7 @@ function App() {
         <TitleContainer>
           <Title>Discover fresh summer finds from creative sellers!</Title>
         </TitleContainer>
-        <HighLightList></HighLightList>
+        <HighLightList />
       </GreetingContainer>
     </div>
   );
@@ -45,8 +44,8 @@ const TitleContainer = styled.div`
   width: 100%;
 `;
 const Title = styled.h1`
-  font-weight: 300;
   letter-spacing: 0.5px;
+  font-weight: 100;
   font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria,
     "Noto Serif Light", "Droid Serif", Georgia, serif;
 `;

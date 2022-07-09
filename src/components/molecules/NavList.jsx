@@ -7,8 +7,8 @@ const NavList = () => {
   const [navList, _] = useState(navTitles);
   return (
     <List>
-      {navList.map((title) => (
-        <NavItem title={title} />
+      {navList.map((navItem) => (
+        <NavItem title={navItem.title} key={navItem.id} />
       ))}
     </List>
   );
