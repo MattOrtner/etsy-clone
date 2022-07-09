@@ -4,7 +4,7 @@ import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavigationContainer from "./components/organisms/NavigationContainer";
 import HighLightList from "./components/molecules/HighLightList";
-
+import SectionTitle from "./components/atoms/SectionTitle";
 function App() {
   return (
     <div className="App">
@@ -29,12 +29,17 @@ function App() {
         </TitleContainer>
         <HighLightList />
       </GreetingContainer>
+      <PopularContainer>
+        <SectionTitle title={"Popular gifts right now"} />
+      </PopularContainer>
     </div>
   );
 }
 
 export default App;
-
+const PopularContainer = styled.div`
+  padding: 10px 20px;
+`;
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
