@@ -22,14 +22,15 @@ const PicContainer = styled.div`
   max-height: 110px;
 `;
 const Item = styled.div`
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   text-align: center;
   align-items: center;
+  cursor: pointer;
   &:hover .picture {
     transition: transform 0.1s ease-in;
     transform: scale(1.07);
-    box-shadow: 0px 1px 10px lightgrey;
+    box-shadow: 0px 4px 18px #22222226;
   }
 
   &:hover .title {

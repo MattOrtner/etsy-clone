@@ -22,5 +22,5 @@ const List = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
-  padding: 0 36;
+  overflow: hidden;
 `;
