@@ -5,6 +5,8 @@ import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavigationContainer from "./components/organisms/NavigationContainer";
 import HighLightList from "./components/molecules/HighLightList";
 import SectionTitle from "./components/atoms/SectionTitle";
+import PopularItem from "./components/atoms/PopularItem";
+
 function App() {
   return (
     <div className="App">
@@ -30,22 +32,56 @@ function App() {
         <HighLightList />
       </GreetingContainer>
       <PopularContainer>
-        <SectionTitle title={"Popular gifts right now"} />
+        <div>
+          <SectionTitle title={"Popular gifts right now"} />
+        </div>
+        <SquarePhotoList>
+          <PopularItem
+            title={"This is a title"}
+            rating={"****"}
+            price={"$4.99"}
+          />
+          <PopularItem title={"Sick watches"} rating={"***"} price={"$15.99"} />
+          <PopularItem
+            title={"Definitely another thing!"}
+            rating={"****"}
+            price={"$2.99"}
+          />
+          <PopularItem
+            title={"Something you don't need!"}
+            rating={"****"}
+            price={"$1.99"}
+          />
+          <PopularItem
+            title={"The rating isn't great but it's worth it for sure"}
+            rating={"*"}
+            price={"$100.00"}
+          />
+        </SquarePhotoList>
       </PopularContainer>
     </div>
   );
 }
 
 export default App;
-const PopularContainer = styled.div`
-  padding: 10px 20px;
+
+const SquarePhotoList = styled.div`
+  display: flex;
+  justify-content: space-around;
+  height: 229px;
 `;
+
+const PopularContainer = styled.div`
+  padding: 40 12 60 12;
+  height: 435px;
+`;
+
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fdebd2;
+  background-color: #f8ebe6;
   width: 100%;
 `;
 const Title = styled.h1`
@@ -55,7 +91,7 @@ const Title = styled.h1`
     "Noto Serif Light", "Droid Serif", Georgia, serif;
 `;
 const BackSplash = styled.div`
-  background-color: #fdebd2;
+  background-color: #f8ebe6;
   position: absolute;
   height: 100px;
   width: 100%;
@@ -67,7 +103,6 @@ const GreetingContainer = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 const HeaderContainer = styled.header`
   display: flex;
   flex-direction: row;

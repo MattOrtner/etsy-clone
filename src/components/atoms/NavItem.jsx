@@ -11,8 +11,8 @@ const NavItem = ({ title }) => {
 
 export default NavItem;
 const Title = styled.h6`
-  font-weight: 300;
+  font-weight: 400;
   font-size: 14px;
   margin: 4px 12px 0 0;
-  ${"" /* over-flow-wrap: break-word; */}
+  cursor: pointer;
 `;
