@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import NavItem from "../atoms/NavItem";
 import navTitles from "../../data/navTitles";
 
 const NavList = () => {
-  const [navList, _] = useState(navTitles);
   return (
     <List>
-      {navList.map((navItem) => (
+      {navTitles.map((navItem) => (
         <NavItem title={navItem.title} key={navItem.id} />
       ))}
     </List>
