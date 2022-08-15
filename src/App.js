@@ -6,8 +6,15 @@ import NavigationContainer from "./components/organisms/NavigationContainer";
 import HighLightList from "./components/molecules/HighLightList";
 import SectionTitle from "./components/atoms/SectionTitle";
 import PopularItem from "./components/atoms/PopularItem";
+import { useEffect } from "react";
 
 function App() {
+  // useEffect(() => {
+  //   fetch("https://2dvkv028da.execute-api.us-east-1.amazonaws.com/Prod/status")
+  //     .then((res) => res.json())
+  //     .then(console.log);
+  // }, []);
+
   return (
     <div className="App">
       <HeaderContainer>
