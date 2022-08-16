@@ -7,13 +7,14 @@ import HighLightList from "./components/molecules/HighLightList";
 import SectionTitle from "./components/atoms/SectionTitle";
 import PopularItem from "./components/atoms/PopularItem";
 import { useEffect } from "react";
+const { REACT_APP_API_URL } = process.env;
 
 function App() {
-  // useEffect(() => {
-  //   fetch("https://2dvkv028da.execute-api.us-east-1.amazonaws.com/Prod/status")
-  //     .then((res) => res.json())
-  //     .then(console.log);
-  // }, []);
+  useEffect(() => {
+    fetch(REACT_APP_API_URL)
+      .then((res) => res.json())
+      .then(console.log);
+  }, []);
 
   return (
     <div className="App">
