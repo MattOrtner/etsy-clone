@@ -7,6 +7,8 @@ import HighLightList from "./components/molecules/HighLightList";
 import SectionTitle from "./components/atoms/SectionTitle";
 import PopularItem from "./components/atoms/PopularItem";
 import { useEffect } from "react";
+import PersonalizedGifts from "./components/organisms/PersonalizedGifts";
+
 const { REACT_APP_API_URL } = process.env;
 
 function App() {
@@ -67,12 +69,18 @@ function App() {
           />
         </SquarePhotoList>
       </PopularContainer>
+      <PersonalContainer>
+        <PersonalizedGifts />
+      </PersonalContainer>
     </div>
   );
 }
 
 export default App;
-
+const PersonalContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 const SquarePhotoList = styled.div`
   display: flex;
   justify-content: space-around;
