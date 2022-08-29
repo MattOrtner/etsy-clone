@@ -32,10 +32,18 @@ const Item = styled.div`
     transform: scale(1.07);
     box-shadow: 0px 4px 18px #22222226;
   }
-
   &:hover .title {
-    border-bottom: 2px solid black;
-    opacity: 0.4;
+    opacity: 0.3;
+  }
+
+  &:hover::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 3px;
+    background: rgb(61, 61, 61);
+    transition: all 0.4s ease-in-out;
+    transform: translateX(-50px);
   }
 `;
 const PicHolder = styled.div`
