@@ -22,14 +22,11 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  ${"" /* border: 3px solid yellow; */}
   margin: 5px 10px;
   border-radius: 9px;
-  ${"" /* border: 1; */}
   padding: 3px;
   &:hover {
-    transition: transform 0.1s ease-in;
-    transform: scale(1.07);
+    transition: box-shadow 250ms ease-in;
     box-shadow: 0px 2px 18px #22222233;
   }
 `;
