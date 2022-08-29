@@ -8,6 +8,7 @@ import SectionTitle from "./components/atoms/SectionTitle";
 import PopularItem from "./components/atoms/PopularItem";
 import { useEffect } from "react";
 import PersonalizedGifts from "./components/organisms/PersonalizedGifts";
+
 const { REACT_APP_API_URL } = process.env;
 
 function App() {
