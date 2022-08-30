@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import FeatureItemPicture from "../atoms/FeatureItemPicture";
 
 const PersonalizedGifts = () => {
   return (
@@ -38,51 +39,26 @@ const TopFirst = styled.div`
   align-self: center;
   cursor: pointer;
 `;
-
-const TopSecond = styled.div`
+const TopSecond = styled(FeatureItemPicture)`
   grid-column: 2;
-  background-color: lightblue;
-  color: transparent;
-  border-radius: 8px;
-  cursor: pointer;
 `;
-const TopThird = styled.div`
+const TopThird = styled(FeatureItemPicture)`
   grid-column: 3;
-  background-color: lightblue;
-  color: transparent;
-  cursor: pointer;
-  border-radius: 8px;
 `;
-const TopLast = styled.div`
+const TopLast = styled(FeatureItemPicture)`
   grid-column: 4;
-  background-color: lightblue;
-  color: transparent;
-  cursor: pointer;
-  border-radius: 8px;
 `;
-const BottomFirst = styled.div`
+const BottomFirst = styled(FeatureItemPicture)`
   grid-column: 1;
-  grid-row: 2;
-  background-color: lightblue;
-  color: transparent;
-  cursor: pointer;
-  border-radius: 8px;
 `;
-const BottomSecond = styled.div`
+const BottomSecond = styled(FeatureItemPicture)`
   grid-column: 2;
   grid-row: 2;
-  background-color: lightblue;
-  color: transparent;
-  cursor: pointer;
-  border-radius: 8px;
 `;
-const BottomThird = styled.div`
+const BottomThird = styled(FeatureItemPicture)`
   grid-column: 3;
   grid-row: 2;
-  background-color: lightblue;
-  color: transparent;
-  cursor: pointer;
-  border-radius: 8px;
+
 `;
 const BottomLast = styled.div`
   grid-column: 4;
