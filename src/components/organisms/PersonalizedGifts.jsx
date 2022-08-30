@@ -39,7 +39,6 @@ const TopFirst = styled.div`
   align-self: center;
   cursor: pointer;
 `;
-
 const TopSecond = styled(FeatureItemPicture)`
   grid-column: 2;
 `;
@@ -59,6 +58,7 @@ const BottomSecond = styled(FeatureItemPicture)`
 const BottomThird = styled(FeatureItemPicture)`
   grid-column: 3;
   grid-row: 2;
+
 `;
 const BottomLast = styled.div`
   grid-column: 4;
