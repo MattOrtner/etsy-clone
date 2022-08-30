@@ -8,32 +8,16 @@ import SectionTitle from "./components/atoms/SectionTitle";
 import PopularItem from "./components/atoms/PopularItem";
 import { useEffect } from "react";
 import PersonalizedGifts from "./components/organisms/PersonalizedGifts";
+import { Outlet } from "react-router-dom";
 
 const { REACT_APP_API_URL } = process.env;
 
-function App() {
-  useEffect(() => {
-    fetch(REACT_APP_API_URL)
-      .then((res) => res.json())
-      .then(console.log);
-  }, []);
 
+const { REACT_APP_API_URL } = process.env;
+
+export const Landing = () => {
   return (
-    <div className="App">
-      <HeaderContainer>
-        <Logo src={logoIcon} />
-        <SearchBar>
-          <SearchInput type="text" placeholder="Search for anything" />
-          <SearchButton>
-            <SearchButtonIcon src={magnifyingGlassIcon} />
-          </SearchButton>
-        </SearchBar>
-        <UserDashboard>
-          <SignInButton>Sign In</SignInButton>
-          <CheckoutLink src={shoppingCartIcon} />
-        </UserDashboard>
-      </HeaderContainer>
-      <NavigationContainer />
+    <>
       <GreetingContainer>
         <BackSplash />
         <TitleContainer>
@@ -72,6 +56,34 @@ function App() {
       <PersonalContainer>
         <PersonalizedGifts />
       </PersonalContainer>
+    </>
+  );
+};
+
+function App() {
+  useEffect(() => {
+    fetch(REACT_APP_API_URL)
+      .then((res) => res.json())
+      .then(console.log);
+  }, []);
+
+  return (
+    <div className="App">
+      <HeaderContainer>
+        <Logo src={logoIcon} />
+        <SearchBar>
+          <SearchInput type="text" placeholder="Search for anything" />
+          <SearchButton>
+            <SearchButtonIcon src={magnifyingGlassIcon} />
+          </SearchButton>
+        </SearchBar>
+        <UserDashboard>
+          <SignInButton>Sign In</SignInButton>
+          <CheckoutLink src={shoppingCartIcon} />
+        </UserDashboard>
+      </HeaderContainer>
+      <NavigationContainer />
+      <Outlet />
     </div>
   );
 }

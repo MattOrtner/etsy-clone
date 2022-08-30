@@ -1,17 +1,20 @@
 import React from "react";
-import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-const FeatureItemPicture = ({ children }) => {
-  // add image element inside container
+const FeatureItemPicture = () => {
+  // add wrap image with NavLink
 
-  return <Container>{children}</Container>;
+  return <NavLink to="product" style={{ ...styles }} />;
 };
 
 export default FeatureItemPicture;
 
-const Container = styled.div`
-  background-color: lightblue;
-  color: transparent;
-  border-radius: 8px;
-  cursor: pointer;
-`;
+const styles = {
+  backgroundColor: "lightblue",
+  color: "black",
+  borderRadius: 8,
+  cursor: "pointer",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
