@@ -12,6 +12,9 @@ import { Outlet } from "react-router-dom";
 
 const { REACT_APP_API_URL } = process.env;
 
+
+const { REACT_APP_API_URL } = process.env;
+
 export const Landing = () => {
   return (
     <>
