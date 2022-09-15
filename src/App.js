@@ -6,7 +6,7 @@ import NavigationContainer from "./components/organisms/NavigationContainer";
 import HighLightList from "./components/molecules/HighLightList";
 import SectionTitle from "./components/atoms/SectionTitle";
 import PopularItem from "./components/atoms/PopularItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PersonalizedGifts from "./components/organisms/PersonalizedGifts";
 import { Outlet } from "react-router-dom";
 
@@ -58,10 +58,13 @@ export const Landing = () => {
 };
 
 function App() {
+  const [SERVER_DATA, SET_SERVER_DATA] = useState();
   useEffect(() => {
-    fetch(REACT_APP_API_URL)
+    const DATA = fetch(REACT_APP_API_URL)
       .then((res) => res.json())
-      .then(console.log);
+      .then(console.log)
+      .then(console.log(Date()));
+    SET_SERVER_DATA(DATA);
   }, []);
 
   return (
@@ -155,7 +158,11 @@ const SearchInput = styled.input`
   border-bottom-left-radius: 25px;
   border-right: none;
   font-size: 15px;
+  &:focus {
+    outline: none;
+  }
 `;
+
 const SearchButton = styled.button`
   width: 60px;
   border: 2px solid black;
