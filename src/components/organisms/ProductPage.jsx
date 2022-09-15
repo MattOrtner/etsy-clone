@@ -61,25 +61,37 @@ const ProductPage = () => {
                         : Array(5 - customer.starRating.length)
                             .fill("")
                             .map(() => <StarOutline src={starOutlineIcon} />)}
-                      {console.log(
-                        typeof customer.starRating.length,
-                        "star rating"
-                      )}
                     </div>
                     <div style={{ fontSize: 28, fontWeight: 300 }}>
                       {customer.review}
+                    </div>
+                    <div
+                      style={{
+                        height: 24,
+                        paddingBottom: 20,
+                        color: "#595959",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      <p>
+                        <strong>Purchased item:</strong> Handmade Cutting Board
+                      </p>
                     </div>
                     <CustomerReviewTag>
                       <ProfileImg
                         src={customer.profileImage}
                         alt="users profile"
                       />
-                      <div>{customer.name}</div>
+                      <div style={{ textDecoration: "underline" }}>
+                        {customer.name}
+                      </div>
                       <div>{customer.date}</div>
                     </CustomerReviewTag>
                     <HelpfulOuterContainer>
                       <ThumbIcon src={thumbUpIcon} />
-                      <button>Helpful?</button>
+                      <div style={{ fontWeight: 600, fontSize: 16 }}>
+                        Helpful?
+                      </div>
                     </HelpfulOuterContainer>
                   </CustomerReviewContainer>
                 ))}
@@ -127,12 +139,27 @@ const ProductPage = () => {
             </PriceContainer>
           </ProductInfo>
           <AddButton>Add to cart</AddButton>
-          <CartInspirationMessage>
-            <p style={{ fontWeight: 600, paddingRight: 2 }}>
-              Other people want this.
+          <MessagingAfterAddButton>
+            <ImageFiller>ASSET ONE DAY</ImageFiller>
+            <p>
+              <strong>Other people want this.</strong>
+              Over 20 people have this in their carts right now.
             </p>
-            <p>Over 20 people have this in their carts right now.</p>
-          </CartInspirationMessage>
+          </MessagingAfterAddButton>
+          <MessagingAfterAddButton>
+            <ImageFiller>ASSET ONE DAY</ImageFiller>
+            <p>
+              <strong>Star Seller.</strong> This seller consistently earned
+              5-star reviews, shipped on time, and replied quickly to any
+              messages they received.
+            </p>
+          </MessagingAfterAddButton>
+          <MessagingAfterAddButton>
+            <ImageFiller>ASSET ONE DAY</ImageFiller>
+            <p>
+              <strong>Gift wrapping available</strong>
+            </p>
+          </MessagingAfterAddButton>
         </ProductOrderInfo>
       </RightContainer>
     </PageContainer>
@@ -140,9 +167,17 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-
-const CartInspirationMessage = styled.div`
+const ImageFiller = styled.div`
+  width: 60px;
+  height: 60px;
+  background-color: darkblue;
+  color: transparent;
+  border-radius: 5px;
+`;
+const MessagingAfterAddButton = styled.div`
   display: flex;
+  align-items: center;
+  gap: 12px;
 `;
 const StarOutline = styled.img`
   padding-right: 4px;
@@ -171,29 +206,28 @@ const ReviewSortButton = styled.div`
 `;
 
 const CustomerReviewTag = styled.div`
-  ${"" /* background-color: black; */}
   display: flex;
   font-size: 18px;
   gap: 15px;
   align-items: center;
   height: 42px;
-  width: 100%;
+  width: 50%;
+  padding-bottom: 15px;
+  color: #595959;
 `;
 const CustomerReviewsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 8px;
 `;
 const CustomerReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 15px 0px;
-  border: 1px solid darkgrey;
-  gap: 10px;
 `;
 const ThumbIcon = styled.img`
   height: 18px;
   width: 18px;
-  padding-right: 10px;
 `;
 const HelpfulOuterContainer = styled.div`
   display: flex;
@@ -203,13 +237,11 @@ const HelpfulOuterContainer = styled.div`
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: lightgreen;
   height: 100vh;
-  width: 60%;
+  width: 55%;
 `;
 const ProductReviewsContainer = styled.div`
   height: 50%;
-  ${"" /* background-color: red; */}
   display: flex;
   flex-direction: column;
 `;
@@ -222,7 +254,7 @@ const TopProductReviews = styled.div`
 `;
 const BottomProductReviews = styled.div`
   margin-top: 20px;
-  background-color: red;
+  ${"" /* background-color: red; */}
 `;
 const ReviewNavTabs = styled.h2`
   margin-right: 15px;
@@ -300,7 +332,7 @@ const RightContainer = styled.div`
   flex-direction: column;
   background-color: lightblue;
   height: 100%;
-  width: 35%;
+  width: 40%;
   margin: 0px 0px 0px 20px;
 `;
 const ProductOrderInfo = styled.div`
@@ -396,7 +428,7 @@ const AddButton = styled.div`
   width: 100%;
   height: 3rem;
   border-radius: 50px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 `;
 
