@@ -65,6 +65,7 @@ const ProductPage = () => {
                     <div style={{ fontSize: 28, fontWeight: 300 }}>
                       {customer.review}
                     </div>
+
                     <div
                       style={{
                         height: 24,
@@ -78,10 +79,12 @@ const ProductPage = () => {
                       </p>
                     </div>
                     <CustomerReviewTag>
+
                       <ProfileImg
                         src={customer.profileImage}
                         alt="users profile"
                       />
+
                       <div style={{ textDecoration: "underline" }}>
                         {customer.name}
                       </div>
@@ -92,6 +95,7 @@ const ProductPage = () => {
                       <div style={{ fontWeight: 600, fontSize: 16 }}>
                         Helpful?
                       </div>
+
                     </HelpfulOuterContainer>
                   </CustomerReviewContainer>
                 ))}
@@ -139,6 +143,7 @@ const ProductPage = () => {
             </PriceContainer>
           </ProductInfo>
           <AddButton>Add to cart</AddButton>
+
           <MessagingAfterAddButton>
             <ImageFiller>ASSET ONE DAY</ImageFiller>
             <p>
@@ -160,6 +165,7 @@ const ProductPage = () => {
               <strong>Gift wrapping available</strong>
             </p>
           </MessagingAfterAddButton>
+
         </ProductOrderInfo>
       </RightContainer>
     </PageContainer>
@@ -167,6 +173,7 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
@@ -184,6 +191,7 @@ const StarOutline = styled.img`
   width: 27px;
   height: 27px;
 `;
+
 const ReviewSortContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -205,12 +213,15 @@ const ReviewSortButton = styled.div`
   }
 `;
 
+
 const CustomerReviewTag = styled.div`
+
   display: flex;
   font-size: 18px;
   gap: 15px;
   align-items: center;
   height: 42px;
+
   width: 50%;
   padding-bottom: 15px;
   color: #595959;
@@ -229,6 +240,7 @@ const ThumbIcon = styled.img`
   height: 18px;
   width: 18px;
 `;
+
 const HelpfulOuterContainer = styled.div`
   display: flex;
   gap: 10px;
@@ -280,6 +292,7 @@ const StarContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const StarIconLarge = styled.img`
   padding-right: 4px;
   width: 30px;
@@ -431,7 +444,6 @@ const AddButton = styled.div`
   font-size: 16px;
   font-weight: 600;
 `;
-
 const Spacer = styled.div`
   color: #e1e3df;
   padding: 0px 8px;
