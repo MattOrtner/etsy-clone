@@ -1,10 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
 import starIcon from "../../assets/star.svg";
 import CustomerReviews from "../../data/customer-review-dummy-data";
 import thumbUpIcon from "../../assets/thumb-up.svg";
+import starOutlineIcon from "../../assets/star-outline.svg";
 
 const ProductPage = () => {
   return (
@@ -55,21 +56,46 @@ const ProductPage = () => {
                         customer.starRating.map(() => (
                           <StarIconLarge src={starIcon} />
                         ))}
+                      {customer.starRating.length === 5
+                        ? ""
+                        : Array(5 - customer.starRating.length)
+                            .fill("")
+                            .map(() => <StarOutline src={starOutlineIcon} />)}
                     </div>
                     <div style={{ fontSize: 28, fontWeight: 300 }}>
                       {customer.review}
                     </div>
-                    <CustomerPurchaseContainer>
+
+                    <div
+                      style={{
+                        height: 24,
+                        paddingBottom: 20,
+                        color: "#595959",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      <p>
+                        <strong>Purchased item:</strong> Handmade Cutting Board
+                      </p>
+                    </div>
+                    <CustomerReviewTag>
+
                       <ProfileImg
                         src={customer.profileImage}
                         alt="users profile"
                       />
-                      <div>{customer.name}</div>
+
+                      <div style={{ textDecoration: "underline" }}>
+                        {customer.name}
+                      </div>
                       <div>{customer.date}</div>
-                    </CustomerPurchaseContainer>
+                    </CustomerReviewTag>
                     <HelpfulOuterContainer>
                       <ThumbIcon src={thumbUpIcon} />
-                      <button>Helpful?</button>
+                      <div style={{ fontWeight: 600, fontSize: 16 }}>
+                        Helpful?
+                      </div>
+
                     </HelpfulOuterContainer>
                   </CustomerReviewContainer>
                 ))}
@@ -117,6 +143,29 @@ const ProductPage = () => {
             </PriceContainer>
           </ProductInfo>
           <AddButton>Add to cart</AddButton>
+
+          <MessagingAfterAddButton>
+            <ImageFiller>ASSET ONE DAY</ImageFiller>
+            <p>
+              <strong>Other people want this.</strong>
+              Over 20 people have this in their carts right now.
+            </p>
+          </MessagingAfterAddButton>
+          <MessagingAfterAddButton>
+            <ImageFiller>ASSET ONE DAY</ImageFiller>
+            <p>
+              <strong>Star Seller.</strong> This seller consistently earned
+              5-star reviews, shipped on time, and replied quickly to any
+              messages they received.
+            </p>
+          </MessagingAfterAddButton>
+          <MessagingAfterAddButton>
+            <ImageFiller>ASSET ONE DAY</ImageFiller>
+            <p>
+              <strong>Gift wrapping available</strong>
+            </p>
+          </MessagingAfterAddButton>
+
         </ProductOrderInfo>
       </RightContainer>
     </PageContainer>
@@ -124,6 +173,25 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+const ImageFiller = styled.div`
+  width: 60px;
+  height: 60px;
+  background-color: darkblue;
+  color: transparent;
+  border-radius: 5px;
+`;
+const MessagingAfterAddButton = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+`;
+const StarOutline = styled.img`
+  padding-right: 4px;
+  width: 27px;
+  height: 27px;
+`;
+
 const ReviewSortContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -145,30 +213,34 @@ const ReviewSortButton = styled.div`
   }
 `;
 
-const CustomerPurchaseContainer = styled.div`
+
+const CustomerReviewTag = styled.div`
+
   display: flex;
   font-size: 18px;
   gap: 15px;
   align-items: center;
   height: 42px;
-  width: 100%;
+
+  width: 50%;
+  padding-bottom: 15px;
+  color: #595959;
 `;
 const CustomerReviewsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 8px;
 `;
 const CustomerReviewContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 15px 0px;
-  border: 1px solid darkgrey;
-  gap: 10px;
 `;
 const ThumbIcon = styled.img`
   height: 18px;
   width: 18px;
-  padding-right: 10px;
 `;
+
 const HelpfulOuterContainer = styled.div`
   display: flex;
   gap: 10px;
@@ -177,13 +249,11 @@ const HelpfulOuterContainer = styled.div`
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: lightgreen;
   height: 100vh;
-  width: 60%;
+  width: 55%;
 `;
 const ProductReviewsContainer = styled.div`
   height: 50%;
-  ${"" /* background-color: red; */}
   display: flex;
   flex-direction: column;
 `;
@@ -196,7 +266,7 @@ const TopProductReviews = styled.div`
 `;
 const BottomProductReviews = styled.div`
   margin-top: 20px;
-  background-color: red;
+  ${"" /* background-color: red; */}
 `;
 const ReviewNavTabs = styled.h2`
   margin-right: 15px;
@@ -222,6 +292,7 @@ const StarContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const StarIconLarge = styled.img`
   padding-right: 4px;
   width: 30px;
@@ -274,7 +345,7 @@ const RightContainer = styled.div`
   flex-direction: column;
   background-color: lightblue;
   height: 100%;
-  width: 35%;
+  width: 40%;
   margin: 0px 0px 0px 20px;
 `;
 const ProductOrderInfo = styled.div`
@@ -370,7 +441,7 @@ const AddButton = styled.div`
   width: 100%;
   height: 3rem;
   border-radius: 50px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
 `;
 const Spacer = styled.div`
