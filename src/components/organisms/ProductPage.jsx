@@ -1,10 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
 import starIcon from "../../assets/star.svg";
 import CustomerReviews from "../../data/customer-review-dummy-data";
 import thumbUpIcon from "../../assets/thumb-up.svg";
+import starOutlineIcon from "../../assets/star-outline.svg";
 
 const ProductPage = () => {
   return (
@@ -55,18 +56,27 @@ const ProductPage = () => {
                         customer.starRating.map(() => (
                           <StarIconLarge src={starIcon} />
                         ))}
+                      {customer.starRating.length === 5
+                        ? ""
+                        : Array(5 - customer.starRating.length)
+                            .fill("")
+                            .map(() => <StarOutline src={starOutlineIcon} />)}
+                      {console.log(
+                        typeof customer.starRating.length,
+                        "star rating"
+                      )}
                     </div>
                     <div style={{ fontSize: 28, fontWeight: 300 }}>
                       {customer.review}
                     </div>
-                    <CustomerPurchaseContainer>
+                    <CustomerReviewTag>
                       <ProfileImg
                         src={customer.profileImage}
                         alt="users profile"
                       />
                       <div>{customer.name}</div>
                       <div>{customer.date}</div>
-                    </CustomerPurchaseContainer>
+                    </CustomerReviewTag>
                     <HelpfulOuterContainer>
                       <ThumbIcon src={thumbUpIcon} />
                       <button>Helpful?</button>
@@ -117,6 +127,12 @@ const ProductPage = () => {
             </PriceContainer>
           </ProductInfo>
           <AddButton>Add to cart</AddButton>
+          <CartInspirationMessage>
+            <p style={{ fontWeight: 600, paddingRight: 2 }}>
+              Other people want this.
+            </p>
+            <p>Over 20 people have this in their carts right now.</p>
+          </CartInspirationMessage>
         </ProductOrderInfo>
       </RightContainer>
     </PageContainer>
@@ -124,6 +140,15 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
+const CartInspirationMessage = styled.div`
+  display: flex;
+`;
+const StarOutline = styled.img`
+  padding-right: 4px;
+  width: 27px;
+  height: 27px;
+`;
 const ReviewSortContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -145,7 +170,8 @@ const ReviewSortButton = styled.div`
   }
 `;
 
-const CustomerPurchaseContainer = styled.div`
+const CustomerReviewTag = styled.div`
+  ${"" /* background-color: black; */}
   display: flex;
   font-size: 18px;
   gap: 15px;
@@ -373,6 +399,7 @@ const AddButton = styled.div`
   font-size: 18px;
   font-weight: 600;
 `;
+
 const Spacer = styled.div`
   color: #e1e3df;
   padding: 0px 8px;
