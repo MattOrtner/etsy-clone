@@ -158,7 +158,11 @@ const SearchInput = styled.input`
   border-bottom-left-radius: 25px;
   border-right: none;
   font-size: 15px;
+  &:focus {
+    outline: none;
+  }
 `;
+
 const SearchButton = styled.button`
   width: 60px;
   border: 2px solid black;

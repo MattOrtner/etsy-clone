@@ -4,10 +4,11 @@ import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
 import starIcon from "../../assets/star.svg";
 import CustomerReviews from "../../data/customer-review-dummy-data";
+import thumbUpIcon from "../../assets/thumb-up.svg";
 
 const ProductPage = () => {
   return (
-    <Container>
+    <PageContainer>
       <LeftContainer>
         <ImagesPreview>
           <OtherImages>
@@ -28,6 +29,8 @@ const ProductPage = () => {
                 <StarIconLarge src={starIcon} />
                 <StarIconLarge src={starIcon} />
                 <StarIconLarge src={starIcon} />
+                <StarIconLarge src={starIcon} />
+                <StarIconLarge src={starIcon} />
               </StarContainer>
             </ProductReviewContainer>
             <RecentReviewShoutOut>
@@ -40,6 +43,9 @@ const ProductPage = () => {
               <ReviewNavTabs>Reviews for this item</ReviewNavTabs>
               <ReviewNavTabs>Reviews for this shop</ReviewNavTabs>
             </ReviewsNavContainer>
+            <ReviewSortContainer>
+              <ReviewSortButton>Sort by: Recommended</ReviewSortButton>
+            </ReviewSortContainer>
             <CustomerReviewsContainer>
               {CustomerReviews &&
                 CustomerReviews.map((customer) => (
@@ -47,10 +53,12 @@ const ProductPage = () => {
                     <div>
                       {customer.starRating &&
                         customer.starRating.map(() => (
-                          <StarIcon src={starIcon} />
+                          <StarIconLarge src={starIcon} />
                         ))}
                     </div>
-                    <div>{customer.review}</div>
+                    <div style={{ fontSize: 28, fontWeight: 300 }}>
+                      {customer.review}
+                    </div>
                     <CustomerPurchaseContainer>
                       <ProfileImg
                         src={customer.profileImage}
@@ -59,9 +67,10 @@ const ProductPage = () => {
                       <div>{customer.name}</div>
                       <div>{customer.date}</div>
                     </CustomerPurchaseContainer>
-                    <div>
+                    <HelpfulOuterContainer>
+                      <ThumbIcon src={thumbUpIcon} />
                       <button>Helpful?</button>
-                    </div>
+                    </HelpfulOuterContainer>
                   </CustomerReviewContainer>
                 ))}
             </CustomerReviewsContainer>
@@ -110,13 +119,39 @@ const ProductPage = () => {
           <AddButton>Add to cart</AddButton>
         </ProductOrderInfo>
       </RightContainer>
-    </Container>
+    </PageContainer>
   );
 };
 
 export default ProductPage;
+const ReviewSortContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 64px;
+`;
+const ReviewSortButton = styled.div`
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 35%;
+  height: 100%;
+  border-radius: 24px;
+  &:hover {
+    transition: all 300ms ease-in-out;
+    background-color: lightgrey;
+  }
+`;
+
 const CustomerPurchaseContainer = styled.div`
   display: flex;
+  font-size: 18px;
+  gap: 15px;
+  align-items: center;
+  height: 42px;
+  width: 100%;
 `;
 const CustomerReviewsContainer = styled.div`
   display: flex;
@@ -127,13 +162,23 @@ const CustomerReviewContainer = styled.div`
   flex-direction: column;
   margin: 15px 0px;
   border: 1px solid darkgrey;
+  gap: 10px;
+`;
+const ThumbIcon = styled.img`
+  height: 18px;
+  width: 18px;
+  padding-right: 10px;
+`;
+const HelpfulOuterContainer = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   background-color: lightgreen;
-  height: 100%;
+  height: 100vh;
   width: 60%;
 `;
 const ProductReviewsContainer = styled.div`
@@ -145,11 +190,14 @@ const ProductReviewsContainer = styled.div`
 const TopProductReviews = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 80px;
-  border: 1px solid blue;
+  gap: 18px;
+  height: 90px;
+  margin-top: 30px;
 `;
-const BottomProductReviews = styled.div``;
+const BottomProductReviews = styled.div`
+  margin-top: 20px;
+  background-color: red;
+`;
 const ReviewNavTabs = styled.h2`
   margin-right: 15px;
   font-weight: 300;
@@ -166,16 +214,13 @@ const StoreRating = styled.div`
   font-size: 32px;
   font-weight: 300;
   margin-right: 10px;
-  border: 1px solid blue;
 `;
 const ProductReviewContainer = styled.div`
   display: flex;
-  border: 1px solid blue;
 `;
 const StarContainer = styled.div`
-  ${"" /* just some spacing */}
-  ${"" /* just some spacing */}
-  ${"" /* just some spacing */}
+  display: flex;
+  align-items: center;
 `;
 const StarIconLarge = styled.img`
   padding-right: 4px;
@@ -332,7 +377,7 @@ const Spacer = styled.div`
   color: #e1e3df;
   padding: 0px 8px;
 `;
-const Container = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
