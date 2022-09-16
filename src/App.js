@@ -59,13 +59,14 @@ export const Landing = () => {
 
 function App() {
   const [SERVER_DATA, SET_SERVER_DATA] = useState();
-  // useEffect(() => {
-  //   const DATA = fetch(REACT_APP_API_URL)
-  //     .then((res) => res.json())
-  //     .then(console.log)
-  //     .then(console.log(Date()));
-  //   SET_SERVER_DATA(DATA);
-  // }, []);
+
+  useEffect(() => {
+    const DATA = fetch(REACT_APP_API_URL)
+      .then((res) => res.json())
+      .then(console.log)
+      .then(console.log(Date()));
+    SET_SERVER_DATA(DATA);
+  }, []);
 
   return (
     <div className="App">

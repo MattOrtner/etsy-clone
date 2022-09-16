@@ -153,6 +153,7 @@ const ProductPage = () => {
               </InStockContainer>
             </PriceContainer>
           </ProductInfo>
+
           {ProductData.isInStock ? (
             <AddButton>Add to cart</AddButton>
           ) : (
@@ -226,6 +227,7 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+
 const BottomRightExtras = styled.div`
   display: flex;
   width: 100%;
@@ -257,10 +259,12 @@ const StarOutlineLarge = styled.img`
   width: 27px;
   height: 27px;
 `;
+
 const StarOutline = styled.img`
   width: 16px;
   height: 16px;
 `;
+
 const ReviewSortContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -288,6 +292,7 @@ const CustomerReviewTag = styled.div`
   gap: 15px;
   align-items: center;
   height: 42px;
+
   width: 50%;
   padding-bottom: 15px;
   color: #595959;
@@ -306,6 +311,7 @@ const ThumbIcon = styled.img`
   height: 18px;
   width: 18px;
 `;
+
 const HelpfulOuterContainer = styled.div`
   display: flex;
   gap: 10px;
@@ -358,6 +364,7 @@ const StarContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const StarIconLarge = styled.img`
   padding-right: 4px;
   width: 30px;
@@ -510,6 +517,7 @@ const AddButton = styled.div`
   font-size: 16px;
   font-weight: 600;
 `;
+
 const OutOfStockButton = styled.div`
   display: flex;
   justify-content: center;
