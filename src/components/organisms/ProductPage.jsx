@@ -3,9 +3,11 @@ import styled, { createGlobalStyle } from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
 import starIcon from "../../assets/star.svg";
-import CustomerReviews from "../../data/customer-review-dummy-data";
+import CustomerReviewsData from "../../data/customer-review-dummy-data";
 import thumbUpIcon from "../../assets/thumb-up.svg";
 import starOutlineIcon from "../../assets/star-outline.svg";
+import StoreData from "../../data/shop-data";
+import ProductData from "../../data/product-data";
 
 const ProductPage = () => {
   return (
@@ -25,19 +27,24 @@ const ProductPage = () => {
         <ProductReviewsContainer>
           <TopProductReviews>
             <ProductReviewContainer>
-              <StoreRating>2,380 reviews</StoreRating>
+              <StoreRating>{StoreData.totalStoreReviews} review</StoreRating>
               <StarContainer>
-                <StarIconLarge src={starIcon} />
-                <StarIconLarge src={starIcon} />
-                <StarIconLarge src={starIcon} />
-                <StarIconLarge src={starIcon} />
-                <StarIconLarge src={starIcon} />
+                {StoreData.starRating &&
+                  StoreData.starRating.map(() => (
+                    <StarIconLarge src={starIcon} />
+                  ))}
+                {StoreData.starRating.length < 5 &&
+                  Array(5 - StoreData.starRating.length)
+                    .fill("")
+                    .map(() => <StarOutlineLarge src={starOutlineIcon} />)}
               </StarContainer>
             </ProductReviewContainer>
-            <RecentReviewShoutOut>
-              Buyers are raving! Multiple people gave 5-star reviews to this
-              shop in the past 7 days
-            </RecentReviewShoutOut>
+            {StoreData.isStarSeller && (
+              <RecentReviewShoutOut>
+                Buyers are raving! Multiple people gave 5-star reviews to this
+                shop in the past 7 days
+              </RecentReviewShoutOut>
+            )}
           </TopProductReviews>
           <BottomProductReviews>
             <ReviewsNavContainer>
@@ -48,19 +55,20 @@ const ProductPage = () => {
               <ReviewSortButton>Sort by: Recommended</ReviewSortButton>
             </ReviewSortContainer>
             <CustomerReviewsContainer>
-              {CustomerReviews &&
-                CustomerReviews.map((customer) => (
+              {CustomerReviewsData &&
+                CustomerReviewsData.map((customer) => (
                   <CustomerReviewContainer key={customer.userId}>
                     <div>
                       {customer.starRating &&
                         customer.starRating.map(() => (
                           <StarIconLarge src={starIcon} />
                         ))}
-                      {customer.starRating.length === 5
-                        ? ""
-                        : Array(5 - customer.starRating.length)
-                            .fill("")
-                            .map(() => <StarOutline src={starOutlineIcon} />)}
+                      {customer.starRating.length < 5 &&
+                        Array(5 - customer.starRating.length)
+                          .fill("")
+                          .map(() => (
+                            <StarOutlineLarge src={starOutlineIcon} />
+                          ))}
                     </div>
                     <div style={{ fontSize: 28, fontWeight: 300 }}>
                       {customer.review}
@@ -112,54 +120,76 @@ const ProductPage = () => {
                 </FollowContainer>
               </CompanyInfoTop>
               <SellerRatings>
-                <StarSeller>Star Seller</StarSeller>
+                {StoreData.starRating && <StarSeller>Star Seller</StarSeller>}
                 <Spacer>|</Spacer>
-                <SellerRatings>30,001 sales</SellerRatings>
+                <SellerRatings>{StoreData.totalStoreSales} sales</SellerRatings>
                 <Spacer>|</Spacer>
                 <StarIconsContainer>
-                  <StarIcon src={starIcon} />
-                  <StarIcon src={starIcon} />
-                  <StarIcon src={starIcon} />
-                  <StarIcon src={starIcon} />
-                  <StarIcon src={starIcon} />
+                  {StoreData.starRating &&
+                    StoreData.starRating.map(() => <StarIcon src={starIcon} />)}
+                  {StoreData.starRating.length < 5 &&
+                    Array(5 - StoreData.starRating.length)
+                      .fill("")
+                      .map(() => <StarOutline src={starOutlineIcon} />)}
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
-            <ProductName>
-              Handmade Cutting Board Personalized Classic Monogram Design
-              #003-Wedding & Anniversary Gift for Couples-Housewarming and
-              Closing Present
-            </ProductName>
+            <ProductName>{ProductData.name}</ProductName>
             <PriceContainer>
-              <ProductPrice>$34.00</ProductPrice>
+              <ProductPrice>{ProductData.price}</ProductPrice>
               <InStockContainer>
-                <CheckIcon src={checkIcon} />
-                <InStock>In stock</InStock>
+                {ProductData.isInStock ? (
+                  <>
+                    <CheckIcon src={checkIcon} />
+                    <IsInStock>In stock</IsInStock>
+                  </>
+                ) : (
+                  <>
+                    <CheckIcon src={checkIcon} />
+                    <IsInStock>Currently, out of stock.</IsInStock>
+                  </>
+                )}
               </InStockContainer>
             </PriceContainer>
           </ProductInfo>
-          <AddButton>Add to cart</AddButton>
-          <MessagingAfterAddButton>
-            <ImageFiller>ASSET ONE DAY</ImageFiller>
-            <p>
-              <strong>Other people want this.</strong>
-              Over 20 people have this in their carts right now.
-            </p>
-          </MessagingAfterAddButton>
-          <MessagingAfterAddButton>
-            <ImageFiller>ASSET ONE DAY</ImageFiller>
-            <p>
-              <strong>Star Seller.</strong> This seller consistently earned
-              5-star reviews, shipped on time, and replied quickly to any
-              messages they received.
-            </p>
-          </MessagingAfterAddButton>
-          <MessagingAfterAddButton>
-            <ImageFiller>ASSET ONE DAY</ImageFiller>
-            <p>
-              <strong>Gift wrapping available</strong>
-            </p>
-          </MessagingAfterAddButton>
+          {ProductData.isInStock ? (
+            <AddButton>Add to cart</AddButton>
+          ) : (
+            <OutOfStockButton>
+              Click here to save the item to favorites for later
+            </OutOfStockButton>
+          )}
+          <MessagingContainer>
+            {ProductData.isInOtherCarts && (
+              <MessagingAfterAddButton>
+                <ImageFiller>ASSET ONE DAY</ImageFiller>
+                <p>
+                  <strong style={{ paddingRight: 3 }}>
+                    Other people want this.
+                  </strong>
+                  Over 20 people have this in their carts right now.
+                </p>
+              </MessagingAfterAddButton>
+            )}
+            {StoreData.isStarSeller && (
+              <MessagingAfterAddButton>
+                <ImageFiller>ASSET ONE DAY</ImageFiller>
+                <p>
+                  <strong>Star Seller.</strong> This seller consistently earned
+                  5-star reviews, shipped on time, and replied quickly to any
+                  messages they received.
+                </p>
+              </MessagingAfterAddButton>
+            )}
+            {StoreData.isGiftWrapping && (
+              <MessagingAfterAddButton>
+                <ImageFiller>ASSET ONE DAY</ImageFiller>
+                <p>
+                  <strong>Gift wrapping available</strong>
+                </p>
+              </MessagingAfterAddButton>
+            )}
+          </MessagingContainer>
         </ProductOrderInfo>
       </RightContainer>
     </PageContainer>
@@ -167,6 +197,12 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
+const MessagingContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`;
+
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
@@ -179,10 +215,14 @@ const MessagingAfterAddButton = styled.div`
   align-items: center;
   gap: 12px;
 `;
-const StarOutline = styled.img`
+const StarOutlineLarge = styled.img`
   padding-right: 4px;
   width: 27px;
   height: 27px;
+`;
+const StarOutline = styled.img`
+  width: 16px;
+  height: 16px;
 `;
 const ReviewSortContainer = styled.div`
   display: flex;
@@ -338,7 +378,7 @@ const RightContainer = styled.div`
 const ProductOrderInfo = styled.div`
   display: flex;
   flex-direction: column;
-  width: 75%;
+  width: 80%;
 `;
 const CompanyName = styled.h3`
   margin-right: 20px;
@@ -417,13 +457,25 @@ const CheckIcon = styled.img`
   width: 24px;
   height: 24px;
 `;
-const InStock = styled.div``;
+const IsInStock = styled.div``;
 const ProductInfo = styled.div``;
 const AddButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: black;
+  color: white;
+  width: 100%;
+  height: 3rem;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+`;
+const OutOfStockButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #595959;
   color: white;
   width: 100%;
   height: 3rem;
