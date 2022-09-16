@@ -10,6 +10,7 @@ import StoreData from "../../data/store-data";
 import ProductData from "../../data/product-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 
+
 const ProductPage = () => {
   return (
     <PageContainer>
@@ -153,7 +154,6 @@ const ProductPage = () => {
               </InStockContainer>
             </PriceContainer>
           </ProductInfo>
-
           {ProductData.isInStock ? (
             <AddButton>Add to cart</AddButton>
           ) : (
@@ -241,7 +241,6 @@ const MessagingContainer = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
 `;
-
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
@@ -259,12 +258,10 @@ const StarOutlineLarge = styled.img`
   width: 27px;
   height: 27px;
 `;
-
 const StarOutline = styled.img`
   width: 16px;
   height: 16px;
 `;
-
 const ReviewSortContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -285,7 +282,6 @@ const ReviewSortButton = styled.div`
     background-color: lightgrey;
   }
 `;
-
 const CustomerReviewTag = styled.div`
   display: flex;
   font-size: 18px;
