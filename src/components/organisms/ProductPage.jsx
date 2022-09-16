@@ -6,8 +6,9 @@ import starIcon from "../../assets/star.svg";
 import CustomerReviewsData from "../../data/customer-review-dummy-data";
 import thumbUpIcon from "../../assets/thumb-up.svg";
 import starOutlineIcon from "../../assets/star-outline.svg";
-import StoreData from "../../data/shop-data";
+import StoreData from "../../data/store-data";
 import ProductData from "../../data/product-data";
+import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 
 const ProductPage = () => {
   return (
@@ -191,16 +192,52 @@ const ProductPage = () => {
             )}
           </MessagingContainer>
         </ProductOrderInfo>
+        <BottomRightExtras>
+          {ProductData.highLights && (
+            <DropDownInfoContainer title="Hightlights">
+              {ProductData.highLights.map((highlight) => (
+                <p>{highlight}</p>
+              ))}
+            </DropDownInfoContainer>
+          )}
+          {ProductData.description && (
+            <DropDownInfoContainer title="Description">
+              <p>{ProductData.description}</p>
+            </DropDownInfoContainer>
+          )}
+          {StoreData.isAcceptsReturns.isTrue ? (
+            <DropDownInfoContainer title="Shipping and return policies">
+              <p>{StoreData.isAcceptsReturns.trueMessage}</p>
+            </DropDownInfoContainer>
+          ) : (
+            <DropDownInfoContainer title="Shipping and return policies">
+              <p>{StoreData.isAcceptsReturns.falseMessage}</p>
+            </DropDownInfoContainer>
+          )}
+          <DropDownInfoContainer title="Meet your sellers">
+            <div>hello</div>
+            <div>hello</div>
+            <div>hello</div>
+          </DropDownInfoContainer>
+        </BottomRightExtras>
       </RightContainer>
     </PageContainer>
   );
 };
 
 export default ProductPage;
+const BottomRightExtras = styled.div`
+  display: flex;
+  width: 100%;
+  height: 600px;
+  flex-direction: column;
+  background-color: lightgreen;
+`;
 const MessagingContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 const ImageFiller = styled.div`
@@ -278,7 +315,8 @@ const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 55%;
+  width: 76%;
+  padding-left: 40px;
 `;
 const ProductReviewsContainer = styled.div`
   height: 50%;
@@ -372,7 +410,8 @@ const RightContainer = styled.div`
   flex-direction: column;
   background-color: lightblue;
   height: 100%;
-  width: 40%;
+  width: 34%;
+  float: right;
   margin: 0px 0px 0px 20px;
 `;
 const ProductOrderInfo = styled.div`
