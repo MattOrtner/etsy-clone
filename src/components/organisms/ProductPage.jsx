@@ -9,6 +9,10 @@ import starOutlineIcon from "../../assets/star-outline.svg";
 import StoreData from "../../data/store-data";
 import ProductData from "../../data/product-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
+<<<<<<< HEAD
+=======
+
+>>>>>>> be120418db75af8b3e05db42f05841f81e83cb9e
 
 const ProductPage = () => {
   return (
@@ -153,7 +157,6 @@ const ProductPage = () => {
               </InStockContainer>
             </PriceContainer>
           </ProductInfo>
-
           {ProductData.isInStock ? (
             <AddButton>Add to cart</AddButton>
           ) : (
@@ -242,6 +245,7 @@ const MessagingContainer = styled.div`
   margin-bottom: 20px;
 `;
 
+>>>>>>> be120418db75af8b3e05db42f05841f81e83cb9e
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
@@ -285,7 +289,6 @@ const ReviewSortButton = styled.div`
     background-color: lightgrey;
   }
 `;
-
 const CustomerReviewTag = styled.div`
   display: flex;
   font-size: 18px;
