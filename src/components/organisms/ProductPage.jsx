@@ -9,10 +9,6 @@ import starOutlineIcon from "../../assets/star-outline.svg";
 import StoreData from "../../data/store-data";
 import ProductData from "../../data/product-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
-<<<<<<< HEAD
-=======
-
->>>>>>> be120418db75af8b3e05db42f05841f81e83cb9e
 
 const ProductPage = () => {
   return (
@@ -245,7 +241,6 @@ const MessagingContainer = styled.div`
   margin-bottom: 20px;
 `;
 
->>>>>>> be120418db75af8b3e05db42f05841f81e83cb9e
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
