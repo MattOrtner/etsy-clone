@@ -57,7 +57,8 @@ const ProductPage = () => {
             </ReviewSortContainer>
             <CustomerReviewsContainer>
               {CustomerReviewsData &&
-                CustomerReviewsData.map((customer) => (
+                CustomerReviewsData.length > 4 &&
+                CustomerReviewsData.slice(0, 4).map((customer) => (
                   <CustomerReviewContainer key={customer.userId}>
                     <div>
                       {customer.starRating &&
@@ -104,6 +105,27 @@ const ProductPage = () => {
                     </HelpfulOuterContainer>
                   </CustomerReviewContainer>
                 ))}
+              {CustomerReviewsData.length > 4 && (
+                <PaginationNavigationContainer>
+                  <PaginationNavigation>
+                    <PaginationButton>{"<-"}</PaginationButton>
+                    <PaginationButton>1</PaginationButton>
+                    <PaginationButton
+                      style={{
+                        height: 30,
+                        width: 30,
+                        backgroundColor: "white",
+                        border: "none",
+                        textAlign: "end",
+                      }}
+                    >
+                      ...
+                    </PaginationButton>
+                    <PaginationButton>2</PaginationButton>
+                    <PaginationButton>{"->"}</PaginationButton>
+                  </PaginationNavigation>
+                </PaginationNavigationContainer>
+              )}
             </CustomerReviewsContainer>
           </BottomProductReviews>
         </ProductReviewsContainer>
@@ -226,7 +248,27 @@ const ProductPage = () => {
 };
 
 export default ProductPage;
-
+const PaginationNavigationContainer = styled.nav`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  padding: 50px 0px;
+`;
+const PaginationNavigation = styled.div`
+  grid-column: 1 / span 1;
+  display: flex;
+  align-items: center;
+`;
+const PaginationButton = styled.div`
+  margin-right: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(34, 34, 34, 0.075);
+`;
 const BottomRightExtras = styled.div`
   display: flex;
   width: 100%;
