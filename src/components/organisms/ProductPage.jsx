@@ -1,115 +1,18 @@
 import React from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
 import starIcon from "../../assets/star.svg";
-import CustomerReviewsData from "../../data/customer-review-dummy-data";
-import thumbUpIcon from "../../assets/thumb-up.svg";
 import starOutlineIcon from "../../assets/star-outline.svg";
 import StoreData from "../../data/store-data";
 import ProductData from "../../data/product-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
-
+import LeftProductPageContainer from "./LeftProductPageContainer";
 
 const ProductPage = () => {
   return (
     <PageContainer>
-      <LeftContainer>
-        <ImagesPreview>
-          <OtherImages>
-            <MiniPeviewImage>p</MiniPeviewImage>
-            <MiniPeviewImage>p</MiniPeviewImage>
-            <MiniPeviewImage>p</MiniPeviewImage>
-            <MiniPeviewImage>p</MiniPeviewImage>
-          </OtherImages>
-          <PrimaryImageContainer>
-            <PrimaryImage>Image</PrimaryImage>
-          </PrimaryImageContainer>
-        </ImagesPreview>
-        <ProductReviewsContainer>
-          <TopProductReviews>
-            <ProductReviewContainer>
-              <StoreRating>{StoreData.totalStoreReviews} review</StoreRating>
-              <StarContainer>
-                {StoreData.starRating &&
-                  StoreData.starRating.map(() => (
-                    <StarIconLarge src={starIcon} />
-                  ))}
-                {StoreData.starRating.length < 5 &&
-                  Array(5 - StoreData.starRating.length)
-                    .fill("")
-                    .map(() => <StarOutlineLarge src={starOutlineIcon} />)}
-              </StarContainer>
-            </ProductReviewContainer>
-            {StoreData.isStarSeller && (
-              <RecentReviewShoutOut>
-                Buyers are raving! Multiple people gave 5-star reviews to this
-                shop in the past 7 days
-              </RecentReviewShoutOut>
-            )}
-          </TopProductReviews>
-          <BottomProductReviews>
-            <ReviewsNavContainer>
-              <ReviewNavTabs>Reviews for this item</ReviewNavTabs>
-              <ReviewNavTabs>Reviews for this shop</ReviewNavTabs>
-            </ReviewsNavContainer>
-            <ReviewSortContainer>
-              <ReviewSortButton>Sort by: Recommended</ReviewSortButton>
-            </ReviewSortContainer>
-            <CustomerReviewsContainer>
-              {CustomerReviewsData &&
-                CustomerReviewsData.map((customer) => (
-                  <CustomerReviewContainer key={customer.userId}>
-                    <div>
-                      {customer.starRating &&
-                        customer.starRating.map(() => (
-                          <StarIconLarge src={starIcon} />
-                        ))}
-                      {customer.starRating.length < 5 &&
-                        Array(5 - customer.starRating.length)
-                          .fill("")
-                          .map(() => (
-                            <StarOutlineLarge src={starOutlineIcon} />
-                          ))}
-                    </div>
-                    <div style={{ fontSize: 28, fontWeight: 300 }}>
-                      {customer.review}
-                    </div>
-                    <div
-                      style={{
-                        height: 24,
-                        paddingBottom: 20,
-                        color: "#595959",
-                        textOverflow: "ellipsis",
-                      }}
-                    >
-                      <p>
-                        <strong>Purchased item:</strong> Handmade Cutting Board
-                      </p>
-                    </div>
-                    <CustomerReviewTag>
-                      <ProfileImg
-                        src={customer.profileImage}
-                        alt="users profile"
-                      />
-                      <div style={{ textDecoration: "underline" }}>
-                        {customer.name}
-                      </div>
-                      <div>{customer.date}</div>
-                    </CustomerReviewTag>
-                    <HelpfulOuterContainer>
-                      <ThumbIcon src={thumbUpIcon} />
-                      <div style={{ fontWeight: 600, fontSize: 16 }}>
-                        Helpful?
-                      </div>
-                    </HelpfulOuterContainer>
-                  </CustomerReviewContainer>
-                ))}
-            </CustomerReviewsContainer>
-          </BottomProductReviews>
-        </ProductReviewsContainer>
-      </LeftContainer>
-
+      <LeftProductPageContainer />
       <RightContainer>
         <ProductOrderInfo>
           <ProductInfo>
@@ -241,6 +144,10 @@ const MessagingContainer = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
 `;
+const StarOutline = styled.img`
+  width: 16px;
+  height: 16px;
+`;
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
@@ -252,159 +159,6 @@ const MessagingAfterAddButton = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
-`;
-const StarOutlineLarge = styled.img`
-  padding-right: 4px;
-  width: 27px;
-  height: 27px;
-`;
-const StarOutline = styled.img`
-  width: 16px;
-  height: 16px;
-`;
-const ReviewSortContainer = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  height: 64px;
-`;
-const ReviewSortButton = styled.div`
-  font-weight: 700;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  width: 35%;
-  height: 100%;
-  border-radius: 24px;
-  &:hover {
-    transition: all 300ms ease-in-out;
-    background-color: lightgrey;
-  }
-`;
-const CustomerReviewTag = styled.div`
-  display: flex;
-  font-size: 18px;
-  gap: 15px;
-  align-items: center;
-  height: 42px;
-
-  width: 50%;
-  padding-bottom: 15px;
-  color: #595959;
-`;
-const CustomerReviewsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-`;
-const CustomerReviewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 15px 0px;
-`;
-const ThumbIcon = styled.img`
-  height: 18px;
-  width: 18px;
-`;
-
-const HelpfulOuterContainer = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 76%;
-  padding-left: 40px;
-`;
-const ProductReviewsContainer = styled.div`
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-`;
-const TopProductReviews = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  height: 90px;
-  margin-top: 30px;
-`;
-const BottomProductReviews = styled.div`
-  margin-top: 20px;
-  ${"" /* background-color: red; */}
-`;
-const ReviewNavTabs = styled.h2`
-  margin-right: 15px;
-  font-weight: 300;
-`;
-const ReviewsNavContainer = styled.div`
-  display: flex;
-`;
-const ProfileImg = styled.img`
-  height: 45px;
-  width: 45px;
-  border-radius: 50%;
-`;
-const StoreRating = styled.div`
-  font-size: 32px;
-  font-weight: 300;
-  margin-right: 10px;
-`;
-const ProductReviewContainer = styled.div`
-  display: flex;
-`;
-const StarContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const StarIconLarge = styled.img`
-  padding-right: 4px;
-  width: 30px;
-  height: 30px;
-`;
-const RecentReviewShoutOut = styled.div`
-  ${"" /* just some spacing */}
-  ${"" /* just some spacing */}
-  ${"" /* just some spacing */}
-`;
-
-const ImagesPreview = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 75%;
-  width: 100%;
-  background-color: antiquewhite;
-`;
-const OtherImages = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const MiniPeviewImage = styled.div`
-  display: flex;
-  flex-direction: column;
-  border: 2px solid black;
-  height: 60px;
-  border-radius: 6px;
-  width: 60px;
-  margin: 0px 6px 6px 0px;
-`;
-const PrimaryImageContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  border-radius: 6px;
-  border: 2px solid black;
-`;
-const PrimaryImage = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
 `;
 
 const RightContainer = styled.div`
@@ -457,11 +211,6 @@ const FollowContainer = styled.div`
   }
 `;
 const HeartOutlineIcon = styled.img`
-  padding-right: 4px;
-  width: 20px;
-  height: 20px;
-`;
-const HeartOutlineIconOverImage = styled.img`
   padding-right: 4px;
   width: 20px;
   height: 20px;
