@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const PopularItem = ({ title, rating, price }) => {
+const PopularItem = ({ imgURI, title, rating, price }) => {
   return (
     <Container>
       <Photo />
       <ListCardDetails>
         <DetailsTitle>{title}</DetailsTitle>
         <Rating>{rating}</Rating>
-        <Price>{price}</Price>
+        <Price>${price}.00</Price>
       </ListCardDetails>
     </Container>
   );

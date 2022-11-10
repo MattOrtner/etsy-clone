@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import App, { Landing } from "./App";
+import App from "./App";
+import LandingPage from "./components/organisms/LandingPage";
 import ProductPage from "./components/organisms/ProductPage";
 import reportWebVitals from "./reportWebVitals";
 
@@ -12,7 +13,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Landing />} />
+          <Route index element={<LandingPage />} />
           <Route path="/product" element={<ProductPage />} />
         </Route>
       </Routes>
