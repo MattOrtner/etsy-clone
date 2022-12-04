@@ -5,7 +5,6 @@ import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavigationContainer from "./components/organisms/NavigationContainer";
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
-const { REACT_APP_SERVER_URL } = process.env;
 
 function App() {
   const [products, setProducts] = useState();
