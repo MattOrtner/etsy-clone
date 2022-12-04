@@ -1,26 +1,29 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import FeatureItemPicture from "../atoms/FeatureItemPicture";
 
 const PersonalizedGifts = () => {
   return (
-    <Container>
-      <TopFirst>
-        <p style={{ fontSize: 16 }}>Editors' Picks</p>
-        <h1 style={{ fontSize: 24 }}>Personalized Gifts</h1>
-        <div>Shop these unique finds {"->"}</div>
-      </TopFirst>
-      <TopSecond>second</TopSecond>
-      <TopThird>third</TopThird>
-      <TopLast>last</TopLast>
-      <BottomFirst>first</BottomFirst>
-      <BottomSecond>second</BottomSecond>
-      <BottomThird>third</BottomThird>
-      <BottomLast>
-        Names, initials, dates, faces: the possibilities from these positively
-        amazing sellers are endless!
-      </BottomLast>
-    </Container>
+    <NavLink to="product/">
+      <Container>
+        <TopFirst>
+          <p style={{ fontSize: 16 }}>Editors' Picks</p>
+          <h1 style={{ fontSize: 24 }}>Personalized Gifts</h1>
+          <div>Shop these unique finds {"->"}</div>
+        </TopFirst>
+        <TopSecond>second</TopSecond>
+        <TopThird>third</TopThird>
+        <TopLast>last</TopLast>
+        <BottomFirst>first</BottomFirst>
+        <BottomSecond>second</BottomSecond>
+        <BottomThird>third</BottomThird>
+        <BottomLast>
+          Names, initials, dates, faces: the possibilities from these positively
+          amazing sellers are endless!
+        </BottomLast>
+      </Container>
+    </NavLink>
   );
 };
 

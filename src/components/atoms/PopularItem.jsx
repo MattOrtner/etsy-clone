@@ -1,15 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-const PopularItem = ({ imgURI, title, rating, price }) => {
+const PopularItem = ({ imgURI, productName, rating, price, _id }) => {
   return (
     <Container>
-      <Photo />
-      <ListCardDetails>
-        <DetailsTitle>{title}</DetailsTitle>
-        <Rating>{rating}</Rating>
-        <Price>${price}.00</Price>
-      </ListCardDetails>
+      <NavLink to={`product/${_id}`}>
+        <Photo />
+        <ListCardDetails>
+          <DetailsTitle>{productName}</DetailsTitle>
+          <Rating>{rating}</Rating>
+          <Price>${price}.00</Price>
+        </ListCardDetails>
+      </NavLink>
     </Container>
   );
 };

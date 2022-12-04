@@ -1,13 +1,26 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import HighLightList from "../molecules/HighLightList";
 import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
 import { useOutletContext } from "react-router-dom";
+import axios from "axios";
 
 const LandingPage = () => {
   const [products, setProducts] = useOutletContext();
-  console.log("products", products);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/products?q=clothing")
+      .then((res) => {
+        console.log(res.data);
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
     <>
@@ -25,12 +38,7 @@ const LandingPage = () => {
         <SquarePhotoList>
           {products &&
             products.map((product) => (
-              <PopularItem
-                imgURI={product.images[0]}
-                title={product.name}
-                rating={"****"}
-                price={product.price}
-              />
+              <PopularItem key={product._id} {...product} rating={"****"} />
             ))}
         </SquarePhotoList>
       </PopularContainer>
@@ -56,6 +64,7 @@ const SquarePhotoList = styled.div`
 const PopularContainer = styled.div`
   padding: 40 12 60 12;
   height: 435px;
+  background-color: "red";
 `;
 
 const TitleContainer = styled.div`

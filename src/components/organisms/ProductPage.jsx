@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
 import starIcon from "../../assets/star.svg";
 import starOutlineIcon from "../../assets/star-outline.svg";
 import StoreData from "../../data/store-data";
-import ProductData from "../../data/product-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ProductPage = () => {
+  const [productData, setProductData] = useState({});
+  const { id } = useParams();
+  console.log("productData", productData);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/products/${id}`)
+      .then((res) => setProductData(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <PageContainer>
       <LeftProductPageContainer />
@@ -39,11 +50,11 @@ const ProductPage = () => {
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
-            <ProductName>{ProductData.name}</ProductName>
+            <ProductName>{productData.productName}</ProductName>
             <PriceContainer>
-              <ProductPrice>{ProductData.price}</ProductPrice>
+              <ProductPrice>{productData.price}</ProductPrice>
               <InStockContainer>
-                {ProductData.isInStock ? (
+                {productData.isInStock ? (
                   <>
                     <CheckIcon src={checkIcon} />
                     <IsInStock>In stock</IsInStock>
@@ -57,7 +68,7 @@ const ProductPage = () => {
               </InStockContainer>
             </PriceContainer>
           </ProductInfo>
-          {ProductData.isInStock ? (
+          {productData.isInStock ? (
             <AddButton>Add to cart</AddButton>
           ) : (
             <OutOfStockButton>
@@ -65,17 +76,17 @@ const ProductPage = () => {
             </OutOfStockButton>
           )}
           <MessagingContainer>
-            {ProductData.isInOtherCarts && (
-              <MessagingAfterAddButton>
-                <ImageFiller>ASSET ONE DAY</ImageFiller>
-                <p>
-                  <strong style={{ paddingRight: 3 }}>
-                    Other people want this.
-                  </strong>
-                  Over 20 people have this in their carts right now.
-                </p>
-              </MessagingAfterAddButton>
-            )}
+            {/* {productData.isInOtherCarts && ( */}
+            <MessagingAfterAddButton>
+              <ImageFiller>ASSET ONE DAY</ImageFiller>
+              <p>
+                <strong style={{ paddingRight: 3 }}>
+                  Other people want this.
+                </strong>
+                Over 20 people have this in their carts right now.
+              </p>
+            </MessagingAfterAddButton>
+            {/* )} */}
             {StoreData.isStarSeller && (
               <MessagingAfterAddButton>
                 <ImageFiller>ASSET ONE DAY</ImageFiller>
@@ -97,31 +108,29 @@ const ProductPage = () => {
           </MessagingContainer>
         </ProductOrderInfo>
         <BottomRightExtras>
-          {ProductData.highLights && (
-            <DropDownInfoContainer title="Hightlights">
-              {ProductData.highLights.map((highlight) => (
+          {productData.highLights.length > 0 && (
+            <DropDownInfoContainer title="Highlights">
+              {productData.highLights.map((highlight) => (
                 <p>{highlight}</p>
               ))}
             </DropDownInfoContainer>
           )}
-          {ProductData.description && (
+          {productData.description.length > 0 && (
             <DropDownInfoContainer title="Description">
-              <p>{ProductData.description}</p>
+              <p>{productData.description}</p>
             </DropDownInfoContainer>
           )}
-          {StoreData.isAcceptsReturns.isTrue ? (
+          {StoreData.acceptsReturns ? (
             <DropDownInfoContainer title="Shipping and return policies">
-              <p>{StoreData.isAcceptsReturns.trueMessage}</p>
+              <p>{StoreData.trueMessage}</p>
             </DropDownInfoContainer>
           ) : (
             <DropDownInfoContainer title="Shipping and return policies">
-              <p>{StoreData.isAcceptsReturns.falseMessage}</p>
+              <p>{StoreData.falseMessage}</p>
             </DropDownInfoContainer>
           )}
           <DropDownInfoContainer title="Meet your sellers">
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
+            <p>{StoreData.meetYourSellers}</p>
           </DropDownInfoContainer>
         </BottomRightExtras>
       </RightContainer>
