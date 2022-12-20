@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect } from "react";
+
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
@@ -7,8 +9,10 @@ import starOutlineIcon from "../../assets/star-outline.svg";
 import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
+
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
 
 const ProductPage = () => {
   const [productData, setProductData] = useState({});
