@@ -5,12 +5,12 @@ const StoreData = {
   starRating: ["", "", "", ""],
   isStarSeller: true,
   isGiftWrapping: true,
-  isAcceptsReturns: {
-    isTrue: false,
-    falseMessage:
-      "We cannot accept returns at this time, sorry for the inconvenience.",
-    trueMessage: "You can return an item with defects within 30 days",
-  },
+  acceptsReturns: true,
+  trueMessage: "You can return an item with defects within 30 days",
+  falseMessage:
+    "We cannot accept returns at this time, sorry for the inconvenience.",
+  meetYourSellers:
+    "It's a family affair. We started off a mom and pop shop, but we've expanded to also include our animals",
 };
 
 export default StoreData;

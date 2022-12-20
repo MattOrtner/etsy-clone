@@ -2,9 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
-import App, { Landing } from "./App";
-import ProductPage from "./components/organisms/ProductPage";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+
+import LandingPage from "./components/organisms/LandingPage";
+import ProductPage from "./components/organisms/ProductPage";
+import ProductListings from "./components/organisms/ProductsListing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -12,8 +15,9 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route index element={<Landing />} />
-          <Route path="/product" element={<ProductPage />} />
+          <Route index element={<LandingPage />} />
+          <Route path="/product/:id" element={<ProductPage />} />
+          <Route path="/product/listings" element={<ProductListings />} />
         </Route>
       </Routes>
     </BrowserRouter>

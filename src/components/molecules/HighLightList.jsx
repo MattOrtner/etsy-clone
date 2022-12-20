@@ -20,6 +20,7 @@ export default HighLightList;
 
 const List = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
+  max-width: 1400px;
   justify-content: space-evenly;
 `;

@@ -1,10 +1,9 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 const FeatureItemPicture = () => {
   // add wrap image with NavLink
 
-  return <NavLink to="product" style={{ ...styles }} />;
+  return <div style={{ ...styles }} />;
 };
 
 export default FeatureItemPicture;
@@ -17,4 +16,3 @@ const styles = {
   alignItems: "center",
   justifyContent: "center",
 };
-

@@ -3,73 +3,15 @@ import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavigationContainer from "./components/organisms/NavigationContainer";
-import HighLightList from "./components/molecules/HighLightList";
-import SectionTitle from "./components/atoms/SectionTitle";
-import PopularItem from "./components/atoms/PopularItem";
-import { useEffect, useState } from "react";
-import PersonalizedGifts from "./components/organisms/PersonalizedGifts";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
-const { REACT_APP_API_URL } = process.env;
-
-export const Landing = () => {
-  return (
-    <>
-      <GreetingContainer>
-        <BackSplash />
-        <TitleContainer>
-          <Title>Discover fresh summer finds from creative sellers!</Title>
-        </TitleContainer>
-        <HighLightList />
-      </GreetingContainer>
-      <PopularContainer>
-        <div>
-          <SectionTitle title={"Popular gifts right now"} />
-        </div>
-        <SquarePhotoList>
-          <PopularItem
-            title={"This is a title"}
-            rating={"****"}
-            price={"$4.99"}
-          />
-          <PopularItem title={"Sick watches"} rating={"***"} price={"$15.99"} />
-          <PopularItem
-            title={"Definitely another thing!"}
-            rating={"****"}
-            price={"$2.99"}
-          />
-          <PopularItem
-            title={"Something you don't need!"}
-            rating={"****"}
-            price={"$1.99"}
-          />
-          <PopularItem
-            title={"The rating isn't great but it's worth it for sure"}
-            rating={"*"}
-            price={"$100.00"}
-          />
-        </SquarePhotoList>
-      </PopularContainer>
-      <PersonalContainer>
-        <PersonalizedGifts />
-      </PersonalContainer>
-    </>
-  );
-};
-
 function App() {
-  const [SERVER_DATA, SET_SERVER_DATA] = useState();
-
-  useEffect(() => {
-    const DATA = fetch(REACT_APP_API_URL)
-      .then((res) => res.json())
-      .then(console.log)
-      .then(console.log(Date()));
-    SET_SERVER_DATA(DATA);
-  }, []);
+  const [products, setProducts] = useState();
+  // console.log(products);
 
   return (
-    <div className="App">
+    <div>
       <HeaderContainer>
         <Logo src={logoIcon} />
         <SearchBar>
@@ -84,54 +26,13 @@ function App() {
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
-      <Outlet />
+      <Outlet context={[products, setProducts]} />
     </div>
   );
 }
 
 export default App;
-const PersonalContainer = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const SquarePhotoList = styled.div`
-  display: flex;
-  justify-content: space-around;
-  height: 229px;
-`;
 
-const PopularContainer = styled.div`
-  padding: 40 12 60 12;
-  height: 435px;
-`;
-
-const TitleContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f8ebe6;
-  width: 100%;
-`;
-const Title = styled.h1`
-  letter-spacing: 0.5px;
-  font-weight: 100;
-  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria,
-    "Noto Serif Light", "Droid Serif", Georgia, serif;
-`;
-const BackSplash = styled.div`
-  background-color: #f8ebe6;
-  position: absolute;
-  height: 100px;
-  width: 100%;
-  z-index: -1;
-`;
-const GreetingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 const HeaderContainer = styled.header`
   display: flex;
   flex-direction: row;

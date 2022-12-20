@@ -1,46 +1,58 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
-const PopularItem = ({ title, rating, price }) => {
+const PopularItem = ({ imgURI, productName, rating, price, _id }) => {
   return (
-    <Container>
-      <Photo />
+    <Link to={`product/listings`} style={{ textDecoration: "none" }}>
+      <PhotoContainer>
+        <Photo></Photo>
+      </PhotoContainer>
       <ListCardDetails>
-        <DetailsTitle>{title}</DetailsTitle>
+        <DetailsTitle>{productName}</DetailsTitle>
         <Rating>{rating}</Rating>
-        <Price>{price}</Price>
+        <Price>${price}.00</Price>
       </ListCardDetails>
-    </Container>
+    </Link>
   );
 };
 
 export default PopularItem;
 
-const Container = styled.div`
+const Link = styled(NavLink)`
   cursor: pointer;
-  flex: 1;
   display: flex;
+  width: 15rem;
   justify-content: center;
   flex-direction: column;
   margin: 5px 10px;
   border-radius: 9px;
   padding: 3px;
+  border: 1px solid #25252525;
   &:hover {
     transition: box-shadow 250ms ease-in;
     box-shadow: 0px 2px 18px #22222233;
   }
 `;
 
+const PhotoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const Photo = styled.div`
-  height: 70%;
-  width: 100%;
+  height: 150px;
+  width: 150px;
+  flex: 1;
   background-color: lightblue;
   border-radius: 8px;
 `;
 const ListCardDetails = styled.div`
   display: flex;
-  height: 50%;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
   font-size: 13px;
 `;
 const DetailsTitle = styled.h5`

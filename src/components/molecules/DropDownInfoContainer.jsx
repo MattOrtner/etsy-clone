@@ -36,6 +36,6 @@ const ChildContainer = styled.div`
   flex-direction: column;
 `;
 const Title = styled.h3`
-  ${"" /* font-weight: 400; */}
-  ${"" /* color: #595959; */}
+  font-weight: 400;
+  color: #595959;
 `;

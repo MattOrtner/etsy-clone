@@ -58,11 +58,6 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const StarOutlineLarge = styled.img`
-  padding-right: 4px;
-  width: 27px;
-  height: 27px;
-`;
 const PaginationNavigationContainer = styled.nav`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -124,8 +119,9 @@ const ReviewsNavContainer = styled.div`
   display: flex;
 `;
 
-const HeartOutlineIconOverImage = styled.img`
-  padding-right: 4px;
-  width: 20px;
-  height: 20px;
-`;
+// const HeartOutlineIconOverImage = styled.img`
+//   padding-right: 4px;
+//   width: 20px;
+//   height: 20px;
+// `;
+
