@@ -27,7 +27,12 @@ const ProductListing = ({ productName, price, starRating, numOfReviews }) => {
 };
 
 export default ProductListing;
-const ProductCardContainer = styled.div``;
+const ProductCardContainer = styled.div`
+  height: 500px;
+  width: 100%;
+  align-self: stretch;
+  padding: 9px;
+`;
 const ImagePlaceHolder = styled.div`
   height: 50%;
   width: 100%;

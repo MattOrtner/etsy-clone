@@ -11,7 +11,7 @@ function App() {
   // console.log(products);
 
   return (
-    <div className="App">
+    <div>
       <HeaderContainer>
         <Logo src={logoIcon} />
         <SearchBar>

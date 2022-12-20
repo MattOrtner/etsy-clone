@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import ProductListing from "../molecules/ProductListing";
@@ -75,93 +75,101 @@ const ProductsListing = () => {
 
   return (
     <PageContainer>
-      <SelectedItemContainer>
-        <ImageFiller>image</ImageFiller>
-        <ProductInfoContainer>
-          <CompanyInfoTop>
-            <div>SellerName</div>
-            <div>*****</div>
-            <div>(293)</div>
-          </CompanyInfoTop>
-          <ProductInfo>
-            <h2>Product Name</h2>
-            <h3>Price</h3>
-            <div>FREE shipping</div>
-          </ProductInfo>
-          <QueryButtonContainer>
-            <EngageButton>Shop this item</EngageButton>
-          </QueryButtonContainer>
-        </ProductInfoContainer>
-      </SelectedItemContainer>
-      <BottomContainer>
-        <FilterResultsContainer>
-          <div
-            style={{
-              width: 100,
-              border: "3px solid black",
-              borderRadius: 25,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div>All Filters</div>
-          </div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
-            <div style={{ paddingRight: 10 }}>
-              11,236,950 results, with Ads o
+      <ContentContainer>
+        <SelectedItemContainer>
+          <ImageFiller></ImageFiller>
+          <ProductInfoContainer>
+            <CompanyInfoTop>
+              <div>SellerName</div>
+              <div>*****</div>
+              <div>(293)</div>
+            </CompanyInfoTop>
+            <ProductInfo>
+              <h2>Product Name</h2>
+              <h3>Price</h3>
+              <div>FREE shipping</div>
+            </ProductInfo>
+            <QueryButtonContainer>
+              <EngageButton>Shop this item</EngageButton>
+            </QueryButtonContainer>
+          </ProductInfoContainer>
+        </SelectedItemContainer>
+        <BottomContainer>
+          <FilterBarContainer>
+            <div
+              style={{
+                width: 100,
+                border: "3px solid black",
+                borderRadius: 25,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div>All Filters</div>
             </div>
-            <HeartOutlineIcon src={heartIcon} />
-          </div>
-        </FilterResultsContainer>
-        <ProductCardContainer>
-          {products &&
-            products.map((product) => <ProductListing {...product} />)}
-        </ProductCardContainer>
-      </BottomContainer>
+            <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ paddingRight: 10 }}>11,236,950 results</div>
+              <HeartOutlineIcon src={heartIcon} />
+            </div>
+          </FilterBarContainer>
+          <ProductCardContainer>
+            {products &&
+              products.map((product) => (
+                <ProductListing
+                  productName={product.productName}
+                  price={product.price}
+                  starRating={product.starRating}
+                  numOfReviews={product.numOfReviews}
+                />
+              ))}
+          </ProductCardContainer>
+        </BottomContainer>
+      </ContentContainer>
     </PageContainer>
   );
 };
 
 export default ProductsListing;
 
-const FilterResultsContainer = styled.div`
+const FilterBarContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 100%;
+  height: 36px;
   margin: 0 0 18px 0;
 `;
 const BottomContainer = styled.div`
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const HeartOutlineIcon = styled.img`
   width: 20px;
   height: 20px;
 `;
 const ProductCardContainer = styled.div`
-  width: 95%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-gap: 1rem;
-  justify-item: center;
-  @media (min-width: 600px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (min-width: 900px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  gap: 18px;
 `;
 
 const ImageFiller = styled.div`
-  flex: 1;
+  width: 45%;
   border-radius: 6px;
   background: lightblue;
 `;
 const ProductInfoContainer = styled.div`
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  flex: 1.25;
+  ${"" /* flex: 1.25; */}
+  width: 55%;
 `;
 const EngageButton = styled.div`
   display: flex;
@@ -192,18 +200,22 @@ const CompanyInfoTop = styled.div`
 const SelectedItemContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 400px;
   gap: 20px;
   margin: 18px 0;
   padding-bottom: 18px;
+  height: 371px;
   border-bottom: 1px solid lightpink;
 `;
-const PageContainer = styled.div`
+const ContentContainer = styled.div`
   display: flex;
-  width: 100vw;
   height: 100vh;
   flex-direction: column;
-  margin: 20px 50px;
-  background-color: "#2389";
-  overflow: hidden;
+  width: 1400px;
+  max-width: 1400px;
+`;
+
+const PageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

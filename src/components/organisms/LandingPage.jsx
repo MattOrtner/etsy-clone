@@ -23,7 +23,7 @@ const LandingPage = () => {
   }, []);
 
   return (
-    <>
+    <Container>
       <GreetingContainer>
         <BackSplash />
         <TitleContainer>
@@ -32,9 +32,9 @@ const LandingPage = () => {
         <HighLightList />
       </GreetingContainer>
       <PopularContainer>
-        <div>
+        <SectionTitleContainer>
           <SectionTitle title={"Popular gifts right now"} />
-        </div>
+        </SectionTitleContainer>
         <SquarePhotoList>
           {products &&
             products.map((product) => (
@@ -45,28 +45,37 @@ const LandingPage = () => {
       <PersonalContainer>
         <PersonalizedGifts />
       </PersonalContainer>
-    </>
+    </Container>
   );
 };
 
 export default LandingPage;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 const PersonalContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
 const SquarePhotoList = styled.div`
+  height: 75%;
   display: flex;
-  justify-content: space-around;
-  height: 229px;
+  justify-content: center;
 `;
 
 const PopularContainer = styled.div`
-  padding: 40 12 60 12;
-  height: 435px;
-  background-color: "red";
+  height: 335px;
+  width: 100%;
+  max-width: 1300px;
 `;
-
+const SectionTitleContainer = styled.div`
+  text-align: left;
+`;
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -93,4 +102,5 @@ const GreetingContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
