@@ -52,7 +52,7 @@ const ProductPage = () => {
             </CompanyInfoContainer>
             <ProductName>{productData.productName}</ProductName>
             <PriceContainer>
-              <ProductPrice>{productData.price}</ProductPrice>
+              <ProductPrice>${productData.price}.00</ProductPrice>
               <InStockContainer>
                 {productData.isInStock ? (
                   <>
@@ -76,7 +76,6 @@ const ProductPage = () => {
             </OutOfStockButton>
           )}
           <MessagingContainer>
-            {/* {productData.isInOtherCarts && ( */}
             <MessagingAfterAddButton>
               <ImageFiller>ASSET ONE DAY</ImageFiller>
               <p>
@@ -86,7 +85,6 @@ const ProductPage = () => {
                 Over 20 people have this in their carts right now.
               </p>
             </MessagingAfterAddButton>
-            {/* )} */}
             {StoreData.isStarSeller && (
               <MessagingAfterAddButton>
                 <ImageFiller>ASSET ONE DAY</ImageFiller>
@@ -108,14 +106,14 @@ const ProductPage = () => {
           </MessagingContainer>
         </ProductOrderInfo>
         <BottomRightExtras>
-          {productData.highLights.length > 0 && (
+          {/* {productData && (
             <DropDownInfoContainer title="Highlights">
               {productData.highLights.map((highlight) => (
                 <p>{highlight}</p>
               ))}
             </DropDownInfoContainer>
-          )}
-          {productData.description.length > 0 && (
+          )} */}
+          {productData && productData.description && (
             <DropDownInfoContainer title="Description">
               <p>{productData.description}</p>
             </DropDownInfoContainer>
@@ -290,9 +288,8 @@ const Spacer = styled.div`
   padding: 0px 8px;
 `;
 const PageContainer = styled.div`
+  max-width: 1500px;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   padding: 30px 0px;
   height: 100vh;
 `;
