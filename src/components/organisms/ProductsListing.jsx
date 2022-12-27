@@ -2,77 +2,9 @@ import { useState } from "react";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import ProductListing from "../molecules/ProductListing";
-
+import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
 const ProductsListing = () => {
-  const [products, setProducts] = useState([
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-    {
-      productName: "this is a name",
-      price: "18",
-      starRating: 3,
-      numOfReviews: 400,
-    },
-  ]);
-
+  const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
   return (
     <PageContainer>
       <ContentContainer>
@@ -156,6 +88,9 @@ const ProductCardContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-items: center;
   gap: 18px;
+  @media (max-width: 500px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 
 const ImageFiller = styled.div`
@@ -218,4 +153,12 @@ const PageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  @media (max-width: 500px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: blue;
+    padding-left: 40px;
+  }
 `;

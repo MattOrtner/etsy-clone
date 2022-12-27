@@ -1,18 +1,13 @@
-
 import React, { useState, useEffect } from "react";
-
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
-import starIcon from "../../assets/star.svg";
-import starOutlineIcon from "../../assets/star-outline.svg";
+import StarRatingComponent from "react-star-rating-component";
 import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
-
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
 
 const ProductPage = () => {
   const [productData, setProductData] = useState({});
@@ -45,18 +40,18 @@ const ProductPage = () => {
                 <SellerRatings>{StoreData.totalStoreSales} sales</SellerRatings>
                 <Spacer>|</Spacer>
                 <StarIconsContainer>
-                  {StoreData.starRating &&
-                    StoreData.starRating.map(() => <StarIcon src={starIcon} />)}
-                  {StoreData.starRating.length < 5 &&
-                    Array(5 - StoreData.starRating.length)
-                      .fill("")
-                      .map(() => <StarOutline src={starOutlineIcon} />)}
+                  <StarRatingComponent
+                    name="store rating"
+                    value={4}
+                    starColor={"#222222"}
+                    emptyStarColor={"#22222263"}
+                  />
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
             <ProductName>{productData.productName}</ProductName>
             <PriceContainer>
-              <ProductPrice>{productData.price}</ProductPrice>
+              <ProductPrice>${productData.price}.00</ProductPrice>
               <InStockContainer>
                 {productData.isInStock ? (
                   <>
@@ -80,7 +75,6 @@ const ProductPage = () => {
             </OutOfStockButton>
           )}
           <MessagingContainer>
-            {/* {productData.isInOtherCarts && ( */}
             <MessagingAfterAddButton>
               <ImageFiller>ASSET ONE DAY</ImageFiller>
               <p>
@@ -90,7 +84,6 @@ const ProductPage = () => {
                 Over 20 people have this in their carts right now.
               </p>
             </MessagingAfterAddButton>
-            {/* )} */}
             {StoreData.isStarSeller && (
               <MessagingAfterAddButton>
                 <ImageFiller>ASSET ONE DAY</ImageFiller>
@@ -112,14 +105,14 @@ const ProductPage = () => {
           </MessagingContainer>
         </ProductOrderInfo>
         <BottomRightExtras>
-          {productData.highLights.length > 0 && (
+          {/* {productData && (
             <DropDownInfoContainer title="Highlights">
               {productData.highLights.map((highlight) => (
                 <p>{highlight}</p>
               ))}
             </DropDownInfoContainer>
-          )}
-          {productData.description.length > 0 && (
+          )} */}
+          {productData && productData.description && (
             <DropDownInfoContainer title="Description">
               <p>{productData.description}</p>
             </DropDownInfoContainer>
@@ -206,10 +199,6 @@ const CompanyInfoTop = styled.div`
   display: flex;
   align-items: center;
 `;
-const StarIcon = styled.img`
-  height: 18px;
-  width: 18px;
-`;
 const FollowContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -294,9 +283,8 @@ const Spacer = styled.div`
   padding: 0px 8px;
 `;
 const PageContainer = styled.div`
+  max-width: 1500px;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   padding: 30px 0px;
   height: 100vh;
 `;

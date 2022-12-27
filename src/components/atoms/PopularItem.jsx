@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const PopularItem = ({ imgURI, productName, rating, price, _id }) => {
   return (
-    <Link to={`product/listings`} style={{ textDecoration: "none" }}>
+    <Link to={`product/${_id}`} style={{ textDecoration: "none" }}>
       <PhotoContainer>
         <Photo></Photo>
       </PhotoContainer>
