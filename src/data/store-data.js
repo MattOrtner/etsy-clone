@@ -2,7 +2,7 @@ const StoreData = {
   name: "NameOfCompany",
   totalStoreSales: "30,001",
   totalStoreReviews: "2,380",
-  starRating: ["", "", "", ""],
+  storeReviewsStars: 4,
   isStarSeller: true,
   isGiftWrapping: true,
   acceptsReturns: true,

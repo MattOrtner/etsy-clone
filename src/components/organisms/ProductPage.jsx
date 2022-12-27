@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
-import starIcon from "../../assets/star.svg";
-import starOutlineIcon from "../../assets/star-outline.svg";
+import StarRatingComponent from "react-star-rating-component";
 import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
@@ -41,12 +40,12 @@ const ProductPage = () => {
                 <SellerRatings>{StoreData.totalStoreSales} sales</SellerRatings>
                 <Spacer>|</Spacer>
                 <StarIconsContainer>
-                  {StoreData.starRating &&
-                    StoreData.starRating.map(() => <StarIcon src={starIcon} />)}
-                  {StoreData.starRating.length < 5 &&
-                    Array(5 - StoreData.starRating.length)
-                      .fill("")
-                      .map(() => <StarOutline src={starOutlineIcon} />)}
+                  <StarRatingComponent
+                    name="store rating"
+                    value={4}
+                    starColor={"#222222"}
+                    emptyStarColor={"#22222263"}
+                  />
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
@@ -151,10 +150,6 @@ const MessagingContainer = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
 `;
-const StarOutline = styled.img`
-  width: 16px;
-  height: 16px;
-`;
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
@@ -199,10 +194,6 @@ const StarSeller = styled.div`
 const CompanyInfoTop = styled.div`
   display: flex;
   align-items: center;
-`;
-const StarIcon = styled.img`
-  height: 18px;
-  width: 18px;
 `;
 const FollowContainer = styled.div`
   display: flex;

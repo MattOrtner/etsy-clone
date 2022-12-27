@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import starIcon from "../../assets/star.svg";
-import starOutlineIcon from "../../assets/star-outline.svg";
-
+import StarRatingComponent from "react-star-rating-component";
 import StoreData from "../../data/store-data";
 
 const StoreReviewContainer = () => {
@@ -11,12 +9,12 @@ const StoreReviewContainer = () => {
       <ProductReviewContainer>
         <StoreRating>{StoreData.totalStoreReviews} review</StoreRating>
         <StarContainer>
-          {StoreData.starRating &&
-            StoreData.starRating.map(() => <StarIconLarge src={starIcon} />)}
-          {StoreData.starRating.length < 5 &&
-            Array(5 - StoreData.starRating.length)
-              .fill("")
-              .map(() => <StarOutlineLarge src={starOutlineIcon} />)}
+          <StarRatingComponent
+            name="store rating"
+            value={StoreData.storeReviewsStars}
+            starColor={"#222222"}
+            emptyStarColor={"#22222263"}
+          />
         </StarContainer>
       </ProductReviewContainer>
       {StoreData.isStarSeller && (
@@ -50,19 +48,5 @@ const StarContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-const StarOutlineLarge = styled.img`
-  padding-right: 4px;
-  width: 27px;
-  height: 27px;
-`;
-const StarIconLarge = styled.img`
-  padding-right: 4px;
-  width: 30px;
-  height: 30px;
-`;
 
-const RecentReviewShoutOut = styled.div`
-  ${"" /* just some spacing */}
-  ${"" /* just some spacing */}
-  ${"" /* just some spacing */}
-`;
+const RecentReviewShoutOut = styled.div``;

@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import CustomerReviewsData from "../../data/customer-review-dummy-data";
 import StoreReviewContainer from "../molecules/StoreReviewContainer";
 import CustomerReview from "./CustomerReview";
@@ -21,7 +20,7 @@ const ProductReviewsContainer = () => {
           {CustomerReviewsData &&
             CustomerReviewsData.length > 4 &&
             CustomerReviewsData.slice(0, 4).map((customer) => (
-              <CustomerReview customer={customer} />
+              <CustomerReview customer={customer} key={customer.userId} />
             ))}
           {CustomerReviewsData.length > 4 && (
             <PaginationNavigationContainer>
@@ -109,7 +108,6 @@ const CustomerReviewsContainer = styled.div`
 
 const BottomProductReviews = styled.div`
   margin-top: 20px;
-  ${"" /* background-color: red; */}
 `;
 const ReviewNavTabs = styled.h2`
   margin-right: 15px;
@@ -118,9 +116,3 @@ const ReviewNavTabs = styled.h2`
 const ReviewsNavContainer = styled.div`
   display: flex;
 `;
-
-// const HeartOutlineIconOverImage = styled.img`
-//   padding-right: 4px;
-//   width: 20px;
-//   height: 20px;
-// `;

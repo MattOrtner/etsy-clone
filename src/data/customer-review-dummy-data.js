@@ -1,6 +1,6 @@
 const CustomerReviews = [
   {
-    starRating: ["", "", "", ""],
+    starRating: 4,
     name: "Lauren Bronson",
     userId: "1",
     review: "I can't express how great it really was",
@@ -9,7 +9,7 @@ const CustomerReviews = [
       "https://media.istockphoto.com/photos/british-shorthair-cat-in-front-of-blue-background-picture-id168819909?s=612x612",
   },
   {
-    starRating: ["", "", ""],
+    starRating: 3,
     name: "Lauren Bronson",
     userId: "2",
     review: "Really, it was great",
@@ -18,7 +18,7 @@ const CustomerReviews = [
       "https://media.istockphoto.com/photos/british-shorthair-cat-in-front-of-blue-background-picture-id168819909?s=612x612",
   },
   {
-    starRating: ["", "", ""],
+    starRating: 3,
     name: "Lauren Bronson",
     userId: "3",
     review: "It was really great",
@@ -27,7 +27,7 @@ const CustomerReviews = [
       "https://media.istockphoto.com/photos/british-shorthair-cat-in-front-of-blue-background-picture-id168819909?s=612x612",
   },
   {
-    starRating: ["", "", "", "", ""],
+    starRating: 5,
     name: "Lauren Bronson",
     userId: "5",
     review: "It was really great",
@@ -36,7 +36,7 @@ const CustomerReviews = [
       "https://media.istockphoto.com/photos/british-shorthair-cat-in-front-of-blue-background-picture-id168819909?s=612x612",
   },
   {
-    starRating: ["", ""],
+    starRating: 2,
     name: "Lauren Bronson",
     userId: "4",
     review: "It was really great",
