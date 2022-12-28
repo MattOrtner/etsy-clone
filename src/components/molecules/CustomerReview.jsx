@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import StarRatingComponent from "react-star-rating-component";
+import CustomStarRating from "../atoms/CustomStarRating";
 import thumbUpIcon from "../../assets/thumb-up.svg";
 
 import CustomerReviewTag from "../atoms/CustomerReviewTag";
@@ -9,12 +9,7 @@ const CustomerReview = ({ customer }) => {
   return (
     <Container key={customer.userId}>
       <div>
-        <StarRatingComponent
-          name="Customer Review"
-          value={customer.starRating}
-          starColor={"#222222"}
-          emptyStarColor={"#22222263"}
-        />
+        <CustomStarRating name="Customer Review" value={customer.starRating} />
       </div>
       <div style={{ fontSize: 28, fontWeight: 300 }}>{customer.review}</div>
       <div

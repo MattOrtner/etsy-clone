@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
-import StarRatingComponent from "react-star-rating-component";
+import CustomStarRating from "../atoms/CustomStarRating";
 import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
@@ -35,17 +35,12 @@ const ProductPage = () => {
                 </FollowContainer>
               </CompanyInfoTop>
               <SellerRatings>
-                {StoreData.starRating && <StarSeller>Star Seller</StarSeller>}
+                {StoreData.isStarSeller && <StarSeller>Star Seller</StarSeller>}
                 <Spacer>|</Spacer>
                 <SellerRatings>{StoreData.totalStoreSales} sales</SellerRatings>
                 <Spacer>|</Spacer>
                 <StarIconsContainer>
-                  <StarRatingComponent
-                    name="store rating"
-                    value={4}
-                    starColor={"#222222"}
-                    emptyStarColor={"#22222263"}
-                  />
+                  <CustomStarRating name="store rating" value={4} />
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
