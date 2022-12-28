@@ -65,7 +65,6 @@ const PersonalContainer = styled.div`
 `;
 const SquarePhotoList = styled.div`
   height: 90%;
-`;
   display: flex;
   justify-content: center;
 `;
@@ -78,8 +77,7 @@ const PopularContainer = styled.div`
   width: 100%;
   max-width: 1500px;
 `;
-const SectionTitleContainer = styled.div`
-`;
+const SectionTitleContainer = styled.div``;
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
