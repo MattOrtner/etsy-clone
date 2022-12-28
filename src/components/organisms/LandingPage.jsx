@@ -1,16 +1,28 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import HighLightList from "../molecules/HighLightList";
 import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
 import { useOutletContext } from "react-router-dom";
+import axios from "axios";
 
 const LandingPage = () => {
   const [products, setProducts] = useOutletContext();
-  console.log("products", products);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/products?q=clothing")
+      .then((res) => {
+        console.log(res.data);
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
 
   return (
-    <>
+    <Container>
       <GreetingContainer>
         <BackSplash />
         <TitleContainer>
@@ -19,45 +31,53 @@ const LandingPage = () => {
         <HighLightList />
       </GreetingContainer>
       <PopularContainer>
-        <div>
+        <SectionTitleContainer>
           <SectionTitle title={"Popular gifts right now"} />
-        </div>
+        </SectionTitleContainer>
         <SquarePhotoList>
           {products &&
             products.map((product) => (
-              <PopularItem
-                imgURI={product.images[0]}
-                title={product.name}
-                rating={"****"}
-                price={product.price}
-              />
+              <PopularItem key={product._id} {...product} rating={"****"} />
             ))}
         </SquarePhotoList>
       </PopularContainer>
       <PersonalContainer>
         <PersonalizedGifts />
       </PersonalContainer>
-    </>
+    </Container>
   );
 };
 
 export default LandingPage;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 70px;
+`;
 
 const PersonalContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
+  max-width: 1500px;
 `;
 const SquarePhotoList = styled.div`
+  height: 90%;
   display: flex;
-  justify-content: space-around;
-  height: 229px;
+  justify-content: center;
 `;
 
 const PopularContainer = styled.div`
-  padding: 40 12 60 12;
-  height: 435px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 335px;
+  width: 100%;
+  max-width: 1500px;
 `;
-
+const SectionTitleContainer = styled.div``;
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -84,4 +104,5 @@ const GreetingContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;

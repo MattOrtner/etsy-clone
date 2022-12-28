@@ -1,22 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-
-import starIcon from "../../assets/star.svg";
-import starOutlineIcon from "../../assets/star-outline.svg";
+import CustomStarRating from "../atoms/CustomStarRating";
 import thumbUpIcon from "../../assets/thumb-up.svg";
-
 import CustomerReviewTag from "../atoms/CustomerReviewTag";
 
 const CustomerReview = ({ customer }) => {
   return (
     <Container key={customer.userId}>
       <div>
-        {customer.starRating &&
-          customer.starRating.map(() => <StarIconLarge src={starIcon} />)}
-        {customer.starRating.length < 5 &&
-          Array(5 - customer.starRating.length)
-            .fill("")
-            .map(() => <StarOutlineLarge src={starOutlineIcon} />)}
+        <CustomStarRating name="Customer Review" value={customer.starRating} />
       </div>
       <div style={{ fontSize: 28, fontWeight: 300 }}>{customer.review}</div>
       <div
@@ -41,18 +33,6 @@ const CustomerReview = ({ customer }) => {
 };
 
 export default CustomerReview;
-
-const StarOutlineLarge = styled.img`
-  padding-right: 4px;
-  width: 27px;
-  height: 27px;
-`;
-
-const StarIconLarge = styled.img`
-  padding-right: 4px;
-  width: 30px;
-  height: 30px;
-`;
 
 const Container = styled.div`
   display: flex;

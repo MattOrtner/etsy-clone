@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import FeatureItemPicture from "../atoms/FeatureItemPicture";
 
@@ -10,12 +11,24 @@ const PersonalizedGifts = () => {
         <h1 style={{ fontSize: 24 }}>Personalized Gifts</h1>
         <div>Shop these unique finds {"->"}</div>
       </TopFirst>
-      <TopSecond>second</TopSecond>
-      <TopThird>third</TopThird>
-      <TopLast>last</TopLast>
-      <BottomFirst>first</BottomFirst>
-      <BottomSecond>second</BottomSecond>
-      <BottomThird>third</BottomThird>
+      <NavLink to="product/listings" style={{ display: "contents" }}>
+        <TopSecond>second</TopSecond>
+      </NavLink>
+      <NavLink to="product/listings" style={{ display: "contents" }}>
+        <TopThird>third</TopThird>
+      </NavLink>
+      <NavLink to="product/listings" style={{ display: "contents" }}>
+        <TopLast>last</TopLast>
+      </NavLink>
+      <NavLink to="product/listings" style={{ display: "contents" }}>
+        <BottomFirst>first</BottomFirst>
+      </NavLink>
+      <NavLink to="product/listings" style={{ display: "contents" }}>
+        <BottomSecond>second</BottomSecond>
+      </NavLink>
+      <NavLink to="product/listings" style={{ display: "contents" }}>
+        <BottomThird>third</BottomThird>
+      </NavLink>
       <BottomLast>
         Names, initials, dates, faces: the possibilities from these positively
         amazing sellers are endless!
@@ -29,10 +42,10 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 33% 30% 15% 22%;
   grid-template-rows: 45% 55%;
-  width: 75%;
+  width: 100%;
   height: 500px;
   margin-bottom: 0px 0px 90px;
-  gap: 15px;
+  gap: 25px;
 `;
 const TopFirst = styled.div`
   grid-column: 1;

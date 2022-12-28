@@ -3,9 +3,12 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+
 import LandingPage from "./components/organisms/LandingPage";
 import ProductPage from "./components/organisms/ProductPage";
-import reportWebVitals from "./reportWebVitals";
+import ProductListings from "./components/organisms/ProductsListing";
+import WrapperComp from "./components/organisms/WrapperComp";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +17,10 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<LandingPage />} />
-          <Route path="/product" element={<ProductPage />} />
+          <Route path="/product/:id" element={<WrapperComp />}>
+            <Route path="/product/:id" element={<ProductPage />} />
+          </Route>
+          <Route path="/product/listings" element={<ProductListings />} />
         </Route>
       </Routes>
     </BrowserRouter>

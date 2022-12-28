@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
-import starIcon from "../../assets/star.svg";
-import starOutlineIcon from "../../assets/star-outline.svg";
+import CustomStarRating from "../atoms/CustomStarRating";
 import StoreData from "../../data/store-data";
-import ProductData from "../../data/product-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ProductPage = () => {
+  const [productData, setProductData] = useState({});
+  const { id } = useParams();
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8000/api/products/${id}`)
+      .then((res) => setProductData(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <PageContainer>
       <LeftProductPageContainer />
@@ -25,25 +34,20 @@ const ProductPage = () => {
                 </FollowContainer>
               </CompanyInfoTop>
               <SellerRatings>
-                {StoreData.starRating && <StarSeller>Star Seller</StarSeller>}
+                {StoreData.isStarSeller && <StarSeller>Star Seller</StarSeller>}
                 <Spacer>|</Spacer>
                 <SellerRatings>{StoreData.totalStoreSales} sales</SellerRatings>
                 <Spacer>|</Spacer>
                 <StarIconsContainer>
-                  {StoreData.starRating &&
-                    StoreData.starRating.map(() => <StarIcon src={starIcon} />)}
-                  {StoreData.starRating.length < 5 &&
-                    Array(5 - StoreData.starRating.length)
-                      .fill("")
-                      .map(() => <StarOutline src={starOutlineIcon} />)}
+                  <CustomStarRating name="store rating" value={4} />
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
-            <ProductName>{ProductData.name}</ProductName>
+            <ProductName>{productData.productName}</ProductName>
             <PriceContainer>
-              <ProductPrice>{ProductData.price}</ProductPrice>
+              <ProductPrice>${productData.price}.00</ProductPrice>
               <InStockContainer>
-                {ProductData.isInStock ? (
+                {productData.isInStock ? (
                   <>
                     <CheckIcon src={checkIcon} />
                     <IsInStock>In stock</IsInStock>
@@ -57,7 +61,7 @@ const ProductPage = () => {
               </InStockContainer>
             </PriceContainer>
           </ProductInfo>
-          {ProductData.isInStock ? (
+          {productData.isInStock ? (
             <AddButton>Add to cart</AddButton>
           ) : (
             <OutOfStockButton>
@@ -65,17 +69,15 @@ const ProductPage = () => {
             </OutOfStockButton>
           )}
           <MessagingContainer>
-            {ProductData.isInOtherCarts && (
-              <MessagingAfterAddButton>
-                <ImageFiller>ASSET ONE DAY</ImageFiller>
-                <p>
-                  <strong style={{ paddingRight: 3 }}>
-                    Other people want this.
-                  </strong>
-                  Over 20 people have this in their carts right now.
-                </p>
-              </MessagingAfterAddButton>
-            )}
+            <MessagingAfterAddButton>
+              <ImageFiller>ASSET ONE DAY</ImageFiller>
+              <p>
+                <strong style={{ paddingRight: 3 }}>
+                  Other people want this.
+                </strong>
+                Over 20 people have this in their carts right now.
+              </p>
+            </MessagingAfterAddButton>
             {StoreData.isStarSeller && (
               <MessagingAfterAddButton>
                 <ImageFiller>ASSET ONE DAY</ImageFiller>
@@ -97,31 +99,29 @@ const ProductPage = () => {
           </MessagingContainer>
         </ProductOrderInfo>
         <BottomRightExtras>
-          {ProductData.highLights && (
-            <DropDownInfoContainer title="Hightlights">
-              {ProductData.highLights.map((highlight) => (
+          {/* {productData && (
+            <DropDownInfoContainer title="Highlights">
+              {productData.highLights.map((highlight) => (
                 <p>{highlight}</p>
               ))}
             </DropDownInfoContainer>
-          )}
-          {ProductData.description && (
+          )} */}
+          {productData && productData.description && (
             <DropDownInfoContainer title="Description">
-              <p>{ProductData.description}</p>
+              <p>{productData.description}</p>
             </DropDownInfoContainer>
           )}
-          {StoreData.isAcceptsReturns.isTrue ? (
+          {StoreData.acceptsReturns ? (
             <DropDownInfoContainer title="Shipping and return policies">
-              <p>{StoreData.isAcceptsReturns.trueMessage}</p>
+              <p>{StoreData.trueMessage}</p>
             </DropDownInfoContainer>
           ) : (
             <DropDownInfoContainer title="Shipping and return policies">
-              <p>{StoreData.isAcceptsReturns.falseMessage}</p>
+              <p>{StoreData.falseMessage}</p>
             </DropDownInfoContainer>
           )}
           <DropDownInfoContainer title="Meet your sellers">
-            <div>hello</div>
-            <div>hello</div>
-            <div>hello</div>
+            <p>{StoreData.meetYourSellers}</p>
           </DropDownInfoContainer>
         </BottomRightExtras>
       </RightContainer>
@@ -192,10 +192,6 @@ const StarSeller = styled.div`
 const CompanyInfoTop = styled.div`
   display: flex;
   align-items: center;
-`;
-const StarIcon = styled.img`
-  height: 18px;
-  width: 18px;
 `;
 const FollowContainer = styled.div`
   display: flex;
@@ -281,9 +277,8 @@ const Spacer = styled.div`
   padding: 0px 8px;
 `;
 const PageContainer = styled.div`
+  max-width: 1500px;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
   padding: 30px 0px;
   height: 100vh;
 `;
