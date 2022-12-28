@@ -144,6 +144,10 @@ const MessagingContainer = styled.div`
   flex-direction: column;
   margin-bottom: 20px;
 `;
+const StarOutline = styled.img`
+  width: 16px;
+  height: 16px;
+`;
 const ImageFiller = styled.div`
   width: 60px;
   height: 60px;
