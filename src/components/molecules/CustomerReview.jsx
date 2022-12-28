@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import CustomStarRating from "../atoms/CustomStarRating";
 import thumbUpIcon from "../../assets/thumb-up.svg";
-
 import CustomerReviewTag from "../atoms/CustomerReviewTag";
 
 const CustomerReview = ({ customer }) => {
