@@ -9,7 +9,6 @@ import axios from "axios";
 
 const LandingPage = () => {
   const [products, setProducts] = useOutletContext();
-
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/products?q=clothing")
@@ -55,26 +54,31 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 70px;
 `;
 
 const PersonalContainer = styled.div`
   display: flex;
   justify-content: center;
+  width: 100%;
+  max-width: 1500px;
 `;
 const SquarePhotoList = styled.div`
-  height: 75%;
+  height: 90%;
+`;
   display: flex;
   justify-content: center;
 `;
 
 const PopularContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   height: 335px;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1500px;
 `;
 const SectionTitleContainer = styled.div`
-  text-align: left;
 `;
 const TitleContainer = styled.div`
   display: flex;

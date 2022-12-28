@@ -8,7 +8,6 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   const [products, setProducts] = useState();
-  // console.log(products);
 
   return (
     <div>

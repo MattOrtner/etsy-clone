@@ -12,7 +12,6 @@ import axios from "axios";
 const ProductPage = () => {
   const [productData, setProductData] = useState({});
   const { id } = useParams();
-  console.log("productData", productData);
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/products/${id}`)
