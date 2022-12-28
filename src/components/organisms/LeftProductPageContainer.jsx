@@ -27,7 +27,6 @@ const LeftProductPageContainer = () => {
         useBrowserFullscreen={false}
         showPlayButton={false}
       />
-
       <ProductReviewsContainer />
     </LeftContainer>
   );

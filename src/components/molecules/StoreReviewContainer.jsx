@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import StarRatingComponent from "react-star-rating-component";
+import CustomStarRating from "../atoms/CustomStarRating";
 import StoreData from "../../data/store-data";
 
 const StoreReviewContainer = () => {
@@ -9,11 +9,9 @@ const StoreReviewContainer = () => {
       <ProductReviewContainer>
         <StoreRating>{StoreData.totalStoreReviews} review</StoreRating>
         <StarContainer>
-          <StarRatingComponent
+          <CustomStarRating
             name="store rating"
             value={StoreData.storeReviewsStars}
-            starColor={"#222222"}
-            emptyStarColor={"#22222263"}
           />
         </StarContainer>
       </ProductReviewContainer>
@@ -49,4 +47,3 @@ const StarContainer = styled.div`
   align-items: center;
 `;
 const RecentReviewShoutOut = styled.div``;
-
