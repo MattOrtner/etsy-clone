@@ -3,18 +3,12 @@ import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavigationContainer from "./components/organisms/NavigationContainer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
-const { REACT_APP_SERVER_URL } = process.env;
 
 function App() {
-  const [products, setProducts] = useState();
-  // console.log(products);
-  useEffect(() => {
-    fetch(REACT_APP_SERVER_URL)
-      .then((res) => res.json())
-      .then(setProducts);
-  }, []);
+  const [shoppingCart, setShoppingCart] = useState([]);
+
 
   return (
     <div>
@@ -32,7 +26,7 @@ function App() {
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
-      <Outlet context={[products, setProducts]} />
+      <Outlet context={[shoppingCart, setShoppingCart]} />
     </div>
   );
 }
