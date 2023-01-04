@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 function App() {
-  const [products, setProducts] = useState();
+  const [shoppingCart, setShoppingCart] = useState([]);
 
   return (
     <div>
@@ -25,7 +25,7 @@ function App() {
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
-      <Outlet context={[products, setProducts]} />
+      <Outlet context={[shoppingCart, setShoppingCart]} />
     </div>
   );
 }

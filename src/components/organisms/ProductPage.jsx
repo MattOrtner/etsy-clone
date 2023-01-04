@@ -6,11 +6,20 @@ import CustomStarRating from "../atoms/CustomStarRating";
 import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
+import JustAddedModal from "../organisms/JustAddedModal";
 
 const ProductPage = () => {
   const [productData, setProductData] = useState({});
+  const [justAddedCartShow, setJustAddedCartShow] = useState(false);
+  const [shoppingCart, setShoppingCart] = useOutletContext();
+
+  const addToCart = (newProduct) => {
+    setJustAddedCartShow(true);
+    setShoppingCart((shoppingCart) => [...shoppingCart, newProduct]);
+  };
+
   const { id } = useParams();
   useEffect(() => {
     axios
@@ -21,6 +30,10 @@ const ProductPage = () => {
 
   return (
     <PageContainer>
+      <JustAddedModal
+        onClose={() => setJustAddedCartShow(false)}
+        show={justAddedCartShow}
+      />
       <LeftProductPageContainer />
       <RightContainer>
         <ProductOrderInfo>
@@ -62,7 +75,9 @@ const ProductPage = () => {
             </PriceContainer>
           </ProductInfo>
           {productData.isInStock ? (
-            <AddButton>Add to cart</AddButton>
+            <AddButton onClick={() => addToCart(productData)}>
+              Add to cart
+            </AddButton>
           ) : (
             <OutOfStockButton>
               Click here to save the item to favorites for later
@@ -70,7 +85,7 @@ const ProductPage = () => {
           )}
           <MessagingContainer>
             <MessagingAfterAddButton>
-              <ImageFiller>ASSET ONE DAY</ImageFiller>
+              <ImageFiller>assetOneDay</ImageFiller>
               <p>
                 <strong style={{ paddingRight: 3 }}>
                   Other people want this.
@@ -80,7 +95,7 @@ const ProductPage = () => {
             </MessagingAfterAddButton>
             {StoreData.isStarSeller && (
               <MessagingAfterAddButton>
-                <ImageFiller>ASSET ONE DAY</ImageFiller>
+                <ImageFiller>assetOneDay</ImageFiller>
                 <p>
                   <strong>Star Seller.</strong> This seller consistently earned
                   5-star reviews, shipped on time, and replied quickly to any
@@ -90,7 +105,7 @@ const ProductPage = () => {
             )}
             {StoreData.isGiftWrapping && (
               <MessagingAfterAddButton>
-                <ImageFiller>ASSET ONE DAY</ImageFiller>
+                <ImageFiller>assetOneDay</ImageFiller>
                 <p>
                   <strong>Gift wrapping available</strong>
                 </p>
@@ -253,6 +268,7 @@ const AddButton = styled.div`
   border-radius: 50px;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 const OutOfStockButton = styled.div`

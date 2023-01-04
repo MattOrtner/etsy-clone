@@ -2,18 +2,18 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const DropDownInfoContainer = (props) => {
-  const [display, setDisplay] = useState("none");
-  function handleClick() {
-    if (display === "none") {
+  const [active, setDisplay] = useState("none");
+  const handleClick = () => {
+    if (active === "none") {
       setDisplay("block");
     } else {
       setDisplay("none");
     }
-  }
+  };
   return (
     <Container onClick={handleClick}>
       <Title>{props.title}</Title>
-      <ChildContainer style={{ display: display }}>
+      <ChildContainer style={{ display: active }}>
         {props.children}
       </ChildContainer>
     </Container>
