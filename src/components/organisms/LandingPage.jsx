@@ -10,7 +10,7 @@ import axios from "axios";
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
   const [shoppingCart, setShoppingCart] = useOutletContext([]);
-
+  
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/products?q=clothing")
@@ -79,9 +79,9 @@ const PopularContainer = styled.div`
   width: 100%;
   max-width: 1500px;
 `;
-const SectionTitleContainer = styled.div`
-  ${"" /* text-align: left; */}
-`;
+
+const SectionTitleContainer = styled.div``;
+
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
