@@ -4,12 +4,11 @@ import HighLightList from "../molecules/HighLightList";
 import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
-import { useOutletContext } from "react-router-dom";
 import axios from "axios";
 
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
-  const [shoppingCart, setShoppingCart] = useOutletContext([]);
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/products?q=clothing")

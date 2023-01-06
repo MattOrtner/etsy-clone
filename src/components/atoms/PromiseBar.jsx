@@ -28,7 +28,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   height: 65px;
-  background-color: lightblue;
+  background-color: #dfe6f5;
   border-radius: 15px;
   margin-bottom: 15px;
 `;

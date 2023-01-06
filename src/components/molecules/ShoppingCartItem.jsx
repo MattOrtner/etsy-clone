@@ -1,10 +1,19 @@
-import React from "react";
+
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useOutletContext } from "react-router-dom";
 
 const ShoppingCartItem = ({ product }) => {
-  console.log("product", product);
   const [shoppingCart, setShoppingCart] = useOutletContext();
+  const [textAreaValue, setTextAreaValue] = useState({
+    value: "Add a note for the seller... (Optional)",
+  });
+
+  const handleTextAreaChange = (e) => {
+    e.preventDefault();
+    console.log("textAreaValue", textAreaValue);
+    setTextAreaValue({ value: e.target.value });
+  };
 
   const removeItem = () => {
     const newCart = shoppingCart.filter((item) => item._id !== product._id);
@@ -18,40 +27,62 @@ const ShoppingCartItem = ({ product }) => {
         <div style={{ fontWeight: 300, fontSize: 14 }}>Contact Shop</div>
       </SellerBar>
       <ProductInfoContainer>
-        <ImageContainer>
-          <ImagePlaceholder></ImagePlaceholder>
-        </ImageContainer>
-        <ProductInfo>
-          {product.productName ? (
-            <div>{product.productName}</div>
-          ) : (
-            <div>
-              Custom Floating Shelves | Small to Medium | Pick your size | Oak |
-              Plants, Books, Keys, Candles, Wall Décor | Boho Minimalist
+        <PITopContainer>
+          <ImageContainer>
+            <ImagePlaceholder></ImagePlaceholder>
+          </ImageContainer>
+          <ProductInfo>
+            {product.productName && (
+              <h3 style={{ fontWeight: 400 }}>{product.productName}</h3>
+            )}
+            {product.description && product.description}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <b style={{ paddingRight: 25 }}>Save for later</b>
+              <RemoveButton onClick={removeItem}>Remove</RemoveButton>
             </div>
-          )}
-          <div>Wood: oak</div>
-          <div>Size: 6"L x 3"W </div>
-          <div>Edit</div>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            <b style={{ paddingRight: 25 }}>Save for later</b>
-            <RemoveButton onClick={removeItem}>Remove</RemoveButton>
+          </ProductInfo>
+          <OtherInfoContainer>
+            <AmountPriceContainer>
+              <Quantity></Quantity>
+              <Price>${product.price}.00</Price>
+            </AmountPriceContainer>
+            <RecentlySoldContainer>
+              2 sold in the last 24 hours.
+            </RecentlySoldContainer>
+          </OtherInfoContainer>
+        </PITopContainer>
+        <div style={{ display: "flex", width: "100%" }}>
+          <div style={{ flex: 1, display: "flex", padding: " 14px 14px" }}>
+            <input
+              type="checkbox"
+              name="gift"
+              id="gift"
+              style={{ height: 24, width: 24, marginRight: 10 }}
+            />
+            <div>
+              <div style={{ fontSize: 18 }}>This order is a gift</div>
+              <div style={{ fontSize: 14 }}>
+                Prices will be shown on packing slip
+              </div>
+            </div>
           </div>
-        </ProductInfo>
-        <OtherInfoContainer>
-          <AmountPriceContainer>
-            <Quantity></Quantity>
-            <Price>${product.price}.00</Price>
-          </AmountPriceContainer>
-          <RecentlySoldContainer>
-            2 sold in the last 24 hours.
-          </RecentlySoldContainer>
-        </OtherInfoContainer>
+          <div style={{ flex: 1, opacity: 0 }}>thisIsASpacer</div>
+        </div>
+        <textarea
+          name="note-to-seller"
+          id="note-to-seller"
+          value={textAreaValue.value}
+          onChange={handleTextAreaChange}
+          cols="30"
+          rows="10"
+          style={{ fontSize: 18 }}
+        />
+
       </ProductInfoContainer>
     </Container>
   );
@@ -65,30 +96,28 @@ const RemoveButton = styled.b`
   border-radius: 15px;
   transition: all 1s ease-out;
   &:hover {
-    ${"" /* border: 1px solid black; */}
     background-color: black;
     color: white;
   }
 `;
 const RecentlySoldContainer = styled.div`
   font-size: 20px;
+  text-align: right;
 `;
 const Price = styled.div`
   text-align: right;
   font-size: 20px;
   width: 50%;
-  background-color: lightblue;
 `;
 const Quantity = styled.div`
   width: 50%;
-  background-color: lightblue;
 `;
 const AmountPriceContainer = styled.div`
   gap: 5px;
   padding: 2px;
   display: flex;
   height: 54px;
-  border: 1px solid blue;
+  ${"" /* border: 1px solid blue; */}
 `;
 const ImagePlaceholder = styled.div`
   height: 138px;
@@ -97,7 +126,7 @@ const ImagePlaceholder = styled.div`
   border-radius: 10px;
 `;
 const OtherInfoContainer = styled.div`
-  border: 1px solid red;
+  ${"" /* border: 1px solid red; */}
   width: 85%;
   height: 100%;
   margin: 0px 0px 0px 18px;
@@ -105,7 +134,7 @@ const OtherInfoContainer = styled.div`
 const ProductInfo = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid red;
+  ${"" /* border: 1px solid red; */}
   margin: 0px 0px 0px 18px;
   display: flex;
   flex-direction: column;
@@ -113,13 +142,19 @@ const ProductInfo = styled.div`
 `;
 const ImageContainer = styled.div`
   height: 100%;
-  border: 1px solid red;
+  ${"" /* border: 1px solid red; */}
+`;
+const PITopContainer = styled.div`
+  display: flex;
+  height: 100%;
+  width: 100%;
+
 `;
 const ProductInfoContainer = styled.div`
   padding: 15px 0px;
   display: flex;
-  align-items: center;
-  height: 100%;
+  flex-direction: column;
+  height: 70%;
   width: 100%;
 `;
 const SellerBar = styled.div`
@@ -128,11 +163,11 @@ const SellerBar = styled.div`
   align-items: center;
   font-size: 24px;
   justify-content: space-between;
-  background-color: lightblue;
 `;
 const Container = styled.div`
   flex: 1;
   width: 100%;
-  height: 400px;
-  border: 1px solid blue;
+  height: 500px;
+  border-bottom: 1px solid #d7e6f5;
+  margin-bottom: 15px;
 `;

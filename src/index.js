@@ -11,7 +11,6 @@ import ProductListings from "./components/organisms/ProductsListing";
 import WrapperComp from "./components/organisms/WrapperComp";
 import ShoppingCartPage from "./components/organisms/ShoppingCartPage";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

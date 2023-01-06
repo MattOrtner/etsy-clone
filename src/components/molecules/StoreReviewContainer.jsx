@@ -46,4 +46,5 @@ const StarContainer = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const RecentReviewShoutOut = styled.div``;

@@ -17,7 +17,7 @@ const ProductPage = () => {
 
   const addToCart = (newProduct) => {
     setJustAddedCartShow(true);
-    setShoppingCart((shoppingCart) => [...shoppingCart, newProduct]);
+    setShoppingCart([...shoppingCart, newProduct]);
   };
 
   const { id } = useParams();
