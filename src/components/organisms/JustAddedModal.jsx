@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const JustAddedModal = ({ onClose, show }) => {
@@ -40,7 +41,11 @@ const JustAddedModal = ({ onClose, show }) => {
             </div>
           </ItemAddedContainer>
           <ViewKeepShoppingContainer>
-            <ViewCartButton>View cart & check out</ViewCartButton>
+            <ViewCartButton>
+              <NavLink to={`/cart`} style={{ textDecoration: "none" }}>
+                View cart & check out
+              </NavLink>
+            </ViewCartButton>
             <KeepShoppingButton onClick={onClose}>
               Keep shopping
             </KeepShoppingButton>
@@ -78,7 +83,7 @@ const ViewCartButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  border: 1 solid black;
   color: white;
   width: 100%;
   height: 3.75rem;
@@ -148,7 +153,6 @@ const ViewKeepShoppingContainer = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  ${"" /* justify-content: center; */}
   width: 100%;
 `;
 const BottomContainer = styled.div`

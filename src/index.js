@@ -9,6 +9,7 @@ import LandingPage from "./components/organisms/LandingPage";
 import ProductPage from "./components/organisms/ProductPage";
 import ProductListings from "./components/organisms/ProductsListing";
 import WrapperComp from "./components/organisms/WrapperComp";
+import ShoppingCartPage from "./components/organisms/ShoppingCartPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,7 +21,12 @@ root.render(
           <Route path="/product/:id" element={<WrapperComp />}>
             <Route path="/product/:id" element={<ProductPage />} />
           </Route>
-          <Route path="/product/listings" element={<ProductListings />} />
+          <Route path="/product/listings" element={<WrapperComp />}>
+            <Route path="/product/listings" element={<ProductListings />} />
+          </Route>
+          <Route path="/cart" element={<WrapperComp />}>
+            <Route path="/cart" element={<ShoppingCartPage />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
