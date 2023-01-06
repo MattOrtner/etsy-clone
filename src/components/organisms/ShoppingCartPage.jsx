@@ -18,6 +18,7 @@ const ShoppingCartPage = () => {
     setCartTotal(sum);
   }, [shoppingCart]);
 
+
   return (
     <Container>
       {shoppingCart.length ? (

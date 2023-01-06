@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useOutletContext } from "react-router-dom";
@@ -13,6 +14,7 @@ const ShoppingCartItem = ({ product }) => {
     console.log("textAreaValue", textAreaValue);
     setTextAreaValue({ value: e.target.value });
   };
+
   const removeItem = () => {
     const newCart = shoppingCart.filter((item) => item._id !== product._id);
     setShoppingCart(newCart);
@@ -80,6 +82,7 @@ const ShoppingCartItem = ({ product }) => {
           rows="10"
           style={{ fontSize: 18 }}
         />
+
       </ProductInfoContainer>
     </Container>
   );
@@ -145,6 +148,7 @@ const PITopContainer = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
+
 `;
 const ProductInfoContainer = styled.div`
   padding: 15px 0px;
