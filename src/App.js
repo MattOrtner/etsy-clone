@@ -4,7 +4,7 @@ import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavigationContainer from "./components/organisms/NavigationContainer";
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
@@ -13,7 +13,9 @@ function App() {
   return (
     <div>
       <HeaderContainer>
-        <Logo src={logoIcon} />
+        <NavLink to="/">
+          <Logo src={logoIcon} />
+        </NavLink>
         <SearchBar>
           <SearchInput type="text" placeholder="Search for anything" />
           <SearchButton>
@@ -22,7 +24,9 @@ function App() {
         </SearchBar>
         <UserDashboard>
           <SignInButton>Sign In</SignInButton>
-          <CheckoutLink src={shoppingCartIcon} />
+          <NavLink to={"/cart"}>
+            <CheckoutLink src={shoppingCartIcon}></CheckoutLink>
+          </NavLink>
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
