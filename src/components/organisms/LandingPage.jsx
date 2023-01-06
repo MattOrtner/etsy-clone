@@ -10,7 +10,6 @@ import axios from "axios";
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
   const [shoppingCart, setShoppingCart] = useOutletContext([]);
-
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/products?q=clothing")

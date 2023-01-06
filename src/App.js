@@ -9,6 +9,7 @@ import { NavLink, Outlet } from "react-router-dom";
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
 
+
   return (
     <div>
       <HeaderContainer>
