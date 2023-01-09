@@ -8,6 +8,7 @@ const CustomStarRating = ({ name, value }) => {
       value={value}
       starColor={"#222222"}
       emptyStarColor={"#22222263"}
+      editing={false}
     />
   );
 };
