@@ -42,7 +42,10 @@ const JustAddedModal = ({ onClose, show }) => {
           </ItemAddedContainer>
           <ViewKeepShoppingContainer>
             <ViewCartButton>
-              <NavLink to={`/cart`} style={{ textDecoration: "none" }}>
+              <NavLink
+                to={`/cart`}
+                style={{ textDecoration: "none", color: "white" }}
+              >
                 View cart & check out
               </NavLink>
             </ViewCartButton>
@@ -92,6 +95,8 @@ const ViewCartButton = styled.div`
   font-weight: 600;
   margin: 12px 0px;
   cursor: pointer;
+  background-color: black;
+  color: white;
 `;
 const KeepShoppingButton = styled.div`
   display: flex;
@@ -103,7 +108,7 @@ const KeepShoppingButton = styled.div`
   cursor: pointer;
   &:hover {
     transition: background-color 150ms ease-in;
-    background-color: ##d9d9d9;
+    background-color: #d9d9d9;
   }
 `;
 const ModalContainer = styled.div`
@@ -116,6 +121,7 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   border: 1px solid black;
+  z-index: 3;
 `;
 const ModalContentContainer = styled.div`
   height: 100%;
@@ -125,6 +131,7 @@ const ModalContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 30px;
+  z-index: 5;
 `;
 const TopContainer = styled.div`
   height: 20%;
