@@ -18,7 +18,6 @@ const ShoppingCartItem = ({ product }) => {
     e.preventDefault();
     setTextAreaValue({ value: e.target.value });
   };
-
   const removeItem = () => {
     const newCart = shoppingCart.filter((item) => item._id !== product._id);
     setShoppingCart(newCart);
