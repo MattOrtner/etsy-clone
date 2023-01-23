@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import PromiseBar from "../atoms/PromiseBar";
+import PaymentMethodCluster from "../molecules/PaymentMethodCluster";
 import ShoppingCartItem from "../molecules/ShoppingCartItem";
 import NoProductShoppingCart from "./NoProductShoppingCart";
 
@@ -12,7 +13,7 @@ const ShoppingCartPage = () => {
 
   useEffect(() => {
     const sum = shoppingCart.reduce(
-      (acc, item) => acc + parseInt(item.price),
+      (acc, item) => acc + parseInt(item.price) * item.quantity,
       0
     );
     setCartTotal(sum);
@@ -40,41 +41,10 @@ const ShoppingCartPage = () => {
             </Cart>
             <Checkout>
               <div style={{ fontSize: 20 }}>How will you pay?</div>
-              <PayGrouping>
-                <Label htmlFor="cc">
-                  <input
-                    style={{ height: "30px", width: "30px" }}
-                    type="radio"
-                    name="payment"
-                    id="cc"
-                    checked={paymentType === "credit-card"}
-                    onChange={() => setPaymentType("credit-card")}
-                  />
-                  <div style={{ paddingLeft: 5 }}>Credit Card</div>
-                </Label>
-                <Label htmlFor="pay-pal">
-                  <input
-                    style={{ height: "30px", width: "30px" }}
-                    type="radio"
-                    name="payment"
-                    id="pay-pal"
-                    checked={paymentType === "pay-pal"}
-                    onChange={() => setPaymentType("pay-pal")}
-                  />
-                  <div style={{ paddingLeft: 5 }}>Pay Pal</div>
-                </Label>
-                <Label htmlFor="g-pal">
-                  <input
-                    style={{ height: "30px", width: "30px" }}
-                    type="radio"
-                    name="payment"
-                    id="g-pay"
-                    checked={paymentType === "g-pay"}
-                    onChange={() => setPaymentType("g-pay")}
-                  />
-                  <div style={{ paddingLeft: 5 }}>G Pay</div>
-                </Label>
-              </PayGrouping>
+              <PaymentMethodCluster
+                paymentType={paymentType}
+                setPaymentType={setPaymentType}
+              />
               <ItemsTotal>
                 <div>Item(s) total</div>
                 <div>${orderTotal}.00</div>
@@ -103,10 +73,6 @@ const ShoppingCartPage = () => {
 
 export default ShoppingCartPage;
 
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-`;
 const CheckoutButton = styled.div`
   display: flex;
   justify-content: center;
@@ -126,11 +92,7 @@ const ItemsTotal = styled.div`
   margin: 24px 0px;
   font-size: 18px;
 `;
-const PayGrouping = styled.form`
-  display: flex;
-  gap: 7px;
-  flex-direction: column;
-`;
+
 const Checkout = styled.div`
   display: flex;
   flex-direction: column;

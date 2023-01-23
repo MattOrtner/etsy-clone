@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import checkIcon from "../../assets/check.svg";
@@ -7,20 +8,48 @@ import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "./LeftProductPageContainer";
 import { useOutletContext, useParams } from "react-router-dom";
-import axios from "axios";
 import JustAddedModal from "../organisms/JustAddedModal";
+import QuantitySelectDropdown from "../molecules/QuantitySelectDropdown";
 
 const ProductPage = () => {
+  const [shoppingCart, setShoppingCart] = useOutletContext();
   const [productData, setProductData] = useState({});
   const [justAddedCartShow, setJustAddedCartShow] = useState(false);
-  const [shoppingCart, setShoppingCart] = useOutletContext();
+  const [productQuantity, setProductQuantity] = useState(1);
+  const { id } = useParams();
 
+  const isAlreadyInCart = (newProduct) => {
+    for (let i = 0; i < shoppingCart.length; i += 1) {
+      const element = shoppingCart[i];
+      if (element.id === newProduct.id) {
+        return i;
+      }
+    }
+    return false;
+  };
   const addToCart = (newProduct) => {
-    setJustAddedCartShow(true);
-    setShoppingCart([...shoppingCart, newProduct]);
+    const index = isAlreadyInCart(newProduct);
+
+    switch (index) {
+      case false:
+        setShoppingCart([...shoppingCart, newProduct]);
+        setJustAddedCartShow(true);
+        break;
+
+      default:
+        shoppingCart[index].quantity += 1;
+        setShoppingCart([...shoppingCart]);
+        setJustAddedCartShow(true);
+        break;
+    }
+    // once saved and tested add the id to the mising depend arr below
   };
 
-  const { id } = useParams();
+  const handleQuantityChange = (e) => {
+    e.preventDefault();
+    setProductQuantity(parseInt(e.target.value));
+  };
+
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/products/${id}`)
@@ -67,7 +96,7 @@ const ProductPage = () => {
                   </>
                 ) : (
                   <>
-                    <CheckIcon src={checkIcon} />
+                    {/* <CheckIcon src={checkIcon} /> */}
                     <IsInStock>Currently, out of stock.</IsInStock>
                   </>
                 )}
@@ -75,12 +104,30 @@ const ProductPage = () => {
             </PriceContainer>
           </ProductInfo>
           {productData.isInStock ? (
-            <AddButton onClick={() => addToCart(productData)}>
-              Add to cart
-            </AddButton>
+            <>
+              <QuantitySelectDropdown
+                handleChange={handleQuantityChange}
+                total={productData.isInStock}
+              />
+              <AddButton
+                onClick={() =>
+                  addToCart({
+                    id: productData._id,
+                    productName: productData.productName,
+                    description: productData.description,
+                    quantity: productQuantity,
+                    price: productData.price,
+                    isInStock: productData.isInStock,
+                    // company name & contact
+                  })
+                }
+              >
+                Add to cart
+              </AddButton>
+            </>
           ) : (
             <OutOfStockButton>
-              Click here to save the item to favorites for later
+              Click here to save the item the items to your favorites
             </OutOfStockButton>
           )}
           <MessagingContainer>
@@ -151,17 +198,12 @@ const BottomRightExtras = styled.div`
   width: 100%;
   height: 600px;
   flex-direction: column;
-  background-color: lightgreen;
 `;
 const MessagingContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
   margin-bottom: 20px;
-`;
-const StarOutline = styled.img`
-  width: 16px;
-  height: 16px;
 `;
 const ImageFiller = styled.div`
   width: 60px;
@@ -180,7 +222,6 @@ const RightContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
-  background-color: lightblue;
   height: 100%;
   width: 34%;
   float: right;
@@ -273,6 +314,7 @@ const AddButton = styled.div`
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  margin-top: 10px;
 `;
 
 const OutOfStockButton = styled.div`

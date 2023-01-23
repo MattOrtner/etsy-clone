@@ -34,8 +34,8 @@ const ProductCardContainer = styled.div`
   padding: 9px;
 `;
 const ImagePlaceHolder = styled.div`
-  height: 50%;
-  width: 100%;
+  height: 260px;
+  width: 327px;
   background-color: lightblue;
 `;
 const ReviewContainer = styled.div`
