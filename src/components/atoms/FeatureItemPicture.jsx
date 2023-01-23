@@ -1,8 +1,6 @@
 import React from "react";
 
 const FeatureItemPicture = () => {
-  // add wrap image with NavLink
-
   return <div style={{ ...styles }} />;
 };
 

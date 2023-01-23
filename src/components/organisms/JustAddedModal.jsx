@@ -1,71 +1,54 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import ModalRecomendation from "../molecules/ModalRecomendation";
 
 const JustAddedModal = ({ onClose, show }) => {
   if (!show) {
     return null;
   }
+
+  const sixColors = ["blue", "orange", "orange", "blue", "blue", "orange"];
+
   return (
     <ModalContainer onClick={onClose}>
-      <div
-        onClick={onClose}
-        style={{
-          cursor: "pointer",
-          fontSize: 35,
-          width: 50,
-          height: 50,
-          paddingTop: 24,
-          textAlign: "center",
-        }}
-      >
-        X
-      </div>
+      <CloseButtonContainer onClick={onClose}>X</CloseButtonContainer>
       <ModalContentContainer onClick={(e) => e.stopPropagation()}>
         <TopContainer>
           <ItemAddedContainer>
-            <ImageFiller>assetOneDay</ImageFiller>
+            <ImageFiller
+              width={"65px"}
+              height={"65px"}
+              backgroundColor={"lightblue"}
+              borderRadius={"7px"}
+            />
             <ItemAdded>1 item added to the cart</ItemAdded>
-            <div
-              style={{
-                color: "white",
-                background: "green",
-                flex: 1,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                fontSize: 0,
-              }}
-            >
-              something
-            </div>
+            <Spacer>SPACER</Spacer>
           </ItemAddedContainer>
           <ViewKeepShoppingContainer>
-            <ViewCartButton>
-              <NavLink
-                to={`/cart`}
-                style={{ textDecoration: "none", color: "white" }}
-              >
-                View cart & check out
-              </NavLink>
-            </ViewCartButton>
+            <NavLink
+              to={`/cart`}
+              style={{ textDecoration: "none", color: "white" }}
+            >
+              <ViewCartButton>View cart & check out</ViewCartButton>
+            </NavLink>
             <KeepShoppingButton onClick={onClose}>
               Keep shopping
             </KeepShoppingButton>
           </ViewKeepShoppingContainer>
         </TopContainer>
         <BottomContainer>
-          <div style={{ height: 50, background: "gray" }}>
-            Related items you may like
-          </div>
-          <RecContainer style={{ background: "lightblue" }}>
-            <Product>Product</Product>
-            <Product>Product</Product>
-            <Product>Product</Product>
-            <Product>Product</Product>
-            <Product>Product</Product>
-            <Product>Product</Product>
-          </RecContainer>
+          <RelatedItemsContainer>
+            <div style={{ height: 50, fontWeight: 500, fontSize: 24 }}>
+              Related items you may like
+            </div>
+            <div style={{ fontSize: 0, width: "30%" }}>spacer</div>
+          </RelatedItemsContainer>
+          <RecItemsContainer>
+            {sixColors.map((color) => (
+              <ModalRecomendation color={color} />
+            ))}
+          </RecItemsContainer>
         </BottomContainer>
       </ModalContentContainer>
     </ModalContainer>
@@ -74,6 +57,39 @@ const JustAddedModal = ({ onClose, show }) => {
 
 export default JustAddedModal;
 
+const RelatedItemsContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+const RecItemsContainer = styled.div`
+  height: 80%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
+const BottomContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+const CloseButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  margin: 0px 6px 6px 0px;
+  padding: 12px;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 24px;
+  color: white;
+  &:hover {
+    transition: background-color 150ms ease-in;
+    background-color: #8a8888;
+  }
+`;
 const ItemAdded = styled.div`
   flex: 3;
   display: flex;
@@ -106,6 +122,7 @@ const KeepShoppingButton = styled.div`
   height: 3rem;
   border-radius: 50px;
   cursor: pointer;
+  font-weight: 600;
   &:hover {
     transition: background-color 150ms ease-in;
     background-color: #d9d9d9;
@@ -130,7 +147,7 @@ const ModalContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
+  padding: 25px;
   z-index: 5;
 `;
 const TopContainer = styled.div`
@@ -140,14 +157,16 @@ const TopContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
-const ImageFiller = styled.div`
-  width: 60px;
-  height: 60px;
-  background-color: darkblue;
+const ImageFiller = styled.div(
+  ({ height, width, backgroundColor, borderRadius }) => `
+  height: ${height ? height : "50%"};
+  width: ${width ? width : "100%"};
+  border-radius: ${borderRadius ? borderRadius : "inherit"};
+  background-color: ${backgroundColor ? backgroundColor : "lightgreen"};
   color: transparent;
-  border-radius: 5px;
-  ${"" /* margin-right: 10px; */}
-`;
+`
+);
+
 const ItemAddedContainer = styled.div`
   flex: 1;
   width: 100%;
@@ -161,26 +180,13 @@ const ViewKeepShoppingContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgba(121 104 72 / 43%);
 `;
-const BottomContainer = styled.div`
-  height: 80%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-const RecContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  background-color: blue;
-  gap: 10px;
-`;
-const Product = styled.div`
-  flex-grow: 1;
-  width: 100%;
-  align-self: stretch;
-  background-color: lightgreen;
-  border: 1px solid red;
+const Spacer = styled.div`
+  color: white;
+  background: green;
+  flex: 1;
+  font-size: 0;
 `;

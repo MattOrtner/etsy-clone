@@ -1,25 +1,37 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useOutletContext } from "react-router-dom";
+import QuantitySelectDropdown from "./QuantitySelectDropdown";
 
 const ShoppingCartItem = ({ product }) => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
+  console.log("shoppingCart", shoppingCart);
+  const [quantity, setQuantity] = useState(product.quantity);
+  const [totalItemPrice, setTotalItemPrice] = useState(
+    product.price * product.quantity
+  );
   const [textAreaValue, setTextAreaValue] = useState({
     value: "Add a note for the seller... (Optional)",
   });
 
   const handleTextAreaChange = (e) => {
     e.preventDefault();
-    console.log("textAreaValue", textAreaValue);
     setTextAreaValue({ value: e.target.value });
   };
+
   const removeItem = () => {
     const newCart = shoppingCart.filter((item) => item._id !== product._id);
     setShoppingCart(newCart);
   };
 
+  const handleQuantityChange = (e) => {
+    e.preventDefault();
+    setQuantity(e.target.value);
+    setTotalItemPrice(product.price * e.target.value);
+  };
+
   return (
-    <Container>
+    <Container key={product._id}>
       <SellerBar>
         <div>name of company</div>
         <div style={{ fontWeight: 300, fontSize: 14 }}>Contact Shop</div>
@@ -46,8 +58,14 @@ const ShoppingCartItem = ({ product }) => {
           </ProductInfo>
           <OtherInfoContainer>
             <AmountPriceContainer>
-              <Quantity></Quantity>
-              <Price>${product.price}.00</Price>
+              <Quantity>
+                <QuantitySelectDropdown
+                  handleChange={handleQuantityChange}
+                  total={product.isInStock}
+                  quantity={quantity}
+                />
+              </Quantity>
+              <Price>${totalItemPrice}.00</Price>
             </AmountPriceContainer>
             <RecentlySoldContainer>
               2 sold in the last 24 hours.
@@ -114,7 +132,6 @@ const AmountPriceContainer = styled.div`
   padding: 2px;
   display: flex;
   height: 54px;
-  ${"" /* border: 1px solid blue; */}
 `;
 const ImagePlaceholder = styled.div`
   height: 138px;
