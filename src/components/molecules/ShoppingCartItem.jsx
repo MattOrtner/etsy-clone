@@ -5,6 +5,7 @@ import QuantitySelectDropdown from "./QuantitySelectDropdown";
 
 const ShoppingCartItem = ({ product }) => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
+
   const [quantity, setQuantity] = useState(product.quantity);
   const [totalItemPrice, setTotalItemPrice] = useState(
     product.price * product.quantity
@@ -20,7 +21,6 @@ const ShoppingCartItem = ({ product }) => {
 
   const removeItem = (id) => {
     const newCart = shoppingCart.filter((item) => item.id !== id);
-
     setShoppingCart(newCart);
   };
 
