@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
-const ModalRecomendation = ({ color }) => {
+const ModalRecomendation = ({ index, color }) => {
   return (
-    <RecItemContainer>
+    <RecItemContainer key={index}>
       <PhotoPlaceholder
         height={"162px"}
         width={"204px"}
