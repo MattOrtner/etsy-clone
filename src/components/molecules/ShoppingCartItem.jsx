@@ -5,7 +5,6 @@ import QuantitySelectDropdown from "./QuantitySelectDropdown";
 
 const ShoppingCartItem = ({ product }) => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
-  console.log("shoppingCart", shoppingCart);
   const [quantity, setQuantity] = useState(product.quantity);
   const [totalItemPrice, setTotalItemPrice] = useState(
     product.price * product.quantity
@@ -19,8 +18,9 @@ const ShoppingCartItem = ({ product }) => {
     setTextAreaValue({ value: e.target.value });
   };
 
-  const removeItem = () => {
-    const newCart = shoppingCart.filter((item) => item._id !== product._id);
+  const removeItem = (id) => {
+    const newCart = shoppingCart.filter((item) => item.id !== id);
+
     setShoppingCart(newCart);
   };
 
@@ -53,7 +53,9 @@ const ShoppingCartItem = ({ product }) => {
               }}
             >
               <b style={{ paddingRight: 25 }}>Save for later</b>
-              <RemoveButton onClick={removeItem}>Remove</RemoveButton>
+              <RemoveButton onClick={() => removeItem(product.id)}>
+                Remove
+              </RemoveButton>
             </div>
           </ProductInfo>
           <OtherInfoContainer>

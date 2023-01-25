@@ -45,8 +45,8 @@ const JustAddedModal = ({ onClose, show }) => {
             <div style={{ fontSize: 0, width: "30%" }}>spacer</div>
           </RelatedItemsContainer>
           <RecItemsContainer>
-            {sixColors.map((color) => (
-              <ModalRecomendation color={color} />
+            {sixColors.map((color, i) => (
+              <ModalRecomendation index={i} color={color} />
             ))}
           </RecItemsContainer>
         </BottomContainer>
