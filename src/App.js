@@ -5,9 +5,15 @@ import shoppingCartIcon from "./assets/shopping_cart.svg";
 import NavigationContainer from "./components/organisms/NavigationContainer";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import SignInModal from "./components/organisms/SignInModal";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
+  const [showSignInModal, setShowSignInModal] = useState(false);
+
+  const toggleSignInModal = () => {
+    setShowSignInModal((show) => !show);
+  };
 
   return (
     <div>
@@ -22,13 +28,14 @@ function App() {
           </SearchButton>
         </SearchBar>
         <UserDashboard>
-          <SignInButton>Sign In</SignInButton>
+          <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
           <NavLink to={"/cart"}>
             <CheckoutLink src={shoppingCartIcon}></CheckoutLink>
           </NavLink>
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
+      <SignInModal onClose={toggleSignInModal} show={showSignInModal} />
       <Outlet context={[shoppingCart, setShoppingCart]} />
     </div>
   );
@@ -99,4 +106,5 @@ const SignInButton = styled.button`
   font-size: 13px;
   background-color: transparent;
   padding: 9px 15px;
+  cursor: pointer;
 `;

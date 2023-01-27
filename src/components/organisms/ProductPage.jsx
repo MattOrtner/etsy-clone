@@ -96,7 +96,6 @@ const ProductPage = () => {
                   </>
                 ) : (
                   <>
-                    {/* <CheckIcon src={checkIcon} /> */}
                     <IsInStock>Currently, out of stock.</IsInStock>
                   </>
                 )}
@@ -118,7 +117,6 @@ const ProductPage = () => {
                     quantity: productQuantity,
                     price: productData.price,
                     isInStock: productData.isInStock,
-                    // company name & contact
                   })
                 }
               >
