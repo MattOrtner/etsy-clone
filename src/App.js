@@ -102,9 +102,14 @@ const CheckoutLink = styled.img`
 `;
 const SignInButton = styled.button`
   border: none;
+  border-radius: 8px;
   font-weight: bold;
   font-size: 13px;
   background-color: transparent;
   padding: 9px 15px;
   cursor: pointer;
+  transition: all 0.3s ease-out;
+  &:hover {
+    background-color: #f5d9e5;
+  }
 `;
