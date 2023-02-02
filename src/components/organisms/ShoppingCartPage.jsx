@@ -10,13 +10,13 @@ const ShoppingCartPage = () => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
   const [paymentType, setPaymentType] = useState("");
   const [orderTotal, setCartTotal] = useState();
-
+  console.log("shoppingCart", shoppingCart);
   useEffect(() => {
     const sum = shoppingCart.reduce(
       (acc, item) => acc + parseInt(item.price) * item.quantity,
       0
     );
-    setCartTotal(sum);
+    setCartTotal(sum.toString());
   }, [shoppingCart]);
 
   return (
