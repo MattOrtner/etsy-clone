@@ -1,5 +1,4 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import SocialLoginButton from "../atoms/SocialLoginButton";
 
@@ -53,7 +52,7 @@ const SignInModal = ({ onClose, show }) => {
               Stay signed in
             </label>
           </CheckContainer>
-          <u style={{ cursor: "pointer" }}>Forgot your password</u>
+          <u style={{ cursor: "pointer" }}>Forgot your password?</u>
         </EngageContainer>
         <SignInButton>Sign in</SignInButton>
         <div
@@ -67,7 +66,9 @@ const SignInModal = ({ onClose, show }) => {
           <u style={{ padding: "15px 0px", color: "#595959" }}>
             Trouble signing in?
           </u>
-          <div style={{ padding: "15px 0px", color: "#595959" }}>OR</div>
+          <div style={{ zIndex: 3, padding: "15px 0px", color: "#595959" }}>
+            OR
+          </div>
         </div>
         <SocialLoginButton
           name="Google"
@@ -136,8 +137,8 @@ const SignInButton = styled.div`
   cursor: pointer;
   margin-top: 10px;
   &:hover {
-    transition: all 300ms ease-in;
-    transform: scale(1.06);
+    transition: all 300ms ease-out;
+    transform: scale(1.02);
   }
 `;
 const Input = styled.input`
@@ -181,9 +182,12 @@ const CloseButton = styled.div`
   padding: 10px;
   font-size: 24px;
   color: white;
+  border-radius: 50%;
+  z-index: 10;
+  background-color: #8a88889f;
   &:hover {
-    transition: background-color 150ms ease-in;
-    background-color: #8a8888;
+    transition: background-color 0.2s ease-in;
+    background-color: #8a88884f;
   }
 `;
 
@@ -199,7 +203,8 @@ const ModalContainer = styled.div`
   align-items: center;
   gap: 5px;
   border: 1px solid black;
-  z-index: 3;
+  z-index: 10;
+  overflow: hidden;
 `;
 const ModalContentContainer = styled.form`
   display: flex;
@@ -217,43 +222,16 @@ const RegisterButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 3px solid #222;
   color: #222;
-  padding: 8px 25px;
+  padding: 8px 18px;
   border-radius: 50px;
   font-size: 16px;
   font-weight: 600;
   margin: 12px 0px;
   cursor: pointer;
+  border: 2.5px solid #222;
   &:hover {
-    transition: background-color 150ms ease-in;
-    background-color: #d9d9d9;
+    transition: all 0.3s;
+    box-shadow: 0 0 11px #a4a4a4;
   }
 `;
-// const TopContainer = styled.div`
-//   height: 20%;
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-// `;
-// const Spacer = styled.div`
-//   color: white;
-//   background: green;
-//   flex: 1;
-//   font-size: 0;
-// `;
-// const RelatedItemsContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   flex-direction: row;
-//   justify-content: center;
-//   align-items: center;
-//   display: grid;
-//   width: 100%;
-// `;
-// const RecItemsContainer = styled.div`
-//   height: 80%;
-//   display: grid;
-//   grid-template-columns: 1fr 1fr;
-// `;

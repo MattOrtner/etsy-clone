@@ -33,4 +33,9 @@ const Container = styled.div`
   height: 3rem;
   margin: 6px 0px;
   cursor: pointer;
+  border: 2.5px solid #222;
+  &:hover {
+    transition: all 0.2s;
+    box-shadow: 0 0 11px #a4a4a4;
+  }
 `;

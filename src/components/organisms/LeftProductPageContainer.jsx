@@ -39,5 +39,7 @@ const LeftContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 76%;
-  padding-left: 40px;
+  padding: 0px 25px;
+  z-index: 0;
 `;
+
