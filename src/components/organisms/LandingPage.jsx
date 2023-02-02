@@ -32,7 +32,7 @@ const LandingPage = () => {
       </GreetingContainer>
       <PopularContainer>
         <SectionTitleContainer>
-          <SectionTitle title={"Popular gifts right now"} />
+          <SectionTitle title={"Recently viewed & more"} />
         </SectionTitleContainer>
         <SquarePhotoList>
           {products &&
@@ -54,7 +54,6 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 70px;
 `;
 
 const PersonalContainer = styled.div`
@@ -64,9 +63,8 @@ const PersonalContainer = styled.div`
   max-width: 1500px;
 `;
 const SquarePhotoList = styled.div`
-  height: 90%;
   display: flex;
-  justify-content: center;
+  gap: 20px;
 `;
 
 const PopularContainer = styled.div`
@@ -77,9 +75,7 @@ const PopularContainer = styled.div`
   width: 100%;
   max-width: 1500px;
 `;
-const SectionTitleContainer = styled.div`
-  ${"" /* text-align: left; */}
-`;
+const SectionTitleContainer = styled.div``;
 const TitleContainer = styled.div`
   display: flex;
   flex-direction: column;
