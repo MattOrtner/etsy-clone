@@ -40,19 +40,18 @@ const PersonalizedGifts = () => {
 export default PersonalizedGifts;
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 33% 30% 15% 22%;
-  grid-template-rows: 45% 55%;
+  grid-template-columns: 30% 30% 15% 20%;
+  grid-template-rows: 45% 50%;
   width: 100%;
-  height: 500px;
+  height: 35em;
   margin-bottom: 0px 0px 90px;
-  gap: 25px;
+  gap: 18px;
 `;
 const TopFirst = styled.div`
   grid-column: 1;
   align-self: center;
   cursor: pointer;
 `;
-
 const TopSecond = styled(FeatureItemPicture)`
   grid-column: 2;
 `;

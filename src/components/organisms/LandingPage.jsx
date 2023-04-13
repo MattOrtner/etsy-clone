@@ -8,59 +8,67 @@ import axios from "axios";
 
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
+  const [greeting, setGreeting] = useState(
+    "Discover fresh summer finds from creative sellers!"
+  );
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/products?q=clothing")
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(process.env.REACT_APP_SERVER_URL)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setProducts(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       console.log("this was an error catch block");
+  //     });
+  // }, []);
 
   return (
-    <Container>
+    <OutletContainer>
       <GreetingContainer>
         <BackSplash />
         <TitleContainer>
-          <Title>Discover fresh summer finds from creative sellers!</Title>
+          <Title>{greeting}</Title>
         </TitleContainer>
         <HighLightList />
       </GreetingContainer>
-      <PopularContainer>
-        <SectionTitleContainer>
-          <SectionTitle title={"Recently viewed & more"} />
-        </SectionTitleContainer>
-        <SquarePhotoList>
-          {products &&
-            products.map((product) => (
-              <PopularItem key={product._id} {...product} rating={"****"} />
-            ))}
-        </SquarePhotoList>
-      </PopularContainer>
-      <PersonalContainer>
+      {products.length > 0 && (
+        <PopularContainer>
+          <SectionTitleContainer>
+            <SectionTitle title={"Recently viewed & more"} />
+          </SectionTitleContainer>
+          <SquarePhotoList>
+            {products &&
+              products.map((product) => (
+                <PopularItem key={product._id} {...product} rating={"****"} />
+              ))}
+          </SquarePhotoList>
+        </PopularContainer>
+      )}
+      <PersonalRecContainer>
         <PersonalizedGifts />
-      </PersonalContainer>
-    </Container>
+      </PersonalRecContainer>
+    </OutletContainer>
   );
 };
 
 export default LandingPage;
-const Container = styled.div`
+
+const OutletContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 `;
 
-const PersonalContainer = styled.div`
-  display: flex;
-  justify-content: center;
+const PersonalRecContainer = styled.div`
   width: 100%;
+  padding: 5px;
+  margin-right: 0 auto;
   max-width: 1500px;
+  background-color: red;
 `;
 const SquarePhotoList = styled.div`
   display: flex;
@@ -81,8 +89,8 @@ const TitleContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #f8ebe6;
   width: 100%;
+  background-color: #f8ebe6;
 `;
 const Title = styled.h1`
   letter-spacing: 0.5px;
@@ -91,16 +99,19 @@ const Title = styled.h1`
     "Noto Serif Light", "Droid Serif", Georgia, serif;
 `;
 const BackSplash = styled.div`
-  background-color: #f8ebe6;
   position: absolute;
-  height: 100px;
+  top: 0;
+  height: 8rem;
   width: 100%;
-  z-index: -1;
+  z-index: -10;
+  background-color: #f8ebe6;
 `;
 const GreetingContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 8rem;
 `;
