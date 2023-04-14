@@ -3,6 +3,7 @@ import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
 import ProductListing from "../molecules/ProductListing";
 import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
+
 const ProductsListing = () => {
   const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
   return (
@@ -53,6 +54,8 @@ const ProductsListing = () => {
                   price={product.price}
                   starRating={product.starRating}
                   numOfReviews={product.numOfReviews}
+                  key={product.id}
+                  id={product.id}
                 />
               ))}
           </ProductCardContainer>

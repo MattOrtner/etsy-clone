@@ -200,7 +200,7 @@ const ModalContainer = styled.div`
   background-color: #4444447a;
   display: flex;
   justify-content: center;
-  align-items: center;
+  padding: 30px 0px;
   gap: 5px;
   border: 1px solid black;
   z-index: 10;
@@ -210,8 +210,8 @@ const ModalContentContainer = styled.form`
   display: flex;
   flex-direction: column;
   padding: 15px;
-  height: 55%;
-  width: 25%;
+  width: 30%;
+  height: 90%;
   background-color: #ffff;
   z-index: 5;
   max-width: 384px;

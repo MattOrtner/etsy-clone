@@ -1,10 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import StarRatingComponent from "react-star-rating-component";
+import { Link } from "react-router-dom";
 
-const ProductListing = ({ productName, price, starRating, numOfReviews }) => {
+const ProductListing = ({
+  productName,
+  price,
+  starRating,
+  numOfReviews,
+  id,
+}) => {
   return (
-    <ProductCardContainer>
+    <ProductCardContainer to={`/product/:${id}`}>
       <ImagePlaceHolder />
       <div style={{ lineHeight: "24px", padding: "0 0 30px 5px" }}>
         <div style={{ fontSize: 18, paddingBottom: 4 }}>{productName}</div>
@@ -27,7 +34,7 @@ const ProductListing = ({ productName, price, starRating, numOfReviews }) => {
 };
 
 export default ProductListing;
-const ProductCardContainer = styled.div`
+const ProductCardContainer = styled(Link)`
   height: 500px;
   width: 100%;
   align-self: stretch;

@@ -6,11 +6,18 @@ import FeatureItemPicture from "../atoms/FeatureItemPicture";
 const PersonalizedGifts = () => {
   return (
     <Container>
-      <TopFirst>
-        <p style={{ fontSize: 16 }}>Editors' Picks</p>
-        <h1 style={{ fontSize: 24 }}>Personalized Gifts</h1>
-        <div>Shop these unique finds {"->"}</div>
-      </TopFirst>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <TopFirst>
+          <p style={{ fontSize: 16 }}>Editors' Picks</p>
+          <h1 style={{ fontSize: 24 }}>Personalized Gifts</h1>
+          <div>Shop these unique finds {"->"}</div>
+        </TopFirst>
+      </div>
       <NavLink to="product/listings" style={{ display: "contents" }}>
         <TopSecond>second</TopSecond>
       </NavLink>
@@ -40,19 +47,21 @@ const PersonalizedGifts = () => {
 export default PersonalizedGifts;
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 33% 30% 15% 22%;
-  grid-template-rows: 45% 55%;
+  grid-template-columns: 30% 30% 15% 20%;
+  grid-template-rows: 45% 50%;
   width: 100%;
-  height: 500px;
+  height: 35em;
   margin-bottom: 0px 0px 90px;
-  gap: 25px;
+  gap: 18px;
 `;
 const TopFirst = styled.div`
   grid-column: 1;
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   cursor: pointer;
 `;
-
 const TopSecond = styled(FeatureItemPicture)`
   grid-column: 2;
 `;
