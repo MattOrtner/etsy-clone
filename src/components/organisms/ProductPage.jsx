@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import heartIcon from "../../assets/heart-outline.svg";
@@ -10,6 +10,7 @@ import LeftProductPageContainer from "./LeftProductPageContainer";
 import { useOutletContext, useParams } from "react-router-dom";
 import JustAddedModal from "../organisms/JustAddedModal";
 import QuantitySelectDropdown from "../molecules/QuantitySelectDropdown";
+import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products.js";
 
 const ProductPage = () => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
@@ -29,7 +30,6 @@ const ProductPage = () => {
   };
   const addToCart = (newProduct) => {
     const index = isAlreadyInCart(newProduct);
-
     switch (index) {
       case false:
         setShoppingCart([...shoppingCart, newProduct]);
@@ -51,10 +51,14 @@ const ProductPage = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/products/${id}`)
-      .then((res) => setProductData(res.data))
-      .catch((err) => console.error(err));
+    // axios
+    //   .get(`http://localhost:8000/api/products/${id}`)
+    //   .then((res) => setProductData(res.data))
+    //   .catch((err) => console.error(err));
+    const newId = id.substring(1);
+    if (newId) {
+      setProductData(MULTIPLE_SINGLE_DUMMY_PRODUCTS[newId]);
+    }
   }, []);
 
   return (
@@ -92,11 +96,11 @@ const ProductPage = () => {
                 {productData.isInStock ? (
                   <>
                     <CheckIcon src={checkIcon} />
-                    <IsInStock>In stock</IsInStock>
+                    <div>In stock</div>
                   </>
                 ) : (
                   <>
-                    <IsInStock>Currently, out of stock.</IsInStock>
+                    <div>Currently, out of stock.</div>
                   </>
                 )}
               </InStockContainer>
@@ -125,7 +129,15 @@ const ProductPage = () => {
             </>
           ) : (
             <OutOfStockButton>
-              Click here to save the item the items to your favorites
+              Save Item to favorites?
+              <HeartOutlineIcon
+                style={{
+                  backgroundColor: "white",
+                  borderRadius: 18,
+                  padding: "1px 3px",
+                }}
+                src={heartIcon}
+              />
             </OutOfStockButton>
           )}
           <MessagingContainer>
@@ -298,7 +310,6 @@ const CheckIcon = styled.img`
   width: 24px;
   height: 24px;
 `;
-const IsInStock = styled.div``;
 const ProductInfo = styled.div``;
 const AddButton = styled.div`
   display: flex;
@@ -317,15 +328,15 @@ const AddButton = styled.div`
 
 const OutOfStockButton = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  background-color: #595959;
-  color: white;
+  border: 2px solid #9d9b9b;
   width: 100%;
   height: 3rem;
   border-radius: 50px;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 const Spacer = styled.div`

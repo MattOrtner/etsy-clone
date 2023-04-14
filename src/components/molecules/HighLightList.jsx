@@ -5,6 +5,7 @@ import HighLights from "../../data/highLights";
 
 const HighLightList = () => {
   const [list, setList] = useState(HighLights);
+
   return (
     <List>
       {list

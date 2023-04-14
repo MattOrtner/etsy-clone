@@ -6,11 +6,18 @@ import FeatureItemPicture from "../atoms/FeatureItemPicture";
 const PersonalizedGifts = () => {
   return (
     <Container>
-      <TopFirst>
-        <p style={{ fontSize: 16 }}>Editors' Picks</p>
-        <h1 style={{ fontSize: 24 }}>Personalized Gifts</h1>
-        <div>Shop these unique finds {"->"}</div>
-      </TopFirst>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <TopFirst>
+          <p style={{ fontSize: 16 }}>Editors' Picks</p>
+          <h1 style={{ fontSize: 24 }}>Personalized Gifts</h1>
+          <div>Shop these unique finds {"->"}</div>
+        </TopFirst>
+      </div>
       <NavLink to="product/listings" style={{ display: "contents" }}>
         <TopSecond>second</TopSecond>
       </NavLink>
@@ -49,7 +56,10 @@ const Container = styled.div`
 `;
 const TopFirst = styled.div`
   grid-column: 1;
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   cursor: pointer;
 `;
 const TopSecond = styled(FeatureItemPicture)`

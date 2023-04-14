@@ -5,9 +5,10 @@ import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
 import axios from "axios";
+import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
 
 const LandingPage = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
   const [greeting, setGreeting] = useState(
     "Discover fresh summer finds from creative sellers!"
   );
@@ -24,7 +25,6 @@ const LandingPage = () => {
   //       console.log("this was an error catch block");
   //     });
   // }, []);
-
   return (
     <OutletContainer>
       <GreetingContainer>
@@ -42,7 +42,11 @@ const LandingPage = () => {
           <SquarePhotoList>
             {products &&
               products.map((product) => (
-                <PopularItem key={product._id} {...product} rating={"****"} />
+                <PopularItem
+                  key={product.id}
+                  price={product.price}
+                  id={product.id}
+                />
               ))}
           </SquarePhotoList>
         </PopularContainer>
@@ -65,10 +69,8 @@ const OutletContainer = styled.div`
 
 const PersonalRecContainer = styled.div`
   width: 100%;
-  padding: 5px;
   margin-right: 0 auto;
   max-width: 1500px;
-  background-color: red;
 `;
 const SquarePhotoList = styled.div`
   display: flex;
@@ -113,5 +115,5 @@ const GreetingContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 8rem;
+  margin-bottom: 6rem;
 `;

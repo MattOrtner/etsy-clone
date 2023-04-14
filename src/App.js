@@ -29,7 +29,7 @@ function App() {
         </SearchBar>
         <UserDashboard>
           <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
-          <NavLink to={"/cart"}>
+          <NavLink to="/cart">
             <CheckoutLink src={shoppingCartIcon}></CheckoutLink>
           </NavLink>
         </UserDashboard>

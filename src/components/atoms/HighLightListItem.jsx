@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const HighLightListItem = ({ title }) => {
   return (
-    <Item>
+    <Item to="/product/listings">
       <PicContainer>
         <PicHolder className="picture"></PicHolder>
       </PicContainer>
@@ -21,7 +22,7 @@ const Title = styled.div`
 const PicContainer = styled.div`
   max-height: 110px;
 `;
-const Item = styled.div`
+const Item = styled(Link)`
   display: inline-block;
   flex-direction: column;
   text-align: center;

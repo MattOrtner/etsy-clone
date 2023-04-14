@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-const PopularItem = ({ imgURI, price, _id }) => {
+const PopularItem = ({ price, id }) => {
   return (
-    <Link to={`product/${_id}`} style={{ textDecoration: "none" }}>
+    <Link to={`/product/:${id}`} style={{ textDecoration: "none" }}>
       <Photo></Photo>
       <Price>${price}.00</Price>
     </Link>
