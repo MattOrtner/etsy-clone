@@ -7,7 +7,7 @@ import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import SignInModal from "./components/organisms/SignInModal";
 import CUSTOMER from "./data/customer-data";
-import SignedInDropDown from "./components/molecules/SignedInDropDown";
+import UserProfileDropDown from "./components/molecules/UserProfileDropDown";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
@@ -33,7 +33,7 @@ function App() {
         </SearchBar>
         <UserDashboard>
           {isSignedIn ? (
-            <SignedInDropDown name={user.name} />
+            <UserProfileDropDown name={user.name} />
           ) : (
             <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
           )}
