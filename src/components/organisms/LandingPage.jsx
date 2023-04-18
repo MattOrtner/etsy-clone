@@ -75,6 +75,8 @@ const PersonalRecContainer = styled.div`
 const SquarePhotoList = styled.div`
   display: flex;
   gap: 20px;
+  max-width: inherit;
+  overflow-x: scroll;
 `;
 
 const PopularContainer = styled.div`
@@ -115,5 +117,5 @@ const GreetingContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 6rem;
+  /* margin-bottom: 6rem; */
 `;
