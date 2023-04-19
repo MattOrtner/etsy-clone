@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import NavItem from "../atoms/NavItem";
-import navTitles from "../../data/navTitles";
+import navTitles from "../../data/nav-titles";
 
 const NavList = () => {
   return (
