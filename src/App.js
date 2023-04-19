@@ -43,6 +43,7 @@ function App() {
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
+
       <SignInModal onClose={toggleSignInModal} show={showSignInModal} />
       <Outlet context={[shoppingCart, setShoppingCart]} />
     </div>

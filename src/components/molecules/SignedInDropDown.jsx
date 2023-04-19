@@ -1,15 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import accountSVG from "../../assets/signed-in/account.svg";
-import clipBoardSVG from "../../assets/signed-in/clipboard-text-outline.svg";
-import giftSVG from "../../assets/signed-in/gift-outline.svg";
-import msgSVG from "../../assets/signed-in/message-processing-outline.svg";
-import settingsSVG from "../../assets/signed-in/cog-outline.svg";
-import tagSVG from "../../assets/signed-in/tag-outline.svg";
-import triangleSVG from "../../assets/signed-in/triangle-small-down.svg";
 
-
-const UserProfileDropDown = ({ name }) => {
+const SignedInDropDown = ({ name }) => {
   const [isOpen, setIsOpen] = useState(true);
   return (
     <div
@@ -21,29 +13,32 @@ const UserProfileDropDown = ({ name }) => {
     >
       <div
         style={{
-          padding: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          border: "1px solid blue",
+          padding: 5,
+          backgroundColor: "blue",
         }}
         onClick={() => setIsOpen((isIt) => !isIt)}
       >
-        <IconIMG src={accountSVG} style={{ margin: 0 }} />
-        <IconIMG src={triangleSVG} style={{ margin: 0 }} />
+        <div>P √ </div>
       </div>
       {isOpen && (
         <DropDownContainer>
           <DropDownButton>
-            <IconIMG src={accountSVG} />
+            <Icon>0</Icon>
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              <div style={{ fontSize: "1.3rem" }}>{name}</div>
-              <div style={{ color: "#7c7c7c" }}>View your profile</div>
+              <div>{name}</div>
+              <div>View your profile</div>
             </div>
           </DropDownButton>
           <DropDownButton>
-            <IconIMG src={clipBoardSVG} />
+            <Icon>0</Icon>
             <div
               style={{
                 display: "flex",
@@ -54,7 +49,7 @@ const UserProfileDropDown = ({ name }) => {
             </div>
           </DropDownButton>
           <DropDownButton>
-            <IconIMG src={giftSVG} />
+            <Icon>0</Icon>
             <div
               style={{
                 display: "flex",
@@ -65,7 +60,7 @@ const UserProfileDropDown = ({ name }) => {
             </div>
           </DropDownButton>
           <DropDownButton>
-            <IconIMG src={msgSVG} />
+            <Icon>0</Icon>
             <div
               style={{
                 display: "flex",
@@ -76,7 +71,7 @@ const UserProfileDropDown = ({ name }) => {
             </div>
           </DropDownButton>
           <DropDownButton>
-            <IconIMG src={tagSVG} />
+            <Icon>0</Icon>
             <div
               style={{
                 display: "flex",
@@ -87,7 +82,7 @@ const UserProfileDropDown = ({ name }) => {
             </div>
           </DropDownButton>
           <DropDownButton>
-            <IconIMG src={settingsSVG} />
+            <Icon>0</Icon>
             <div
               style={{
                 display: "flex",
@@ -97,8 +92,19 @@ const UserProfileDropDown = ({ name }) => {
               <div>Account settings</div>
             </div>
           </DropDownButton>
-          <DropDownButton style={{ marginTop: "1.2rem" }}>
-            <IconIMG src={accountSVG} />
+          <DropDownButton>
+            <Icon>0</Icon>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div>Sell on Etsy</div>
+            </div>
+          </DropDownButton>
+          <DropDownButton style={{ margin: ".75rem 0 0 0" }}>
+            <Icon>0</Icon>
             <div
               style={{
                 display: "flex",
@@ -113,7 +119,7 @@ const UserProfileDropDown = ({ name }) => {
     </div>
   );
 };
-export default UserProfileDropDown;
+export default SignedInDropDown;
 const DropDownContainer = styled.div`
   box-shadow: 1px 1px 5px gray;
   padding: 1rem;
@@ -121,7 +127,7 @@ const DropDownContainer = styled.div`
   flex-direction: column;
   position: absolute;
   border-radius: 18px;
-  top: 3rem;
+  top: 40px;
   left: -16rem;
   z-index: 5;
   overflow: hidden;
@@ -132,8 +138,8 @@ const DropDownButton = styled.div`
   align-items: center;
   width: 16rem;
 `;
-const IconIMG = styled.img`
-  height: 25px;
-  width: 25px;
-  margin: 10px 15px 10px 10px;
+const Icon = styled.div`
+  margin: 10px;
+  font-weight: 700;
+  font-size: 1.25rem;
 `;
