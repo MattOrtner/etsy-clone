@@ -1,7 +1,7 @@
 const navTitles = [
   {
     id: 1,
-    title: "Summer Clothing & Accessories",
+    title: "Home Favorites",
   },
   {
     id: 2,
@@ -13,7 +13,7 @@ const navTitles = [
   },
   {
     id: 4,
-    title: "Home and Living",
+    title: "Home & Living",
   },
   {
     id: 5,
