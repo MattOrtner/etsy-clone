@@ -7,7 +7,8 @@ import msgSVG from "../../assets/signed-in/message-processing-outline.svg";
 import settingsSVG from "../../assets/signed-in/cog-outline.svg";
 import tagSVG from "../../assets/signed-in/tag-outline.svg";
 import triangleSVG from "../../assets/signed-in/triangle-small-down.svg";
-
+import { NavLink } from "react-router-dom";
+import CUSTOMER from "../../data/customer-data";
 
 const UserProfileDropDown = ({ name }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -30,7 +31,7 @@ const UserProfileDropDown = ({ name }) => {
       </div>
       {isOpen && (
         <DropDownContainer>
-          <DropDownButton>
+          <DropDownButton to="/user-profile" style={{ textDecoration: "none" }}>
             <IconIMG src={accountSVG} />
             <div
               style={{
@@ -42,7 +43,7 @@ const UserProfileDropDown = ({ name }) => {
               <div style={{ color: "#7c7c7c" }}>View your profile</div>
             </div>
           </DropDownButton>
-          <DropDownButton>
+          <DropDownButton to="/purchases-reviews">
             <IconIMG src={clipBoardSVG} />
             <div
               style={{
@@ -53,7 +54,7 @@ const UserProfileDropDown = ({ name }) => {
               <div>Purchases and reviews</div>
             </div>
           </DropDownButton>
-          <DropDownButton>
+          <DropDownButton to="/gift-card">
             <IconIMG src={giftSVG} />
             <div
               style={{
@@ -64,7 +65,7 @@ const UserProfileDropDown = ({ name }) => {
               <div>Gift card balances: $0.00</div>
             </div>
           </DropDownButton>
-          <DropDownButton>
+          <DropDownButton to="/messages">
             <IconIMG src={msgSVG} />
             <div
               style={{
@@ -75,7 +76,7 @@ const UserProfileDropDown = ({ name }) => {
               <div>Messages</div>
             </div>
           </DropDownButton>
-          <DropDownButton>
+          <DropDownButton to="/user-profile">
             <IconIMG src={tagSVG} />
             <div
               style={{
@@ -86,7 +87,7 @@ const UserProfileDropDown = ({ name }) => {
               <div>Your offers</div>
             </div>
           </DropDownButton>
-          <DropDownButton>
+          <DropDownButton to="/user-profile">
             <IconIMG src={settingsSVG} />
             <div
               style={{
@@ -94,10 +95,17 @@ const UserProfileDropDown = ({ name }) => {
                 flexDirection: "column",
               }}
             >
-              <div>Account settings</div>
+              <div>Account Settings</div>
             </div>
           </DropDownButton>
-          <DropDownButton style={{ marginTop: "1.2rem" }}>
+          <DropDownButton
+            to="/"
+            onClick={() => {
+              console.log("clicked");
+              CUSTOMER.isSignedIn = false;
+            }}
+            style={{ marginTop: "1.2rem" }}
+          >
             <IconIMG src={accountSVG} />
             <div
               style={{
@@ -114,6 +122,14 @@ const UserProfileDropDown = ({ name }) => {
   );
 };
 export default UserProfileDropDown;
+const DropDownButton = styled(NavLink)`
+  cursor: pointer;
+  width: 15rem;
+  color: #252525;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+`;
 const DropDownContainer = styled.div`
   box-shadow: 1px 1px 5px gray;
   padding: 1rem;
@@ -127,11 +143,11 @@ const DropDownContainer = styled.div`
   overflow: hidden;
   background-color: whitesmoke;
 `;
-const DropDownButton = styled.div`
-  display: flex;
-  align-items: center;
-  width: 16rem;
-`;
+// const DropDownButton = styled.div`
+//   display: flex;
+//   align-items: center;
+//   width: 16rem;
+// `;
 const IconIMG = styled.img`
   height: 25px;
   width: 25px;

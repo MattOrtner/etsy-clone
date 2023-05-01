@@ -12,7 +12,6 @@ import UserProfileDropDown from "./components/molecules/UserProfileDropDown";
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
   const [showSignInModal, setShowSignInModal] = useState(false);
-  const [isSignedIn, setIsSignedIn] = useState(CUSTOMER.isSignedIn);
   const [user, setUser] = useState(CUSTOMER);
 
   const toggleSignInModal = () => {
@@ -32,7 +31,7 @@ function App() {
           </SearchButton>
         </SearchBar>
         <UserDashboard>
-          {isSignedIn ? (
+          {user.isSignedIn ? (
             <UserProfileDropDown name={user.name} />
           ) : (
             <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
@@ -45,7 +44,10 @@ function App() {
       <NavigationContainer />
 
       <SignInModal onClose={toggleSignInModal} show={showSignInModal} />
-      <Outlet context={[shoppingCart, setShoppingCart]} />
+      <Outlet
+        context={[shoppingCart, setShoppingCart]}
+        userContext={[user, setUser]}
+      />
     </div>
   );
 }
