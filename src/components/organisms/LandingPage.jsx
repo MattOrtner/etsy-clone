@@ -77,6 +77,9 @@ const SquarePhotoList = styled.div`
   gap: 20px;
   max-width: inherit;
   overflow-x: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const PopularContainer = styled.div`
@@ -86,6 +89,7 @@ const PopularContainer = styled.div`
   height: 335px;
   width: 100%;
   max-width: 1500px;
+  overflow: hidden;
 `;
 const SectionTitleContainer = styled.div``;
 const TitleContainer = styled.div`
