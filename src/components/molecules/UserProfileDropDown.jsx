@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 import CUSTOMER from "../../data/customer-data";
 
 const UserProfileDropDown = ({ name }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div
       style={{

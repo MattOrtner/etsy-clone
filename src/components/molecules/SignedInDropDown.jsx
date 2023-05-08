@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 const SignedInDropDown = ({ name }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div
       style={{

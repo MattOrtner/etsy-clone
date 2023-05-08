@@ -22,8 +22,8 @@ const Link = styled(NavLink)`
   border-radius: 9px;
   border: 1px solid #25252525;
   &:hover {
-    transition: box-shadow 250ms ease-in;
-    box-shadow: 0px 2px 18px #22222233;
+    transition: box-shadow 250ms ease-in-out;
+    box-shadow: 0px 0px 15px #cccccc;
   }
 `;
 const Photo = styled.div`

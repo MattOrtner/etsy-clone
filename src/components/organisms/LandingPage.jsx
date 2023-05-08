@@ -13,18 +13,18 @@ const LandingPage = () => {
     "Discover fresh summer finds from creative sellers!"
   );
 
-  // useEffect(() => {
-  //   axios
-  //     .get(process.env.REACT_APP_SERVER_URL)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setProducts(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //       console.log("this was an error catch block");
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(process.env.REACT_APP_SERVER_URL)
+      .then((res) => {
+        console.log(res.data);
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        console.log("this was an error catch block");
+      });
+  }, []);
   return (
     <OutletContainer>
       <GreetingContainer>
@@ -43,9 +43,9 @@ const LandingPage = () => {
             {products &&
               products.map((product) => (
                 <PopularItem
-                  key={product.id}
+                  key={product._id}
                   price={product.price}
-                  id={product.id}
+                  id={product._id}
                 />
               ))}
           </SquarePhotoList>
@@ -74,7 +74,8 @@ const PersonalRecContainer = styled.div`
 `;
 const SquarePhotoList = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 1rem;
+  padding: 1.2rem;
   max-width: inherit;
   overflow-x: scroll;
   ::-webkit-scrollbar {
@@ -121,5 +122,4 @@ const GreetingContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* margin-bottom: 6rem; */
 `;
