@@ -18,7 +18,6 @@ const ProductPage = () => {
   const [justAddedCartShow, setJustAddedCartShow] = useState(false);
   const [productQuantity, setProductQuantity] = useState(1);
   const { id } = useParams();
-
   const isAlreadyInCart = (newProduct) => {
     for (let i = 0; i < shoppingCart.length; i += 1) {
       const element = shoppingCart[i];
@@ -51,14 +50,11 @@ const ProductPage = () => {
   };
 
   useEffect(() => {
-    // axios
-    //   .get(`http://localhost:8000/api/products/${id}`)
-    //   .then((res) => setProductData(res.data))
-    //   .catch((err) => console.error(err));
     const newId = id.substring(1);
-    if (newId) {
-      setProductData(MULTIPLE_SINGLE_DUMMY_PRODUCTS[newId]);
-    }
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/${newId}`)
+      .then((res) => setProductData(res.data))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
@@ -89,11 +85,11 @@ const ProductPage = () => {
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
-            <ProductName>{productData.productName}</ProductName>
+            <ProductName>{productData.product_name}</ProductName>
             <PriceContainer>
               <ProductPrice>${productData.price}.00</ProductPrice>
               <InStockContainer>
-                {productData.isInStock ? (
+                {productData.quantity > 0 ? (
                   <>
                     <CheckIcon src={checkIcon} />
                     <div>In stock</div>
@@ -106,21 +102,21 @@ const ProductPage = () => {
               </InStockContainer>
             </PriceContainer>
           </ProductInfo>
-          {productData.isInStock ? (
+          {productData.quantity > 0 ? (
             <>
               <QuantitySelectDropdown
                 handleChange={handleQuantityChange}
-                total={productData.isInStock}
+                total={productData.quantity}
               />
               <AddButton
                 onClick={() =>
                   addToCart({
                     id: productData._id,
-                    productName: productData.productName,
+                    product_name: productData.product_name,
                     description: productData.description,
                     quantity: productQuantity,
                     price: productData.price,
-                    isInStock: productData.isInStock,
+                    isInStock: productData.quantity,
                   })
                 }
               >
