@@ -27,18 +27,18 @@ const Link = styled(NavLink)`
   }
 `;
 const Photo = styled.div`
-  height: 160px;
-  width: 240px;
+  height: 10rem;
+  width: 15rem;
   background-color: lightblue;
-  border-radius: 8px;
+  border-radius: 0.5rem;
 `;
 const Price = styled.div`
   position: absolute;
-  bottom: 4px;
-  left: 4px;
+  bottom: 0.3rem;
+  left: 0.3rem;
   text-align: left;
-  font-size: 18px;
-  border-radius: 9px;
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
   background-color: gray;
   padding: 4px 8px;
   color: white;
