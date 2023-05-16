@@ -15,7 +15,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_SERVER_URL)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/products`)
       .then((res) => {
         console.log(res.data);
         setProducts(res.data);
