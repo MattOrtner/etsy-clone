@@ -28,7 +28,9 @@ root.render(
           <Route path="/cart" element={<WrapperComp />}>
             <Route path="/cart" element={<ShoppingCartPage />} />
           </Route>
-          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/user-profile" element={<WrapperComp />}>
+            <Route path="/user-profile" element={<UserProfile />} />
+          </Route>
           <Route
             path="/purchases-reviews"
             element={<h2>Here are the purchases and reviews</h2>}
