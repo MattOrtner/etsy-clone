@@ -5,12 +5,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+import WrapperComp from "./components/organisms/WrapperComp";
 import LandingPage from "./components/organisms/LandingPage";
 import ProductPage from "./components/organisms/ProductPage";
 import ProductListings from "./components/organisms/ProductsListing";
-import WrapperComp from "./components/organisms/WrapperComp";
 import ShoppingCartPage from "./components/organisms/ShoppingCartPage";
 import UserProfile from "./components/organisms/UserProfile";
+import CreateListing from "./components/pages/CreateListing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -44,6 +45,9 @@ root.render(
             path="/gift-card"
             element={<h2>Here is your gift card information</h2>}
           />
+          <Route path="/create-listing" element={<WrapperComp />}>
+            <Route path="/create-listing" element={<CreateListing />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
