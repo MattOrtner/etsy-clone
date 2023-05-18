@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const CreateListing = () => {
   return (
@@ -12,7 +13,112 @@ const CreateListing = () => {
       </HeaderContainer>
       <SectionsContainer>
         <Section>
-          <SectionTitle>Photos</SectionTitle>
+          <div>
+            <SectionTitle>Photos</SectionTitle>
+            <p>Add as many as you can so buyers can see every detail.</p>
+          </div>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            <div style={{ width: "25%" }}>
+              <h4>Photos*</h4>
+              <p>
+                Use up to ten photos to show your item's most important
+                qualities.
+              </p>
+              <p>Tips</p>
+              <ul>
+                <li>Use natural light and no flash.</li>
+                <li>Include a common object for scale.</li>
+                <li>Show the item being held, wor, or used.</li>
+                <li>Shoot against a clean, simple background.</li>
+                <li>
+                  Add photos to your variations so buyers can see all their
+                  options
+                </li>
+              </ul>
+            </div>
+            <PhotosContainer>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{
+                  display: "flex",
+                  flexDirection: "column",
+                  cursor: "pointer",
+                }}
+                addClick={() => console.log("cool")}
+              >
+                <div style={{ fontSize: "3rem", textAlign: "center" }}>+</div>
+                <div style={{ textAlign: "center", fontSize: "1.5rem" }}>
+                  Add a photo
+                </div>
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                width={"9rem"}
+                height={"9rem"}
+                borderRadius={".5rem"}
+                styles={{ fontSize: "1rem" }}
+              >
+                Inspo
+              </PhotoPlaceholder>
+            </PhotosContainer>
+          </div>
         </Section>
         <Section>
           <SectionTitle>Listing Details</SectionTitle>
@@ -26,6 +132,12 @@ const CreateListing = () => {
 };
 export default CreateListing;
 
+const PhotosContainer = styled.div`
+  display: flex;
+  padding: 1rem 0 0 2rem;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+`;
 const Title = styled.h1`
   font-weight: 300;
 `;
