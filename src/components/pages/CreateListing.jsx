@@ -119,6 +119,7 @@ const CreateListing = () => {
               </PhotoPlaceholder>
             </PhotosContainer>
           </div>
+          <SectionTitle>Photos</SectionTitle>
         </Section>
         <Section>
           <SectionTitle>Listing Details</SectionTitle>
