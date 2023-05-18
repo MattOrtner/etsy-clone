@@ -7,6 +7,7 @@ const PhotoPlaceholder = ({
   width,
   backgroundColor,
   borderRadius,
+  border,
 }) => {
   return (
     <Container
@@ -14,6 +15,13 @@ const PhotoPlaceholder = ({
       height={height}
       backgroundColor={backgroundColor}
       width={width}
+      border={border}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "2rem",
+      }}
     >
       {children}
     </Container>
@@ -23,11 +31,12 @@ const PhotoPlaceholder = ({
 export default PhotoPlaceholder;
 
 const Container = styled.div(
-  ({ height, width, backgroundColor, borderRadius }) => `
+  ({ height, width, backgroundColor, borderRadius, border }) => `
   height: ${height ? height : "50%"};
   width: ${width ? width : "100%"};
   background-color: ${backgroundColor ? backgroundColor : "lightgreen"};
   border-radius: ${borderRadius ? borderRadius : "inherit"};
+  border: ${border ? "2px solid grey" : ""}
 `
 );
 // transform: scaleX(1) scaleY(1) perspective(1px);

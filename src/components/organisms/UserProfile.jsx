@@ -26,6 +26,17 @@ const UserProfile = () => {
               <u style={{ fontSize: "1.1rem", fontWeight: 300 }}>About</u>
             </div>
           </div>
+          <Link to="/future-add-form">
+            <PhotoPlaceholder
+              height={"3rem"}
+              width={"3rem"}
+              backgroundColor={"lightblue"}
+              borderRadius={".5rem"}
+              border={true}
+            >
+              +
+            </PhotoPlaceholder>
+          </Link>
         </ProfileHeader>
         <div style={{ display: "flex", gap: 5 }}>
           <div>
@@ -53,11 +64,13 @@ const UserProfile = () => {
               backgroundColor={"lightblue"}
               borderRadius={"50%"}
             />
-            <NothingMessage>Nothing to see here yet</NothingMessage>
-            <p style={{ fontSize: "1.2rem", fontWeight: 300 }}>
-              Start favoriting items to compare, shop, and keep track of things
-              you love.
-            </p>
+            <CenterPiece>
+              <NothingMessage>Nothing to see here yet</NothingMessage>
+              <p style={{ fontSize: "1.2rem", fontWeight: 300 }}>
+                Start favoriting items to compare, shop, and keep track of
+                things you love.
+              </p>
+            </CenterPiece>
           </>
         )}
       </Content>
@@ -66,8 +79,12 @@ const UserProfile = () => {
 };
 export default UserProfile;
 
+const CenterPiece = styled.div`
+  text-align: center;
+  border-bottom: 1 solid black;
+`;
 const NothingMessage = styled.div`
-  font-family: "Guardian-EgypTT", Charter, "Charter Bitstream", Cambria,
+  font-family: "Guardian-EgypTT", "Charter", "Charter Bitstream", "Cambria",
     "Noto Serif Light", "Droid Serif", Georgia, serif;
   font-weight: 300;
   font-size: 2rem;
