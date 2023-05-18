@@ -89,6 +89,7 @@ const Column = styled.div`
 const Link = styled.li`
   list-style-type: none;
   font-size: 1rem;
+  cursor: pointer;
 `;
 const FooterTagline = styled.div`
   background-color: #232347;
