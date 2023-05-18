@@ -26,7 +26,10 @@ const UserProfile = () => {
               <u style={{ fontSize: "1.1rem", fontWeight: 300 }}>About</u>
             </div>
           </div>
-          <Link to="/future-add-form">
+          <Link
+            to="/future-add-form"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             <PhotoPlaceholder
               height={"3rem"}
               width={"3rem"}
