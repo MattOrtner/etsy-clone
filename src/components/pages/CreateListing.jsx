@@ -229,6 +229,7 @@ const CreateListing = () => {
   );
 };
 export default CreateListing;
+
 const DescriptionInput = styled.textarea`
   width: 100%;
   resize: none;
