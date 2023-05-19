@@ -5,12 +5,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import WrapperComp from "./components/organisms/WrapperComp";
-import LandingPage from "./components/organisms/LandingPage";
-import ProductPage from "./components/organisms/ProductPage";
-import ProductListings from "./components/organisms/ProductsListing";
-import ShoppingCartPage from "./components/organisms/ShoppingCartPage";
-import UserProfile from "./components/organisms/UserProfile";
+import WrapperComp from "./components/pages/WrapperComp";
+import LandingPage from "./components/pages/LandingPage";
+import ProductPage from "./components/pages/ProductPage";
+import ProductListings from "./components/pages/ProductsListing";
+import ShoppingCartPage from "./components/pages/ShoppingCartPage";
+import UserProfile from "./components/pages/UserProfile";
 import CreateListing from "./components/pages/CreateListing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
