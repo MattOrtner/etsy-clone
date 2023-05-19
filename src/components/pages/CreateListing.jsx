@@ -7,6 +7,7 @@ const CreateListing = () => {
   const [title, setTitle] = useState("");
   const [radioInputs, setRadioInputs] = useState({});
   const [selectInputs, setSelectInputs] = useState({});
+  const [description, setDescription] = useState("");
   const [inspoGraphics, setInspoGraphics] = useState([
     "",
     "",
@@ -16,7 +17,7 @@ const CreateListing = () => {
     "",
     "",
   ]);
-  console.log("selectInputs", selectInputs);
+
   const handlePhoto = (imageList, addUpdateIndex) => {
     if (addUpdateIndex === undefined) {
       setInspoGraphics((current) => [...current, ""]);
@@ -203,6 +204,22 @@ const CreateListing = () => {
               </RightDetailContainer>
             </ListDetailContainer>
           </ListDetailsContainer>
+          <ListDetailContainer>
+            <LeftDetailContainer>
+              <DetailTitle>Description</DetailTitle>
+              <p>
+                Start with a brief overview that describes your item's finest
+                features. Shoppers will only see the firsnt few lines of your
+                description at first, so make it count!
+              </p>
+            </LeftDetailContainer>
+            <RightDetailContainer>
+              <DescriptionInput
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </RightDetailContainer>
+          </ListDetailContainer>
         </Section>
         <Section>
           <SectionTitle>Inventory and pricing</SectionTitle>
@@ -212,6 +229,13 @@ const CreateListing = () => {
   );
 };
 export default CreateListing;
+
+const DescriptionInput = styled.textarea`
+  width: 100%;
+  resize: none;
+  padding: 1rem;
+  font-size: 1rem;
+`;
 const RadioInput = styled.div`
   display: flex;
   align-items: flex-start;
@@ -231,8 +255,7 @@ const Dropdown = styled.select`
   border-radius: 4px;
 `;
 const RightDetailContainer = styled.div`
-  width: 75%;
-  margin-right: 1rem;
+  width: 80%;
   display: flex;
   gap: 5px;
 `;
@@ -245,12 +268,9 @@ const DetailTitle = styled.div`
 `;
 const ListDetailContainer = styled.div`
   display: flex;
-  padding: 5px 0;
+  padding: 1rem 0;
 `;
-const ListDetailsContainer = styled.div`
-  /* display: "flex";
-  flex-direction: column; */
-`;
+const ListDetailsContainer = styled.div``;
 
 const Title = styled.h1`
   font-weight: 300;
