@@ -4,7 +4,7 @@ import styled from "styled-components";
 import PromiseBar from "../atoms/PromiseBar";
 import PaymentMethodCluster from "../molecules/PaymentMethodCluster";
 import ShoppingCartItem from "../molecules/ShoppingCartItem";
-import NoProductShoppingCart from "./NoProductShoppingCart";
+import NoProductShoppingCart from "../organisms/NoProductShoppingCart";
 
 const ShoppingCartPage = () => {
   const [shoppingCart, setShoppingCart] = useOutletContext();

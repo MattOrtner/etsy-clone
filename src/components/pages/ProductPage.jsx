@@ -6,7 +6,7 @@ import checkIcon from "../../assets/check.svg";
 import CustomStarRating from "../atoms/CustomStarRating";
 import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
-import LeftProductPageContainer from "./LeftProductPageContainer";
+import LeftProductPageContainer from "../organisms/LeftProductPageContainer";
 import { useOutletContext, useParams } from "react-router-dom";
 import JustAddedModal from "../organisms/JustAddedModal";
 import QuantitySelectDropdown from "../molecules/QuantitySelectDropdown";
