@@ -40,6 +40,6 @@ const Container = styled.div(
   width: ${width ? width : "100%"};
   background-color: ${backgroundColor ? backgroundColor : "lightgreen"};
   border-radius: ${borderRadius ? borderRadius : "inherit"};
-  border: ${border ? "2px solid grey" : ""}
+  border: ${border ? "1px solid #adadad" : ""};
 `
 );

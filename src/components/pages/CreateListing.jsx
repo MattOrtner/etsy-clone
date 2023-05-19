@@ -1,7 +1,31 @@
+import { useState } from "react";
 import styled from "styled-components";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
+import ImageUploading from "react-images-uploading";
 
 const CreateListing = () => {
+  const [images, setImages] = useState([]);
+  const maxNumber = 5;
+
+  const [inspoGraphics, setInspoGraphics] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  const onChange = (imageList, addUpdateIndex) => {
+    if (addUpdateIndex === undefined) {
+      setInspoGraphics((current) => [...current, ""]);
+    }
+    inspoGraphics.shift();
+    setInspoGraphics((current) => [...current]);
+    setImages(imageList);
+  };
+
   return (
     <div style={{ width: "75%" }}>
       <HeaderContainer>
@@ -37,86 +61,64 @@ const CreateListing = () => {
               </ul>
             </div>
             <PhotosContainer>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{
-                  display: "flex",
-                  flexDirection: "column",
-                  cursor: "pointer",
-                }}
-                addClick={() => console.log("cool")}
+              <ImageUploading
+                multiple
+                value={images}
+                onChange={onChange}
+                maxNumber={maxNumber}
+                dataURLKey="data_url"
               >
-                <div style={{ fontSize: "3rem", textAlign: "center" }}>+</div>
-                <div style={{ textAlign: "center", fontSize: "1.5rem" }}>
-                  Add a photo
-                </div>
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                width={"9rem"}
-                height={"9rem"}
-                borderRadius={".5rem"}
-                styles={{ fontSize: "1rem" }}
-              >
-                Inspo
-              </PhotoPlaceholder>
+                {({
+                  imageList,
+                  onImageUpload,
+                  onImageUpdate,
+                  onImageRemove,
+                  isDragging,
+                  dragProps,
+                }) => (
+                  <>
+                    {imageList.map((image, index) => (
+                      <div key={index}>
+                        <img src={image["data_url"]} alt="" width="144" />
+                        <div>
+                          <button onClick={() => onImageRemove(index)}>
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                    <PhotoPlaceholder
+                      className="add-photo-button"
+                      width={"9rem"}
+                      height={"9rem"}
+                      borderRadius={".5rem"}
+                      styles={{
+                        display: "flex",
+                        flexDirection: "column",
+                        cursor: "pointer",
+                      }}
+                      addClick={onImageUpload}
+                      {...dragProps}
+                    >
+                      <div style={{ fontSize: "3rem", textAlign: "center" }}>
+                        +
+                      </div>
+                    </PhotoPlaceholder>
+                  </>
+                )}
+              </ImageUploading>
+              {inspoGraphics &&
+                inspoGraphics.map((num, i) => (
+                  <PhotoPlaceholder
+                    width={"9rem"}
+                    height={"9rem"}
+                    borderRadius={".5rem"}
+                    styles={{ fontSize: "1rem" }}
+                    key={i + 8}
+                  >
+                    InspoGraphic
+                  </PhotoPlaceholder>
+                ))}
             </PhotosContainer>
           </div>
         </Section>
