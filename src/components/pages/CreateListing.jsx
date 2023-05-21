@@ -55,6 +55,7 @@ const CreateListing = () => {
       return { ...current, [targetName]: value };
     });
   };
+
   const handlePriceAndQuantity = (e) => {
     const targetName = e.target.name;
     const value = e.target.value;
@@ -70,6 +71,7 @@ const CreateListing = () => {
         break;
     }
   };
+
   return (
     <div style={{ width: "75%" }}>
       <HeaderContainer>
@@ -389,6 +391,7 @@ const NumberLabelContainer = styled.label`
   display: flex;
   align-items: center;
 `;
+
 const DescriptionInput = styled.textarea`
   width: 100%;
   resize: none;
@@ -429,6 +432,7 @@ const ListDetailContainer = styled.div`
   display: flex;
   padding: 1rem 0;
 `;
+
 const ListDetailsContainer = styled.div``;
 
 const Title = styled.h1`
