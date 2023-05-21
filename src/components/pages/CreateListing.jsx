@@ -116,7 +116,6 @@ const ListDetailsContainer = styled.div``;
 const Title = styled.h1`
   font-weight: 300;
 `;
-
 const Section = styled.div`
   border: 2px solid lightgray;
   padding: 2rem;
