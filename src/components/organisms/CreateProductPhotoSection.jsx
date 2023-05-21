@@ -2,7 +2,7 @@ import ImageUploading from "react-images-uploading";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 import styled from "styled-components";
 
-const InputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
+const CreateProductInputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
   const maxNumber = 5;
 
   return (
@@ -90,7 +90,7 @@ const InputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
     </>
   );
 };
-export default InputPhotos;
+export default CreateProductInputPhotos;
 const PhotosContainer = styled.div`
   display: flex;
   padding: 1rem 0 0 2rem;
