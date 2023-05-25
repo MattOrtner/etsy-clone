@@ -3,8 +3,9 @@ import styled from "styled-components";
 const CreateProductListingSection = ({
   title,
   handleTitle,
-  handleRadios,
-  handleSelectGroup,
+  setProductType,
+  setRenewalOption,
+  handleAboutListing,
   description,
   setDescription,
 }) => {
@@ -43,7 +44,7 @@ const CreateProductListingSection = ({
               <u>Learn more about what types of items are allowed on Etsy.</u>
             </p>
           </LeftDetailContainer>
-          <RightDetailContainer onChange={handleSelectGroup} multiple={true}>
+          <RightDetailContainer onChange={handleAboutListing} multiple={true}>
             <Dropdown name="who">
               <option value="">Who made it?</option>
               <option value="you">You</option>
@@ -79,7 +80,7 @@ const CreateProductListingSection = ({
               <RadioInput>
                 <input
                   type="radio"
-                  onChange={handleRadios}
+                  onChange={(e) => setRenewalOption(e.target.value)}
                   name="auto-manual"
                   value="automatic"
                 />
@@ -96,7 +97,7 @@ const CreateProductListingSection = ({
               <RadioInput>
                 <input
                   type="radio"
-                  onChange={handleRadios}
+                  onChange={(e) => setRenewalOption(e.target.value)}
                   name="auto-manual"
                   value="manual"
                 />
@@ -117,7 +118,7 @@ const CreateProductListingSection = ({
               <RadioInput>
                 <input
                   type="radio"
-                  onChange={handleRadios}
+                  onChange={(e) => setProductType(e.target.value)}
                   name="physical-digital"
                   value="physical"
                 />
@@ -131,7 +132,7 @@ const CreateProductListingSection = ({
               <RadioInput>
                 <input
                   type="radio"
-                  onChange={handleRadios}
+                  onChange={(e) => setProductType(e.target.value)}
                   name="physical-digital"
                   value="digital"
                 />
