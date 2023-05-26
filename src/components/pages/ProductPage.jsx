@@ -52,7 +52,7 @@ const ProductPage = () => {
   useEffect(() => {
     const newId = id.substring(1);
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/${newId}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/products/${newId}`)
       .then((res) => setProductData(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -63,7 +63,7 @@ const ProductPage = () => {
         onClose={() => setJustAddedCartShow(false)}
         show={justAddedCartShow}
       />
-      <LeftProductPageContainer />
+      <LeftProductPageContainer productName={productData.product_name} />
       <RightContainer>
         <ProductOrderInfo>
           <ProductInfo>
@@ -167,13 +167,6 @@ const ProductPage = () => {
           </MessagingContainer>
         </ProductOrderInfo>
         <BottomRightExtras>
-          {/* {productData && (
-            <DropDownInfoContainer title="Highlights">
-              {productData.highLights.map((highlight) => (
-                <p>{highlight}</p>
-              ))}
-            </DropDownInfoContainer>
-          )} */}
           {productData && productData.description && (
             <DropDownInfoContainer title="Description">
               <p>{productData.description}</p>
@@ -342,6 +335,5 @@ const Spacer = styled.div`
 const PageContainer = styled.div`
   max-width: 1500px;
   display: flex;
-  padding: 30px 0px;
-  height: 100vh;
+  padding: 1.5rem 0px;
 `;

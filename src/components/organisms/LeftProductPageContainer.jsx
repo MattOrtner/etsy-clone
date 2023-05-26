@@ -18,7 +18,7 @@ const images = [
     thumbnail: "https://picsum.photos/id/1019/250/150/",
   },
 ];
-const LeftProductPageContainer = () => {
+const LeftProductPageContainer = ({ productName }) => {
   return (
     <LeftContainer>
       <ImageGallery
@@ -27,7 +27,7 @@ const LeftProductPageContainer = () => {
         useBrowserFullscreen={false}
         showPlayButton={false}
       />
-      <ProductReviewsContainer />
+      <ProductReviewsContainer productName={productName} />
     </LeftContainer>
   );
 };
@@ -37,9 +37,8 @@ export default LeftProductPageContainer;
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 76%;
   padding: 0px 25px;
   z-index: 0;
 `;
-
