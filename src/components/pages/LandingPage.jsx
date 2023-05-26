@@ -13,18 +13,18 @@ const LandingPage = () => {
     "Discover fresh summer finds from creative sellers!"
   );
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/products`)
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-        console.log("this was an error catch block");
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_SERVER_URL}/api/products`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setProducts(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       console.log("this was an error catch block");
+  //     });
+  // }, []);
   return (
     <OutletContainer>
       <GreetingContainer>
@@ -43,7 +43,7 @@ const LandingPage = () => {
             {products &&
               products.map((product) => (
                 <PopularItem
-                  key={product._id}
+                  _key={product._id}
                   price={product.price}
                   id={product._id}
                 />

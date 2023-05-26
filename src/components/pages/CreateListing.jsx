@@ -14,6 +14,7 @@ import {
   testQuantity,
   testLWH,
 } from "../../new-product-tests/tests";
+
 const CreateListing = () => {
   const [images, setImages] = useState([]);
   const [title, setTitle] = useState("");
@@ -78,6 +79,7 @@ const CreateListing = () => {
       return { ...current, [targetName]: value };
     });
   };
+
   const handlePriceAndQuantity = (e) => {
     const targetName = e.target.name;
     const value = e.target.value;
@@ -135,6 +137,7 @@ const CreateListing = () => {
   );
 };
 export default CreateListing;
+
 const SumbitButton = styled.div`
   background-color: aliceblue;
   font-weight: 300;
