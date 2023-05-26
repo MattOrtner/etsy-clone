@@ -18,6 +18,7 @@ const ProductPage = () => {
   const [justAddedCartShow, setJustAddedCartShow] = useState(false);
   const [productQuantity, setProductQuantity] = useState(1);
   const { id } = useParams();
+
   const isAlreadyInCart = (newProduct) => {
     for (let i = 0; i < shoppingCart.length; i += 1) {
       const element = shoppingCart[i];
@@ -54,7 +55,7 @@ const ProductPage = () => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/api/products/${newId}`)
       .then((res) => setProductData(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => setProductData(MULTIPLE_SINGLE_DUMMY_PRODUCTS[newId]));
   }, []);
 
   return (
