@@ -6,7 +6,7 @@ import checkIcon from "../../assets/check.svg";
 import CustomStarRating from "../atoms/CustomStarRating";
 import StoreData from "../../data/store-data";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
-import LeftProductPageContainer from "./LeftProductPageContainer";
+import LeftProductPageContainer from "../organisms/LeftProductPageContainer";
 import { useOutletContext, useParams } from "react-router-dom";
 import JustAddedModal from "../organisms/JustAddedModal";
 import QuantitySelectDropdown from "../molecules/QuantitySelectDropdown";
@@ -18,6 +18,7 @@ const ProductPage = () => {
   const [justAddedCartShow, setJustAddedCartShow] = useState(false);
   const [productQuantity, setProductQuantity] = useState(1);
   const { id } = useParams();
+
   const isAlreadyInCart = (newProduct) => {
     for (let i = 0; i < shoppingCart.length; i += 1) {
       const element = shoppingCart[i];
@@ -52,9 +53,9 @@ const ProductPage = () => {
   useEffect(() => {
     const newId = id.substring(1);
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/${newId}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/products/${newId}`)
       .then((res) => setProductData(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => setProductData(MULTIPLE_SINGLE_DUMMY_PRODUCTS[newId]));
   }, []);
 
   return (
@@ -63,7 +64,7 @@ const ProductPage = () => {
         onClose={() => setJustAddedCartShow(false)}
         show={justAddedCartShow}
       />
-      <LeftProductPageContainer />
+      <LeftProductPageContainer productName={productData.product_name} />
       <RightContainer>
         <ProductOrderInfo>
           <ProductInfo>
@@ -167,13 +168,6 @@ const ProductPage = () => {
           </MessagingContainer>
         </ProductOrderInfo>
         <BottomRightExtras>
-          {/* {productData && (
-            <DropDownInfoContainer title="Highlights">
-              {productData.highLights.map((highlight) => (
-                <p>{highlight}</p>
-              ))}
-            </DropDownInfoContainer>
-          )} */}
           {productData && productData.description && (
             <DropDownInfoContainer title="Description">
               <p>{productData.description}</p>
@@ -342,6 +336,5 @@ const Spacer = styled.div`
 const PageContainer = styled.div`
   max-width: 1500px;
   display: flex;
-  padding: 30px 0px;
-  height: 100vh;
+  padding: 1.5rem 0px;
 `;

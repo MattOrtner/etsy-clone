@@ -5,7 +5,6 @@ import QuantitySelectDropdown from "./QuantitySelectDropdown";
 
 const ShoppingCartItem = ({ product }) => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
-
   const [quantity, setQuantity] = useState(product.quantity);
   const [totalItemPrice, setTotalItemPrice] = useState(
     product.price * product.quantity
@@ -31,7 +30,7 @@ const ShoppingCartItem = ({ product }) => {
   };
 
   return (
-    <Container key={product._id}>
+    <Container key={product.id}>
       <SellerBar>
         <div>name of company</div>
         <div style={{ fontWeight: 300, fontSize: 14 }}>Contact Shop</div>

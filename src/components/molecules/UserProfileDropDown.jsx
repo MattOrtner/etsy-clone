@@ -31,7 +31,11 @@ const UserProfileDropDown = ({ name }) => {
       </div>
       {isOpen && (
         <DropDownContainer>
-          <DropDownButton to="/user-profile" style={{ textDecoration: "none" }}>
+          <DropDownButton
+            to="/user-profile"
+            onClick={() => setIsOpen((isTrue) => !isTrue)}
+            style={{ textDecoration: "none" }}
+          >
             <IconIMG src={accountSVG} />
             <div
               style={{

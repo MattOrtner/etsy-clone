@@ -7,6 +7,9 @@ const PhotoPlaceholder = ({
   width,
   backgroundColor,
   borderRadius,
+  border,
+  styles,
+  addClick,
 }) => {
   return (
     <Container
@@ -14,6 +17,15 @@ const PhotoPlaceholder = ({
       height={height}
       backgroundColor={backgroundColor}
       width={width}
+      border={border}
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "2rem",
+        ...styles,
+      }}
+      onClick={addClick}
     >
       {children}
     </Container>
@@ -23,14 +35,11 @@ const PhotoPlaceholder = ({
 export default PhotoPlaceholder;
 
 const Container = styled.div(
-  ({ height, width, backgroundColor, borderRadius }) => `
+  ({ height, width, backgroundColor, borderRadius, border }) => `
   height: ${height ? height : "50%"};
   width: ${width ? width : "100%"};
   background-color: ${backgroundColor ? backgroundColor : "lightgreen"};
   border-radius: ${borderRadius ? borderRadius : "inherit"};
+  border: ${border ? "1px solid #adadad" : ""};
 `
 );
-// transform: scaleX(1) scaleY(1) perspective(1px);
-// transition: transform 200ms cubic-bezier(0.345, 0.115, 0.135, 1.42),
-// background 150ms ease-out,
-// box-shadow 200ms ease-out;

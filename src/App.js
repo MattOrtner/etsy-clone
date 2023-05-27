@@ -8,6 +8,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import SignInModal from "./components/organisms/SignInModal";
 import CUSTOMER from "./data/customer-data";
 import UserProfileDropDown from "./components/molecules/UserProfileDropDown";
+import Footer from "./components/molecules/Footer";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
@@ -47,6 +48,7 @@ function App() {
         context={[shoppingCart, setShoppingCart]}
         userContext={[user, setUser]}
       />
+      <Footer />
     </div>
   );
 }

@@ -42,11 +42,7 @@ const LandingPage = () => {
           <SquarePhotoList>
             {products &&
               products.map((product) => (
-                <PopularItem
-                  key={product._id}
-                  price={product.price}
-                  id={product._id}
-                />
+                <PopularItem price={product.price} id={product._id} />
               ))}
           </SquarePhotoList>
         </PopularContainer>

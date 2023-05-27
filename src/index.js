@@ -5,12 +5,13 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import LandingPage from "./components/organisms/LandingPage";
-import ProductPage from "./components/organisms/ProductPage";
-import ProductListings from "./components/organisms/ProductsListing";
-import WrapperComp from "./components/organisms/WrapperComp";
-import ShoppingCartPage from "./components/organisms/ShoppingCartPage";
-import UserProfile from "./components/organisms/UserProfile";
+import WrapperComp from "./components/pages/WrapperComp";
+import LandingPage from "./components/pages/LandingPage";
+import ProductPage from "./components/pages/ProductPage";
+import ProductListings from "./components/pages/ProductsListing";
+import ShoppingCartPage from "./components/pages/ShoppingCartPage";
+import UserProfile from "./components/pages/UserProfile";
+import CreateListing from "./components/pages/CreateListing";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,7 +29,9 @@ root.render(
           <Route path="/cart" element={<WrapperComp />}>
             <Route path="/cart" element={<ShoppingCartPage />} />
           </Route>
-          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/user-profile" element={<WrapperComp />}>
+            <Route path="/user-profile" element={<UserProfile />} />
+          </Route>
           <Route
             path="/purchases-reviews"
             element={<h2>Here are the purchases and reviews</h2>}
@@ -42,6 +45,9 @@ root.render(
             path="/gift-card"
             element={<h2>Here is your gift card information</h2>}
           />
+          <Route path="/create-listing" element={<WrapperComp />}>
+            <Route path="/create-listing" element={<CreateListing />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
