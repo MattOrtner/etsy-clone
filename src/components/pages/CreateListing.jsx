@@ -47,11 +47,14 @@ const CreateListing = () => {
       testQuantity(quantity) &&
       testLWH(lengthWidthHeight)
     ) {
-      console.log("cool!");
+      // convert images to strings
+      // send product data
     } else {
-      console.log("booooo!");
+      // tests failed
+      // send error with what tests failed
     }
   };
+
   const handleLWH = (e) => {
     const targetName = e.target.name;
     const value = e.target.value;
@@ -59,6 +62,7 @@ const CreateListing = () => {
       return { ...prev, [targetName]: value };
     });
   };
+
   const handlePhoto = (imageList, addUpdateIndex) => {
     if (addUpdateIndex === undefined) {
       setInspoGraphics((current) => [...current, ""]);
@@ -72,6 +76,7 @@ const CreateListing = () => {
     const letter = e.target.value;
     setTitle(letter);
   };
+
   const handleAboutListing = (e) => {
     const targetName = e.target.name;
     const value = e.target.value;
@@ -145,6 +150,10 @@ const SumbitButton = styled.div`
   border-radius: 0.5rem;
   padding: 0.25rem 2rem;
   font-size: 1.25rem;
+  cursor: pointer;
+  &:active {
+    background-color: lightblue;
+  }
 `;
 const SubmitContainer = styled.div`
   display: flex;
