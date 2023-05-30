@@ -4,13 +4,15 @@ import CustomStarRating from "../atoms/CustomStarRating";
 import thumbUpIcon from "../../assets/thumb-up.svg";
 import CustomerReviewTag from "../atoms/CustomerReviewTag";
 
-const CustomerReview = ({ customer }) => {
+const CustomerReview = ({ customer, productName }) => {
   return (
     <Container key={customer.userId}>
       <div>
         <CustomStarRating name="Customer Review" value={customer.starRating} />
       </div>
-      <div style={{ fontSize: 28, fontWeight: 300 }}>{customer.review}</div>
+      <div style={{ fontSize: "1.2rem", fontWeight: 300 }}>
+        {customer.review}
+      </div>
       <div
         style={{
           height: 24,
@@ -20,7 +22,7 @@ const CustomerReview = ({ customer }) => {
         }}
       >
         <p>
-          <strong>Purchased item:</strong> Handmade Cutting Board
+          <strong>Purchased item:</strong> {productName}
         </p>
       </div>
       <CustomerReviewTag customer={customer} />

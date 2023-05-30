@@ -4,7 +4,7 @@ import CustomerReviewsData from "../../data/customer-review-dummy-data";
 import StoreReviewContainer from "../molecules/StoreReviewContainer";
 import CustomerReview from "./CustomerReview";
 
-const ProductReviewsContainer = () => {
+const ProductReviewsContainer = ({ productName }) => {
   return (
     <Container>
       <StoreReviewContainer />
@@ -20,7 +20,11 @@ const ProductReviewsContainer = () => {
           {CustomerReviewsData &&
             CustomerReviewsData.length > 4 &&
             CustomerReviewsData.slice(0, 4).map((customer) => (
-              <CustomerReview customer={customer} key={customer.userId} />
+              <CustomerReview
+                customer={customer}
+                productName={productName}
+                key={customer.userId}
+              />
             ))}
           {CustomerReviewsData.length > 4 && (
             <PaginationNavigationContainer>
@@ -52,7 +56,7 @@ const ProductReviewsContainer = () => {
 export default ProductReviewsContainer;
 
 const Container = styled.div`
-  height: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;

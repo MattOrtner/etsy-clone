@@ -1,12 +1,30 @@
 import { useState } from "react";
 import styled from "styled-components";
-import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
-import ImageUploading from "react-images-uploading";
+import CreateProductPhotoSection from "../organisms/CreateProductPhotoSection";
+import CreateProductListingSection from "../molecules/CreateProductListingSection";
+import CreateProductPriceInventory from "../molecules/CreateProductPriceInventory";
+import {
+  testPhoto,
+  testProductType,
+  testRenewal,
+  testTitle,
+  testAboutDetails,
+  testDescription,
+  testPrice,
+  testQuantity,
+  testLWH,
+} from "../../new-product-tests/tests";
 
 const CreateListing = () => {
   const [images, setImages] = useState([]);
-  const maxNumber = 5;
-
+  const [title, setTitle] = useState("");
+  const [renewalOption, setRenewalOption] = useState("");
+  const [productType, setProductType] = useState("");
+  const [aboutDetails, setAboutDetails] = useState({});
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("1");
+  const [lengthWidthHeight, setLengthWidthHeight] = useState({});
   const [inspoGraphics, setInspoGraphics] = useState([
     "",
     "",
@@ -15,9 +33,33 @@ const CreateListing = () => {
     "",
     "",
     "",
-    "",
   ]);
-  const onChange = (imageList, addUpdateIndex) => {
+
+  const handleSubmit = () => {
+    if (
+      testPhoto(images) &&
+      testTitle(title) &&
+      testRenewal(renewalOption) &&
+      testProductType(productType) &&
+      testAboutDetails(aboutDetails) &&
+      testDescription(description) &&
+      testPrice(price) &&
+      testQuantity(quantity) &&
+      testLWH(lengthWidthHeight)
+    ) {
+      console.log("cool!");
+    } else {
+      console.log("booooo!");
+    }
+  };
+  const handleLWH = (e) => {
+    const targetName = e.target.name;
+    const value = e.target.value;
+    setLengthWidthHeight((prev) => {
+      return { ...prev, [targetName]: value };
+    });
+  };
+  const handlePhoto = (imageList, addUpdateIndex) => {
     if (addUpdateIndex === undefined) {
       setInspoGraphics((current) => [...current, ""]);
     }
@@ -26,125 +68,90 @@ const CreateListing = () => {
     setImages(imageList);
   };
 
+  const handleTitle = (e) => {
+    const letter = e.target.value;
+    setTitle(letter);
+  };
+  const handleAboutListing = (e) => {
+    const targetName = e.target.name;
+    const value = e.target.value;
+    setAboutDetails((current) => {
+      return { ...current, [targetName]: value };
+    });
+  };
+
+  const handlePriceAndQuantity = (e) => {
+    const targetName = e.target.name;
+    const value = e.target.value;
+    switch (targetName) {
+      case "price":
+        setPrice(value);
+        break;
+      case "quantity":
+        setQuantity(value);
+        break;
+      default:
+        console.log("hit default");
+        break;
+    }
+  };
   return (
     <div style={{ width: "75%" }}>
       <HeaderContainer>
         <Title>Create a Listing</Title>
         <h3 style={{ fontWeight: 350 }}>
           Add some photos and details about your ite. Fill out what you can for
-          now--you'll be able to edit this later{" "}
+          now--you'll be able to edit this later
         </h3>
       </HeaderContainer>
       <SectionsContainer>
         <Section>
-          <div>
-            <SectionTitle>Photos</SectionTitle>
-            <p>Add as many as you can so buyers can see every detail.</p>
-          </div>
-          <div style={{ display: "flex", gap: "1rem" }}>
-            <div style={{ width: "25%" }}>
-              <h4>Photos*</h4>
-              <p>
-                Use up to ten photos to show your item's most important
-                qualities.
-              </p>
-              <p>Tips</p>
-              <ul>
-                <li>Use natural light and no flash.</li>
-                <li>Include a common object for scale.</li>
-                <li>Show the item being held, wor, or used.</li>
-                <li>Shoot against a clean, simple background.</li>
-                <li>
-                  Add photos to your variations so buyers can see all their
-                  options
-                </li>
-              </ul>
-            </div>
-            <PhotosContainer>
-              <ImageUploading
-                multiple
-                value={images}
-                onChange={onChange}
-                maxNumber={maxNumber}
-                dataURLKey="data_url"
-              >
-                {({
-                  imageList,
-                  onImageUpload,
-                  onImageUpdate,
-                  onImageRemove,
-                  isDragging,
-                  dragProps,
-                }) => (
-                  <>
-                    {imageList.map((image, index) => (
-                      <div key={index}>
-                        <img src={image["data_url"]} alt="" width="144" />
-                        <div>
-                          <button onClick={() => onImageRemove(index)}>
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                    <PhotoPlaceholder
-                      className="add-photo-button"
-                      width={"9rem"}
-                      height={"9rem"}
-                      borderRadius={".5rem"}
-                      styles={{
-                        display: "flex",
-                        flexDirection: "column",
-                        cursor: "pointer",
-                      }}
-                      addClick={onImageUpload}
-                      {...dragProps}
-                    >
-                      <div style={{ fontSize: "3rem", textAlign: "center" }}>
-                        +
-                      </div>
-                    </PhotoPlaceholder>
-                  </>
-                )}
-              </ImageUploading>
-              {inspoGraphics &&
-                inspoGraphics.map((num, i) => (
-                  <PhotoPlaceholder
-                    width={"9rem"}
-                    height={"9rem"}
-                    borderRadius={".5rem"}
-                    styles={{ fontSize: "1rem" }}
-                    key={i + 8}
-                  >
-                    InspoGraphic
-                  </PhotoPlaceholder>
-                ))}
-            </PhotosContainer>
-          </div>
-          <SectionTitle>Photos</SectionTitle>
+          <CreateProductPhotoSection
+            images={images}
+            handlePhoto={handlePhoto}
+            inspoGraphics={inspoGraphics}
+          />
         </Section>
         <Section>
-          <SectionTitle>Listing Details</SectionTitle>
+          <CreateProductListingSection
+            title={title}
+            handleTitle={handleTitle}
+            setRenewalOption={setRenewalOption}
+            setProductType={setProductType}
+            handleAboutListing={handleAboutListing}
+            description={description}
+            setDescription={setDescription}
+          />
         </Section>
         <Section>
-          <SectionTitle>Inventory and pricing</SectionTitle>
+          <CreateProductPriceInventory
+            handleLWH={handleLWH}
+            handlePriceAndQuantity={handlePriceAndQuantity}
+          />
         </Section>
+        <SubmitContainer>
+          <SumbitButton onClick={handleSubmit}>Save and continue</SumbitButton>
+        </SubmitContainer>
       </SectionsContainer>
     </div>
   );
 };
 export default CreateListing;
 
-const PhotosContainer = styled.div`
+const SumbitButton = styled.div`
+  background-color: aliceblue;
+  font-weight: 300;
+  border: 2px solid lightgray;
+  border-radius: 0.5rem;
+  padding: 0.25rem 2rem;
+  font-size: 1.25rem;
+`;
+const SubmitContainer = styled.div`
   display: flex;
-  padding: 1rem 0 0 2rem;
-  gap: 1.25rem;
-  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
 `;
 const Title = styled.h1`
-  font-weight: 300;
-`;
-const SectionTitle = styled.h2`
   font-weight: 300;
 `;
 const Section = styled.div`

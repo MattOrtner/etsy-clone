@@ -13,13 +13,7 @@ import CUSTOMER from "../../data/customer-data";
 const UserProfileDropDown = ({ name }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        position: "relative",
-      }}
-    >
+    <Container>
       <div
         style={{
           padding: "1rem",
@@ -34,7 +28,7 @@ const UserProfileDropDown = ({ name }) => {
           <DropDownButton
             to="/user-profile"
             onClick={() => setIsOpen((isTrue) => !isTrue)}
-            style={{ textDecoration: "none" }}
+            style={{ paddingTop: ".25rem" }}
           >
             <IconIMG src={accountSVG} />
             <div
@@ -108,7 +102,7 @@ const UserProfileDropDown = ({ name }) => {
               console.log("clicked");
               CUSTOMER.isSignedIn = false;
             }}
-            style={{ marginTop: "1.2rem" }}
+            style={{ marginTop: ".75rem" }}
           >
             <IconIMG src={accountSVG} />
             <div
@@ -122,38 +116,42 @@ const UserProfileDropDown = ({ name }) => {
           </DropDownButton>
         </DropDownContainer>
       )}
-    </div>
+    </Container>
   );
 };
 export default UserProfileDropDown;
 const DropDownButton = styled(NavLink)`
   cursor: pointer;
-  width: 15rem;
+  width: 100%;
   color: #252525;
   display: flex;
   align-items: center;
+  padding: 0px 0.75rem;
   text-decoration: none;
+  &:hover {
+    background-color: #e0dddd;
+  }
 `;
 const DropDownContainer = styled.div`
   box-shadow: 1px 1px 5px gray;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   position: absolute;
   border-radius: 18px;
   top: 3rem;
-  left: -16rem;
+  left: -14rem;
   z-index: 5;
   overflow: hidden;
   background-color: whitesmoke;
 `;
-// const DropDownButton = styled.div`
-//   display: flex;
-//   align-items: center;
-//   width: 16rem;
-// `;
 const IconIMG = styled.img`
   height: 25px;
   width: 25px;
   margin: 10px 15px 10px 10px;
+`;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
 `;
