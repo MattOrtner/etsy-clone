@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const CreateProductInputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
   const maxNumber = 5;
-
   return (
     <>
       <div>
@@ -36,14 +35,7 @@ const CreateProductInputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
             maxNumber={maxNumber}
             dataURLKey="data_url"
           >
-            {({
-              imageList,
-              onImageUpload,
-              onImageUpdate,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
+            {({ imageList, onImageUpload, onImageRemove, dragProps }) => (
               <>
                 {imageList.map((image, index) => (
                   <div key={index}>
