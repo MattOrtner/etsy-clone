@@ -56,6 +56,7 @@ const CreateListing = () => {
   };
 
   const handleLWH = (e) => {
+    e.preventDefault();
     const targetName = e.target.name;
     const value = e.target.value;
     setLengthWidthHeight((prev) => {
@@ -73,11 +74,13 @@ const CreateListing = () => {
   };
 
   const handleTitle = (e) => {
+    e.preventDefault();
     const letter = e.target.value;
     setTitle(letter);
   };
 
   const handleAboutListing = (e) => {
+    e.preventDefault();
     const targetName = e.target.name;
     const value = e.target.value;
     setAboutDetails((current) => {
@@ -86,6 +89,7 @@ const CreateListing = () => {
   };
 
   const handlePriceAndQuantity = (e) => {
+    e.preventDefault();
     const targetName = e.target.name;
     const value = e.target.value;
     switch (targetName) {
