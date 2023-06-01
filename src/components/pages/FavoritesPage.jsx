@@ -4,17 +4,20 @@ import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products"
 import PopularItem from "../atoms/PopularItem";
 
 const FavoritesPage = () => {
-  const [favoriteItems, setFavoriteItems] = useState(
+  const [favoriteProducts, setFavoriteProducts] = useState(
     MULTIPLE_SINGLE_DUMMY_PRODUCTS
   );
-  console.log("favoriteItems", favoriteItems);
   return (
     <PageContainer>
       <Title>Favorites</Title>
       <FavoritesContainer>
-        {favoriteItems &&
-          favoriteItems.map((item) => (
-            <PopularItem price={item.price} id={item._id} />
+        {favoriteProducts &&
+          favoriteProducts.map((product) => (
+            <PopularItem
+              price={product.price}
+              key={product._id}
+              id={product._id}
+            />
           ))}
       </FavoritesContainer>
     </PageContainer>
@@ -38,10 +41,3 @@ const FavoritesContainer = styled.div`
   border-radius: 1rem;
   border: 1px solid lightgray;
 `;
-// descripiton: "This is a great product.";
-// numOfReviews: 400;
-// price: "18";
-// product_name: "Cool beans for sale";
-// quantity: 3;
-// starRating: 3;
-// _id: 0;
