@@ -12,6 +12,7 @@ import ProductListings from "./components/pages/ProductsListing";
 import ShoppingCartPage from "./components/pages/ShoppingCartPage";
 import UserProfile from "./components/pages/UserProfile";
 import CreateListing from "./components/pages/CreateListing";
+import FavoritesPage from "./components/pages/FavoritesPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -36,6 +37,9 @@ root.render(
             path="/purchases-reviews"
             element={<h2>Here are the purchases and reviews</h2>}
           />
+          <Route path="/favorites" element={<WrapperComp />}>
+            <Route path="/favorites" element={<FavoritesPage />} />
+          </Route>
           <Route path="/messages" element={<h2>Here are some messages</h2>} />
           <Route
             path="/account-settings"
