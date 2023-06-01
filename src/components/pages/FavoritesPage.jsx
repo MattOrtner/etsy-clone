@@ -7,7 +7,6 @@ const FavoritesPage = () => {
   const [favoriteProducts, setFavoriteProducts] = useState(
     MULTIPLE_SINGLE_DUMMY_PRODUCTS
   );
-  console.log("favoriteProducts", favoriteProducts);
   return (
     <PageContainer>
       <Title>Favorites</Title>
