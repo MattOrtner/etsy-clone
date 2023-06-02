@@ -22,7 +22,7 @@ const LandingPage = () => {
       })
       .catch((err) => {
         console.error(err);
-        setProducts([MULTIPLE_SINGLE_DUMMY_PRODUCTS]);
+        setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
       });
   }, []);
   return (
