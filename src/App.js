@@ -1,14 +1,17 @@
+import { useState } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import CUSTOMER from "./data/customer-data";
+
 import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
-import NavigationContainer from "./components/organisms/NavigationContainer";
-import { useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import SignInModal from "./components/organisms/SignInModal";
-import CUSTOMER from "./data/customer-data";
+
+import HeartOutlineIcon from "./components/atoms/HeartOutlineIcon";
 import UserProfileDropDown from "./components/molecules/UserProfileDropDown";
 import Footer from "./components/molecules/Footer";
+import SignInModal from "./components/organisms/SignInModal";
+import NavigationContainer from "./components/organisms/NavigationContainer";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
@@ -33,7 +36,12 @@ function App() {
         </SearchBar>
         <UserDashboard>
           {user.isSignedIn ? (
-            <UserProfileDropDown name={user.name} />
+            <>
+              <Link to="/favorites">
+                <HeartOutlineIcon styles={{ margin: ".25rem" }} />
+              </Link>
+              <UserProfileDropDown name={user.name} />
+            </>
           ) : (
             <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
           )}
@@ -55,6 +63,19 @@ function App() {
 
 export default App;
 
+const Link = styled(NavLink)`
+  cursor: pointer;
+  display: flex;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid #25252525;
+  transition: all 250ms ease-in-out;
+  &:hover {
+    box-shadow: 0px 0px 15px #cccccc;
+  }
+`;
 const HeaderContainer = styled.header`
   display: flex;
   flex-direction: row;

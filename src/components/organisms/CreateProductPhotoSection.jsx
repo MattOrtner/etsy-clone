@@ -2,7 +2,12 @@ import ImageUploading from "react-images-uploading";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 import styled from "styled-components";
 
-const CreateProductInputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
+const CreateProductInputPhotos = ({
+  images,
+  handlePhoto,
+  inspoGraphics,
+  title,
+}) => {
   const maxNumber = 5;
 
   return (
@@ -36,18 +41,11 @@ const CreateProductInputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
             maxNumber={maxNumber}
             dataURLKey="data_url"
           >
-            {({
-              imageList,
-              onImageUpload,
-              onImageUpdate,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
+            {({ imageList, onImageUpload, onImageRemove, dragProps }) => (
               <>
                 {imageList.map((image, index) => (
                   <div key={index}>
-                    <img src={image["data_url"]} alt="" width="144" />
+                    <img src={image["data_url"]} alt={title} width="144" />
                     <div>
                       <button onClick={() => onImageRemove(index)}>
                         Remove
@@ -55,8 +53,7 @@ const CreateProductInputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
                     </div>
                   </div>
                 ))}
-                <PhotoPlaceholder
-                  className="add-photo-button"
+                <AddPhotoButton
                   width={"9rem"}
                   height={"9rem"}
                   borderRadius={".5rem"}
@@ -69,7 +66,7 @@ const CreateProductInputPhotos = ({ images, handlePhoto, inspoGraphics }) => {
                   {...dragProps}
                 >
                   <div style={{ fontSize: "3rem", textAlign: "center" }}>+</div>
-                </PhotoPlaceholder>
+                </AddPhotoButton>
               </>
             )}
           </ImageUploading>
@@ -100,3 +97,4 @@ const PhotosContainer = styled.div`
 const SectionTitle = styled.h2`
   font-weight: 300;
 `;
+const AddPhotoButton = styled(PhotoPlaceholder)``;

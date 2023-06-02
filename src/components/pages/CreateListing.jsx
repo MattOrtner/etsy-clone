@@ -47,18 +47,20 @@ const CreateListing = () => {
       testQuantity(quantity) &&
       testLWH(lengthWidthHeight)
     ) {
-      console.log("cool!");
     } else {
-      console.log("booooo!");
+      console.log("tests failed good luck in your next life");
     }
   };
+
   const handleLWH = (e) => {
+    e.preventDefault();
     const targetName = e.target.name;
     const value = e.target.value;
     setLengthWidthHeight((prev) => {
       return { ...prev, [targetName]: value };
     });
   };
+
   const handlePhoto = (imageList, addUpdateIndex) => {
     if (addUpdateIndex === undefined) {
       setInspoGraphics((current) => [...current, ""]);
@@ -69,10 +71,13 @@ const CreateListing = () => {
   };
 
   const handleTitle = (e) => {
+    e.preventDefault();
     const letter = e.target.value;
     setTitle(letter);
   };
+
   const handleAboutListing = (e) => {
+    e.preventDefault();
     const targetName = e.target.name;
     const value = e.target.value;
     setAboutDetails((current) => {
@@ -81,6 +86,7 @@ const CreateListing = () => {
   };
 
   const handlePriceAndQuantity = (e) => {
+    e.preventDefault();
     const targetName = e.target.name;
     const value = e.target.value;
     switch (targetName) {
@@ -110,6 +116,7 @@ const CreateListing = () => {
             images={images}
             handlePhoto={handlePhoto}
             inspoGraphics={inspoGraphics}
+            title={title}
           />
         </Section>
         <Section>
@@ -145,6 +152,10 @@ const SumbitButton = styled.div`
   border-radius: 0.5rem;
   padding: 0.25rem 2rem;
   font-size: 1.25rem;
+  cursor: pointer;
+  &:active {
+    background-color: lightblue;
+  }
 `;
 const SubmitContainer = styled.div`
   display: flex;

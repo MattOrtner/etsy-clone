@@ -41,7 +41,10 @@ const UserProfileDropDown = ({ name }) => {
               <div style={{ color: "#7c7c7c" }}>View your profile</div>
             </div>
           </DropDownButton>
-          <DropDownButton to="/purchases-reviews">
+          <DropDownButton
+            to="/purchases-reviews"
+            onClick={() => setIsOpen((isTrue) => !isTrue)}
+          >
             <IconIMG src={clipBoardSVG} />
             <div
               style={{
@@ -52,7 +55,10 @@ const UserProfileDropDown = ({ name }) => {
               <div>Purchases and reviews</div>
             </div>
           </DropDownButton>
-          <DropDownButton to="/gift-card">
+          <DropDownButton
+            to="/gift-card"
+            onClick={() => setIsOpen((isTrue) => !isTrue)}
+          >
             <IconIMG src={giftSVG} />
             <div
               style={{
@@ -63,7 +69,10 @@ const UserProfileDropDown = ({ name }) => {
               <div>Gift card balances: $0.00</div>
             </div>
           </DropDownButton>
-          <DropDownButton to="/messages">
+          <DropDownButton
+            to="/messages"
+            onClick={() => setIsOpen((isTrue) => !isTrue)}
+          >
             <IconIMG src={msgSVG} />
             <div
               style={{
@@ -74,7 +83,10 @@ const UserProfileDropDown = ({ name }) => {
               <div>Messages</div>
             </div>
           </DropDownButton>
-          <DropDownButton to="/user-profile">
+          <DropDownButton
+            to="/user-profile"
+            onClick={() => setIsOpen((isTrue) => !isTrue)}
+          >
             <IconIMG src={tagSVG} />
             <div
               style={{
@@ -85,7 +97,10 @@ const UserProfileDropDown = ({ name }) => {
               <div>Your offers</div>
             </div>
           </DropDownButton>
-          <DropDownButton to="/user-profile">
+          <DropDownButton
+            to="/user-profile"
+            onClick={() => setIsOpen((isTrue) => !isTrue)}
+          >
             <IconIMG src={settingsSVG} />
             <div
               style={{
@@ -154,4 +169,12 @@ const Container = styled.div`
   flex-direction: column;
   position: relative;
   cursor: pointer;
+<<<<<<< HEAD
+=======
+  border-radius: 3rem;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #ededed;
+  }
+>>>>>>> 9383b5fb3f22de35ae00cd78f783c6e35eb3036f
 `;

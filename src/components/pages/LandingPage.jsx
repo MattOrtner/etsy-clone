@@ -8,7 +8,7 @@ import axios from "axios";
 import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
 
 const LandingPage = () => {
-  const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
+  const [products, setProducts] = useState([]);
   const [greeting, setGreeting] = useState(
     "Discover fresh summer finds from creative sellers!"
   );
@@ -22,7 +22,7 @@ const LandingPage = () => {
       })
       .catch((err) => {
         console.error(err);
-        console.log("this was an error catch block");
+        setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
       });
   }, []);
   return (
@@ -42,7 +42,11 @@ const LandingPage = () => {
           <SquarePhotoList>
             {products &&
               products.map((product) => (
-                <PopularItem price={product.price} id={product._id} />
+                <PopularItem
+                  key={product._id}
+                  price={product.price}
+                  id={product._id}
+                />
               ))}
           </SquarePhotoList>
         </PopularContainer>
