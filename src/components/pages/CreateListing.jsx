@@ -47,11 +47,8 @@ const CreateListing = () => {
       testQuantity(quantity) &&
       testLWH(lengthWidthHeight)
     ) {
-      // convert images to strings
-      // send product data
     } else {
-      // tests failed
-      // send error with what tests failed
+      console.log("tests failed good luck in your next life");
     }
   };
 
@@ -119,6 +116,7 @@ const CreateListing = () => {
             images={images}
             handlePhoto={handlePhoto}
             inspoGraphics={inspoGraphics}
+            title={title}
           />
         </Section>
         <Section>
