@@ -169,12 +169,9 @@ const Container = styled.div`
   flex-direction: column;
   position: relative;
   cursor: pointer;
-<<<<<<< HEAD
-=======
   border-radius: 3rem;
   transition: background-color 0.3s;
   &:hover {
     background-color: #ededed;
   }
->>>>>>> 9383b5fb3f22de35ae00cd78f783c6e35eb3036f
 `;

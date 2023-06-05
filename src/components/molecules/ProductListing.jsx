@@ -34,12 +34,7 @@ const ProductListing = ({
 };
 
 export default ProductListing;
-const ProductCardContainer = styled(Link)`
-  height: 500px;
-  width: 100%;
-  align-self: stretch;
-  padding: 9px;
-`;
+const ProductCardContainer = styled(Link)``;
 const ImagePlaceHolder = styled.div`
   height: 260px;
   width: 327px;
