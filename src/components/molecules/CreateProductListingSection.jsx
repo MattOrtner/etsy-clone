@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const CreateProductListingSection = ({
-  title,
+  productName,
   handleTitle,
   setProductType,
   setRenewalOption,
@@ -24,9 +24,9 @@ const CreateProductListingSection = ({
           <RightDetailContainer>
             <input
               type="text"
-              name="title"
-              id="title"
-              value={title}
+              name="productName"
+              id="productName"
+              value={productName}
               onChange={(e) => handleTitle(e)}
               style={{
                 width: "100%",

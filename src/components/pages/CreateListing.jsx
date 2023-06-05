@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import CreateProductPhotoSection from "../organisms/CreateProductPhotoSection";
 import CreateProductListingSection from "../molecules/CreateProductListingSection";
@@ -17,14 +18,14 @@ import {
 
 const CreateListing = () => {
   const [images, setImages] = useState([]);
-  const [title, setTitle] = useState("");
+  const [productName, setProductName] = useState("");
   const [renewalOption, setRenewalOption] = useState("");
   const [productType, setProductType] = useState("");
   const [aboutDetails, setAboutDetails] = useState({});
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("1");
-  const [lengthWidthHeight, setLengthWidthHeight] = useState({});
+  const [dimensions, setDimensions] = useState({});
   const [inspoGraphics, setInspoGraphics] = useState([
     "",
     "",
@@ -35,18 +36,70 @@ const CreateListing = () => {
     "",
   ]);
 
+  console.log(
+    "images",
+    images,
+    "productName",
+    productName,
+    "renewalOption",
+    renewalOption,
+    "productType",
+    productType,
+    "aboutDetails",
+    aboutDetails,
+    "description",
+    description,
+    "price",
+    price,
+    description,
+    "quantity",
+    quantity,
+    price,
+    description,
+    "dimensions",
+    dimensions
+  );
   const handleSubmit = () => {
     if (
       testPhoto(images) &&
-      testTitle(title) &&
+      testTitle(productName) &&
       testRenewal(renewalOption) &&
       testProductType(productType) &&
       testAboutDetails(aboutDetails) &&
       testDescription(description) &&
       testPrice(price) &&
       testQuantity(quantity) &&
-      testLWH(lengthWidthHeight)
+      testLWH(dimensions)
     ) {
+      const imageStrings = images.reduce((acc, image) => {
+        return (acc = [...acc, image.data_url]);
+      }, []);
+      console.log("imageStrings", imageStrings);
+      const createdProduct = {
+        product_name: productName,
+        price: price,
+        description: description,
+        quantity: quantity,
+        dimensions: dimensions,
+        renewal_option: renewalOption,
+        product_type: productType,
+        about_details: aboutDetails,
+        images: imageStrings,
+      };
+      console.log("createdProduct", createdProduct);
+      // const stringified = JSON.stringify(createdProduct);
+      axios
+        .post(
+          `${process.env.REACT_APP_SERVER_URL}/api/products`,
+          createdProduct
+        )
+        .then((res) => {
+          console.log(res.status);
+        })
+        .catch((error) => {
+          console.error(error, "error");
+          console.log(error, "log");
+        });
     } else {
       console.log("tests failed good luck in your next life");
     }
@@ -56,7 +109,7 @@ const CreateListing = () => {
     e.preventDefault();
     const targetName = e.target.name;
     const value = e.target.value;
-    setLengthWidthHeight((prev) => {
+    setDimensions((prev) => {
       return { ...prev, [targetName]: value };
     });
   };
@@ -73,7 +126,7 @@ const CreateListing = () => {
   const handleTitle = (e) => {
     e.preventDefault();
     const letter = e.target.value;
-    setTitle(letter);
+    setProductName(letter);
   };
 
   const handleAboutListing = (e) => {
@@ -116,12 +169,12 @@ const CreateListing = () => {
             images={images}
             handlePhoto={handlePhoto}
             inspoGraphics={inspoGraphics}
-            title={title}
+            productName={productName}
           />
         </Section>
         <Section>
           <CreateProductListingSection
-            title={title}
+            productName={productName}
             handleTitle={handleTitle}
             setRenewalOption={setRenewalOption}
             setProductType={setProductType}
