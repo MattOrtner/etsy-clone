@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import heartIcon from "../../assets/heart-outline.svg";
+import HeartOutlineIcon from "../atoms/HeartOutlineIcon";
 import ProductListing from "../molecules/ProductListing";
 import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
 
@@ -10,7 +10,7 @@ const ProductsListing = () => {
     <PageContainer>
       <ContentContainer>
         <SelectedItemContainer>
-          <ImageFiller></ImageFiller>
+          <SelectedImageFiller></SelectedImageFiller>
           <ProductInfoContainer>
             <CompanyInfoTop>
               <div>SellerName</div>
@@ -27,39 +27,37 @@ const ProductsListing = () => {
             </QueryButtonContainer>
           </ProductInfoContainer>
         </SelectedItemContainer>
-        <BottomContainer>
-          <FilterBarContainer>
-            <div
-              style={{
-                width: 100,
-                border: "3px solid black",
-                borderRadius: 25,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div>All Filters</div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <div style={{ paddingRight: 10 }}>11,236,950 results</div>
-              <HeartOutlineIcon src={heartIcon} />
-            </div>
-          </FilterBarContainer>
-          <ProductCardContainer>
-            {products &&
-              products.map((product) => (
-                <ProductListing
-                  productName={product.productName}
-                  price={product.price}
-                  starRating={product.starRating}
-                  numOfReviews={product.numOfReviews}
-                  key={product.id}
-                  id={product.id}
-                />
-              ))}
-          </ProductCardContainer>
-        </BottomContainer>
+        <FilterBarContainer>
+          <div
+            style={{
+              width: 100,
+              border: "3px solid black",
+              borderRadius: 25,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div>All Filters</div>
+          </div>
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div style={{ paddingRight: 10 }}>11,236,950 results</div>
+            <HeartOutlineIcon />
+          </div>
+        </FilterBarContainer>
+        <ProductCardContainer>
+          {products &&
+            products.map((product) => (
+              <ProductListing
+                productName={product.product_name}
+                price={product.price}
+                starRating={product.starRating}
+                numOfReviews={product.numOfReviews}
+                key={product.id}
+                id={product.id}
+              />
+            ))}
+        </ProductCardContainer>
       </ContentContainer>
     </PageContainer>
   );
@@ -72,18 +70,10 @@ const FilterBarContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  height: 36px;
-  margin: 0 0 18px 0;
+  height: 3rem;
+  margin: 0 0 1.2rem 0;
 `;
-const BottomContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const HeartOutlineIcon = styled.img`
-  width: 20px;
-  height: 20px;
-`;
+
 const ProductCardContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -95,8 +85,7 @@ const ProductCardContainer = styled.div`
     grid-template-columns: 1fr 1fr;
   }
 `;
-
-const ImageFiller = styled.div`
+const SelectedImageFiller = styled.div`
   width: 45%;
   border-radius: 6px;
   background: lightblue;
@@ -106,7 +95,6 @@ const ProductInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  ${"" /* flex: 1.25; */}
   width: 55%;
 `;
 const EngageButton = styled.div`
@@ -146,7 +134,7 @@ const SelectedItemContainer = styled.div`
 `;
 const ContentContainer = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
   width: 1400px;
   max-width: 1400px;
@@ -157,11 +145,4 @@ const PageContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  @media (max-width: 500px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: blue;
-    padding-left: 40px;
-  }
 `;

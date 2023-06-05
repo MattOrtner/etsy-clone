@@ -36,29 +36,31 @@ const Footer = () => {
           <Link>Privacy settings</Link>
         </Column>
       </ColumnContainer>
-      <FooterTagline>
-        <div style={{ display: "flex", gap: ".5rem", paddingLeft: "8rem" }}>
-          <PhotoPlaceholder
-            height={"1.3rem"}
-            width={"1.3rem"}
-            borderRadius={"50%"}
-            backgroundColor={"lightblue"}
-          />
-          <div>United States</div>
-          <div>|</div>
-          <div>English</div>
-          <div>|</div>
-          <div>USD</div>
-        </div>
-        <div style={{ display: "flex", gap: "1rem", paddingRight: "8rem" }}>
-          <u>2023 NotEtsy, Inc.</u>
-          <u>Terms of Use</u>
-          <u>Privacy</u>
-          <u>Interest-based ads</u>
-          <u>Local Shops</u>
-          <u>Regions</u>
-        </div>
-      </FooterTagline>
+      <FooterContainer>
+        <FooterTagline>
+          <div style={{ display: "flex", gap: ".5rem", paddingLeft: "8rem" }}>
+            <PhotoPlaceholder
+              height={"1.3rem"}
+              width={"1.3rem"}
+              borderRadius={"50%"}
+              backgroundColor={"lightblue"}
+            />
+            <div>United States</div>
+            <div>|</div>
+            <div>English</div>
+            <div>|</div>
+            <div>USD</div>
+          </div>
+          <div style={{ display: "flex", gap: "1rem", paddingRight: "8rem" }}>
+            <u>2023 NotEtsy, Inc.</u>
+            <u>Terms of Use</u>
+            <u>Privacy</u>
+            <u>Interest-based ads</u>
+            <u>Local Shops</u>
+            <u>Regions</u>
+          </div>
+        </FooterTagline>
+      </FooterContainer>
     </Container>
   );
 };
@@ -76,10 +78,25 @@ const Container = styled.nav`
 `;
 const ColumnContainer = styled.div`
   display: flex;
+  justify-content: space-evenly;
   width: 100%;
-  max-width: 1400px;
-  padding: 1rem 0 3rem 0;
-  gap: 15rem;
+  max-width: 1500px;
+  padding: 1rem 0 2rem 0;
+  gap: 6rem;
+`;
+const FooterContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #232347;
+`;
+const FooterTagline = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1500px;
+  height: 5.5rem;
 `;
 const Column = styled.div`
   display: flex;
@@ -90,12 +107,4 @@ const Link = styled.li`
   list-style-type: none;
   font-size: 1rem;
   cursor: pointer;
-`;
-const FooterTagline = styled.div`
-  background-color: #232347;
-  display: flex;
-  width: 100%;
-  height: 5.5rem;
-  justify-content: space-between;
-  align-items: center;
 `;

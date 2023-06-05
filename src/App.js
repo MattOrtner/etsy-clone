@@ -43,15 +43,19 @@ function App() {
               <UserProfileDropDown name={user.name} />
             </>
           ) : (
-            <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
+            <>
+              <SignInModal onClose={toggleSignInModal} show={showSignInModal} />
+              <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
+            </>
           )}
           <NavLink to="/cart">
-            <CheckoutLink src={shoppingCartIcon}></CheckoutLink>
+            <CheckoutContainer>
+              <CheckoutLink src={shoppingCartIcon}></CheckoutLink>
+            </CheckoutContainer>
           </NavLink>
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
-      <SignInModal onClose={toggleSignInModal} show={showSignInModal} />
       <Outlet
         context={[shoppingCart, setShoppingCart]}
         userContext={[user, setUser]}
@@ -63,17 +67,29 @@ function App() {
 
 export default App;
 
+const CheckoutContainer = styled.div`
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  padding-right: 6px;
+  transition: all 250ms ease-in-out;
+
+  &:hover {
+    background-color: #ededed;
+  }
+`;
 const Link = styled(NavLink)`
   cursor: pointer;
   display: flex;
-  padding: 0.5rem;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  border: 1px solid #25252525;
+  padding: 12px;
   transition: all 250ms ease-in-out;
   &:hover {
-    box-shadow: 0px 0px 15px #cccccc;
+    background-color: #ededed;
   }
 `;
 const HeaderContainer = styled.header`
