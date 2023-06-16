@@ -26,11 +26,6 @@ const PopularItem = ({ price, id }) => {
 
 export default PopularItem;
 
-const HeartIcon = styled(HeartOutlineIcon)`
-  height: 1.5rem;
-  width: 1.5rem;
-`;
-
 const Link = styled(NavLink)`
   position: relative;
   cursor: pointer;
