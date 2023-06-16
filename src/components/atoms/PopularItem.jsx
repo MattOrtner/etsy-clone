@@ -1,28 +1,46 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import HeartOutlineIcon from "./HeartOutlineIcon";
 
 const PopularItem = ({ price, id }) => {
+  const [isHovering, setIsHovering] = useState(false);
   return (
-    <Link to={`/product/:${id}`} style={{ textDecoration: "none" }}>
+    <Link
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      to={`/product/:${id}`}
+      style={{ textDecoration: "none" }}
+    >
       <Photo></Photo>
       <Price>${price}.00</Price>
+      {isHovering && (
+        <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
+          <HeartIcon />
+        </div>
+      )}
     </Link>
   );
 };
 
 export default PopularItem;
 
+const HeartIcon = styled(HeartOutlineIcon)`
+  height: 1.5rem;
+  width: 1.5rem;
+`;
+
 const Link = styled(NavLink)`
   position: relative;
   cursor: pointer;
   display: flex;
-  width: 15rem;
   justify-content: center;
+  width: 15rem;
   border-radius: 9px;
   border: 1px solid #25252525;
   &:hover {
-    transition: box-shadow 250ms ease-in-out;
+    transition: box-shadow 100ms ease-out;
     box-shadow: 0px 0px 15px #cccccc;
   }
 `;
