@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import HeartOutlineIcon from "./HeartOutlineIcon";
+import FavoriteHoverButton from "./FavoriteHoverButton";
 
 const PopularItem = ({ price, id }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -17,7 +17,7 @@ const PopularItem = ({ price, id }) => {
       <Price>${price}.00</Price>
       {isHovering && (
         <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
-          <HeartIcon />
+          <FavoriteHoverButton />
         </div>
       )}
     </Link>
@@ -25,11 +25,6 @@ const PopularItem = ({ price, id }) => {
 };
 
 export default PopularItem;
-
-const HeartIcon = styled(HeartOutlineIcon)`
-  height: 1.5rem;
-  width: 1.5rem;
-`;
 
 const Link = styled(NavLink)`
   position: relative;

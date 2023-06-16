@@ -6,12 +6,11 @@ import CUSTOMER from "./data/customer-data";
 import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
 import shoppingCartIcon from "./assets/shopping_cart.svg";
-
-import HeartOutlineIcon from "./components/atoms/HeartOutlineIcon";
 import UserProfileDropDown from "./components/molecules/UserProfileDropDown";
 import Footer from "./components/molecules/Footer";
 import SignInModal from "./components/organisms/SignInModal";
 import NavigationContainer from "./components/organisms/NavigationContainer";
+import HeartIconContainer from "./components/atoms/HeartIconContainer";
 
 function App() {
   const [shoppingCart, setShoppingCart] = useState([]);
@@ -38,7 +37,10 @@ function App() {
           {user.isSignedIn ? (
             <>
               <Link to="/favorites">
-                <HeartOutlineIcon styles={{ margin: ".25rem" }} />
+                <HeartIconContainer
+                  src={"outline"}
+                  styles={{ margin: ".25rem" }}
+                />
               </Link>
               <UserProfileDropDown name={user.name} />
             </>
