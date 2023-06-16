@@ -65,6 +65,7 @@ const ProductPage = () => {
       <JustAddedModal
         onClose={() => setJustAddedCartShow(false)}
         show={justAddedCartShow}
+        productQuantity={productQuantity}
       />
       <LeftProductPageContainer productName={productData.product_name} />
       <RightContainer>

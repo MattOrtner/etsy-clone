@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import ModalRecomendation from "../molecules/ModalRecomendation";
 
-const JustAddedModal = ({ onClose, show }) => {
+const JustAddedModal = ({ onClose, show, productQuantity }) => {
   if (!show) {
     return null;
   }
@@ -22,7 +22,7 @@ const JustAddedModal = ({ onClose, show }) => {
               backgroundColor={"lightblue"}
               borderRadius={"7px"}
             />
-            <ItemAdded>1 item added to the cart</ItemAdded>
+            <ItemAdded>{productQuantity} item(s) added to the cart</ItemAdded>
             <Spacer>SPACER</Spacer>
           </ItemAddedContainer>
           <ViewKeepShoppingContainer>
