@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import HeartOutlineIcon from "../atoms/HeartOutlineIcon";
+import HeartIconContainer from "../atoms/HeartIconContainer";
 import ProductListing from "../molecules/ProductListing";
 import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
 
@@ -42,7 +42,7 @@ const ProductsListing = () => {
           </div>
           <div style={{ display: "flex", flexDirection: "row" }}>
             <div style={{ paddingRight: 10 }}>11,236,950 results</div>
-            <HeartOutlineIcon />
+            <HeartIconContainer src={"outline"} />
           </div>
         </FilterBarContainer>
         <ProductCardContainer>

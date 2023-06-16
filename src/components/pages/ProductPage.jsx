@@ -7,12 +7,12 @@ import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products.
 import checkIcon from "../../assets/check.svg";
 import CustomStarRating from "../atoms/CustomStarRating";
 import StoreData from "../../data/store-data";
-
-import HeartOutlineIcon from "../atoms/HeartOutlineIcon";
 import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "../organisms/LeftProductPageContainer";
 import JustAddedModal from "../organisms/JustAddedModal";
 import QuantitySelectDropdown from "../molecules/QuantitySelectDropdown";
+import HeartIconContainer from "../atoms/HeartIconContainer";
+import FavoriteHoverButton from "../atoms/FavoriteHoverButton.jsx";
 
 const ProductPage = () => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
@@ -74,7 +74,10 @@ const ProductPage = () => {
               <CompanyInfoTop>
                 <CompanyName>NameOfCompany</CompanyName>
                 <FollowContainer>
-                  <HeartOutlineIcon styles={{ paddingRight: ".25rem" }} />
+                  <HeartIconContainer
+                    src={"outline"}
+                    styles={{ paddingRight: ".25rem" }}
+                  />
                   <h4>Follow</h4>
                 </FollowContainer>
               </CompanyInfoTop>
@@ -129,9 +132,8 @@ const ProductPage = () => {
           ) : (
             <OutOfStockButton>
               Save Item to favorites?
-              <HeartOutlineIcon
+              <FavoriteHoverButton
                 styles={{
-                  backgroundColor: "white",
                   borderRadius: 18,
                   padding: "1px 3px",
                 }}
