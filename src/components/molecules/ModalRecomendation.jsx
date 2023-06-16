@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
+import FavoriteHoverButton from "../atoms/FavoriteHoverButton";
 
 const ModalRecomendation = ({ index, color }) => {
   return (
@@ -18,6 +19,9 @@ const ModalRecomendation = ({ index, color }) => {
         $9.99
       </div>
       <AddToCartButton>Add to cart</AddToCartButton>
+      <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
+        <FavoriteHoverButton />
+      </div>
     </RecItemContainer>
   );
 };
@@ -40,6 +44,7 @@ const AddToCartButton = styled.div`
   }
 `;
 const RecItemContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   padding: 6px;
