@@ -13,6 +13,7 @@ import JustAddedModal from "../organisms/JustAddedModal";
 import QuantitySelectDropdown from "../molecules/QuantitySelectDropdown";
 import HeartIconContainer from "../atoms/HeartIconContainer";
 import FavoriteHoverButton from "../atoms/FavoriteHoverButton.jsx";
+import PhotoPlaceholder from "../atoms/PhotoPlaceholder.jsx";
 
 const ProductPage = () => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
@@ -67,7 +68,7 @@ const ProductPage = () => {
       />
       <LeftProductPageContainer productName={productData.product_name} />
       <RightContainer>
-        <ProductOrderInfo>
+        <TopRight>
           <ProductInfo>
             <CompanyInfoContainer>
               <CompanyInfoTop>
@@ -140,36 +141,52 @@ const ProductPage = () => {
             </OutOfStockButton>
           )}
           <MessagingContainer>
-            <MessagingAfterAddButton>
-              <ImageFiller>assetOneDay</ImageFiller>
-              <p>
+            <Messages>
+              <PhotoPlaceholder
+                width={"60px"}
+                height={"60px"}
+                backgroundColor={"darkblue"}
+                color={"transparent"}
+                borderRadius={"5px"}
+              />
+              <div style={{ maxWidth: "75%" }}>
                 <strong style={{ paddingRight: 3 }}>
                   Other people want this.
                 </strong>
                 Over 20 people have this in their carts right now.
-              </p>
-            </MessagingAfterAddButton>
+              </div>
+            </Messages>
             {StoreData.isStarSeller && (
-              <MessagingAfterAddButton>
-                <ImageFiller>assetOneDay</ImageFiller>
-                <p>
+              <Messages>
+                <PhotoPlaceholder
+                  width={"60px"}
+                  height={"60px"}
+                  backgroundColor={"darkblue"}
+                  borderRadius={"5px"}
+                />
+                <div style={{ maxWidth: "75%" }}>
                   <strong>Star Seller.</strong> This seller consistently earned
                   5-star reviews, shipped on time, and replied quickly to any
                   messages they received.
-                </p>
-              </MessagingAfterAddButton>
+                </div>
+              </Messages>
             )}
             {StoreData.isGiftWrapping && (
-              <MessagingAfterAddButton>
-                <ImageFiller>assetOneDay</ImageFiller>
-                <p>
+              <Messages>
+                <PhotoPlaceholder
+                  width={"60px"}
+                  height={"60px"}
+                  backgroundColor={"darkblue"}
+                  borderRadius={"5px"}
+                />
+                <div>
                   <strong>Gift wrapping available</strong>
-                </p>
-              </MessagingAfterAddButton>
+                </div>
+              </Messages>
             )}
           </MessagingContainer>
-        </ProductOrderInfo>
-        <BottomRightExtras>
+        </TopRight>
+        <BottomRight>
           {productData && productData.description && (
             <DropDownInfoContainer title="Description">
               <p>{productData.description}</p>
@@ -187,15 +204,15 @@ const ProductPage = () => {
           <DropDownInfoContainer title="Meet your sellers">
             <p>{StoreData.meetYourSellers}</p>
           </DropDownInfoContainer>
-        </BottomRightExtras>
+        </BottomRight>
       </RightContainer>
     </PageContainer>
   );
 };
 
 export default ProductPage;
-
-const BottomRightExtras = styled.div`
+const TopRight = styled.div``;
+const BottomRight = styled.div`
   display: flex;
   width: 100%;
   height: 600px;
@@ -203,21 +220,14 @@ const BottomRightExtras = styled.div`
 `;
 const MessagingContainer = styled.div`
   display: flex;
-  width: 100%;
+  gap: 0.5rem;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin: 1.5rem 0;
 `;
-const ImageFiller = styled.div`
-  width: 60px;
-  height: 60px;
-  background-color: darkblue;
-  color: transparent;
-  border-radius: 5px;
-`;
-const MessagingAfterAddButton = styled.div`
+const Messages = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 1rem;
 `;
 
 const RightContainer = styled.div`
@@ -226,13 +236,7 @@ const RightContainer = styled.div`
   flex-direction: column;
   height: 100%;
   width: 34%;
-  float: right;
   margin: 0px 0px 0px 20px;
-`;
-const ProductOrderInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
 `;
 const CompanyName = styled.h3`
   margin-right: 20px;
@@ -278,7 +282,7 @@ const ProductName = styled.h1`
 `;
 const PriceContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  gap: 3rem;
   align-items: center;
 `;
 const ProductPrice = styled.p`
@@ -304,7 +308,7 @@ const AddButton = styled.div`
   align-items: center;
   background-color: black;
   color: white;
-  width: 100%;
+  width: 80%;
   height: 3rem;
   border-radius: 50px;
   font-size: 16px;
