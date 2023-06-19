@@ -97,7 +97,7 @@ const ShoppingCartItem = ({ product }) => {
           onChange={handleTextAreaChange}
           cols="30"
           rows="10"
-          style={{ fontSize: 18 }}
+          style={{ fontSize: 18, resize: "none" }}
         />
       </ProductInfoContainer>
     </Container>

@@ -37,14 +37,12 @@ const ProductPage = () => {
         setShoppingCart([...shoppingCart, newProduct]);
         setJustAddedCartShow(true);
         break;
-
       default:
         shoppingCart[index].quantity += 1;
         setShoppingCart([...shoppingCart]);
         setJustAddedCartShow(true);
         break;
     }
-    // once saved and tested add the id to the mising depend arr below
   };
 
   const handleQuantityChange = (e) => {
