@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import FavoriteHoverButton from "./FavoriteHoverButton";
+import PhotoPlaceholder from "./PhotoPlaceholder";
 
 const PopularItem = ({ price, id }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -13,7 +14,12 @@ const PopularItem = ({ price, id }) => {
       to={`/product/:${id}`}
       style={{ textDecoration: "none" }}
     >
-      <Photo></Photo>
+      <PhotoPlaceholder
+        height={"10rem"}
+        width={"15rem"}
+        backgroundColor={"lightblue"}
+        borderRadius={"0.5rem"}
+      />
       <Price>${price}.00</Price>
       {isHovering && (
         <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
@@ -38,12 +44,6 @@ const Link = styled(NavLink)`
     transition: box-shadow 100ms ease-out;
     box-shadow: 0px 0px 15px #cccccc;
   }
-`;
-const Photo = styled.div`
-  height: 10rem;
-  width: 15rem;
-  background-color: lightblue;
-  border-radius: 0.5rem;
 `;
 const Price = styled.div`
   position: absolute;
