@@ -23,14 +23,14 @@ const ShoppingCartPage = () => {
     <Container>
       {shoppingCart.length ? (
         <ContentContainer>
-          <ItemReminderBar>
+          <QuantityMessage>
             <h1 style={{ fontWeight: 300 }}>
               {shoppingCart.length === 1
                 ? `${shoppingCart.length} item in your cart`
                 : `${shoppingCart.length} items in your cart`}
             </h1>
             <b>Keep Shopping</b>
-          </ItemReminderBar>
+          </QuantityMessage>
           <PromiseBar />
           <ProductCheckoutContainer>
             <Cart>
@@ -109,9 +109,8 @@ const Cart = styled.div`
 `;
 const ProductCheckoutContainer = styled.div`
   display: flex;
-  height: 70%;
 `;
-const ItemReminderBar = styled.div`
+const QuantityMessage = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -125,7 +124,6 @@ const ContentContainer = styled.div`
 `;
 const Container = styled.div`
   display: flex;
-  height: 100vh;
   width: 100vw;
   max-width: 1500px;
   padding: 24px 36px;
