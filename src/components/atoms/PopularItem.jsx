@@ -7,6 +7,13 @@ import PhotoPlaceholder from "./PhotoPlaceholder";
 
 const PopularItem = ({ price, id }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleAddFavorite = (e) => {
+    e.preventDefault();
+    setIsFavorite((curr) => !curr);
+  };
+
   return (
     <Link
       onMouseEnter={() => setIsHovering(true)}
@@ -21,10 +28,24 @@ const PopularItem = ({ price, id }) => {
         borderRadius={"0.5rem"}
       />
       <Price>${price}.00</Price>
-      {isHovering && (
+      {isHovering ? (
         <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
-          <FavoriteHoverButton />
+          <FavoriteHoverButton
+            isFavorite={isFavorite}
+            handleAddFavorite={handleAddFavorite}
+            itemId={id}
+          />
         </div>
+      ) : isFavorite ? (
+        <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
+          <FavoriteHoverButton
+            isFavorite={isFavorite}
+            handleAddFavorite={handleAddFavorite}
+            itemId={id}
+          />
+        </div>
+      ) : (
+        <></>
       )}
     </Link>
   );

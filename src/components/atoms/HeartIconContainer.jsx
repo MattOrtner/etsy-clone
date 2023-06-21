@@ -12,6 +12,6 @@ const HeartIconContainer = ({ styles, src }) => {
 export default HeartIconContainer;
 
 const Container = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 `;
