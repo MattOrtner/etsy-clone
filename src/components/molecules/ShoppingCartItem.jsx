@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { useOutletContext } from "react-router-dom";
 import QuantitySelectDropdown from "./QuantitySelectDropdown";
 
-const ShoppingCartItem = ({ product }) => {
-  const [shoppingCart, setShoppingCart] = useOutletContext();
+const ShoppingCartItem = ({
+  product,
+  index,
+  shoppingCart,
+  setShoppingCart,
+}) => {
   const [quantity, setQuantity] = useState(product.quantity);
   const [totalItemPrice, setTotalItemPrice] = useState(
     product.price * product.quantity
@@ -27,6 +30,8 @@ const ShoppingCartItem = ({ product }) => {
     e.preventDefault();
     setQuantity(e.target.value);
     setTotalItemPrice(product.price * e.target.value);
+    shoppingCart[index] = { ...product, quantity: parseInt(e.target.value) };
+    setShoppingCart([...shoppingCart]);
   };
 
   return (
@@ -41,8 +46,8 @@ const ShoppingCartItem = ({ product }) => {
             <ImagePlaceholder></ImagePlaceholder>
           </ImageContainer>
           <ProductInfo>
-            {product.productName && (
-              <h3 style={{ fontWeight: 400 }}>{product.productName}</h3>
+            {product.product_name && (
+              <h3 style={{ fontWeight: 400 }}>{product.product_name}</h3>
             )}
             {product.description && product.description}
             <div

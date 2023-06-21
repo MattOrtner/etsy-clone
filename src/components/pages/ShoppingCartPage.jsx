@@ -5,6 +5,7 @@ import PromiseBar from "../atoms/PromiseBar";
 import PaymentMethodCluster from "../molecules/PaymentMethodCluster";
 import ShoppingCartItem from "../molecules/ShoppingCartItem";
 import NoProductShoppingCart from "../organisms/NoProductShoppingCart";
+import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const ShoppingCartPage = () => {
   const [shoppingCart, setShoppingCart] = useOutletContext();
@@ -35,8 +36,13 @@ const ShoppingCartPage = () => {
           <ProductCheckoutContainer>
             <Cart>
               {shoppingCart.length &&
-                shoppingCart.map((product) => (
-                  <ShoppingCartItem product={product} />
+                shoppingCart.map((product, index) => (
+                  <ShoppingCartItem
+                    product={product}
+                    index={index}
+                    shoppingCart={shoppingCart}
+                    setShoppingCart={setShoppingCart}
+                  />
                 ))}
             </Cart>
             <Checkout>
@@ -50,14 +56,12 @@ const ShoppingCartPage = () => {
                 <div>${orderTotal}.00</div>
               </ItemsTotal>
               <div style={{ display: "flex" }}>
-                <div
-                  style={{
-                    height: "1rem",
-                    width: "1rem",
-                    backgroundColor: "blue",
-                    marginRight: 5,
-                  }}
-                ></div>
+                <PhotoPlaceholder
+                  height={"1rem"}
+                  width={"1rem"}
+                  backgroundColor={"blue"}
+                  styles={{ marginRight: 5 }}
+                />
                 <u>Get Shipping Costs</u>
               </div>
               <CheckoutButton>Proceed to checkout</CheckoutButton>
@@ -79,17 +83,17 @@ const CheckoutButton = styled.div`
   align-items: center;
   background-color: black;
   color: white;
-  width: 100%;
+  width: 80%;
   height: 3rem;
   border-radius: 50px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
 `;
 const ItemsTotal = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 24px 0px;
+  margin: 1.5rem 0px;
   font-size: 18px;
 `;
 
@@ -98,9 +102,9 @@ const Checkout = styled.div`
   flex-direction: column;
   height: 70%;
   flex: 1;
-  padding: 15px;
-  border-radius: 18px;
-  gap: 10px;
+  padding: 1rem;
+  border-radius: 1.1rem;
+  gap: 0.6rem;
   box-shadow: 0 5px 40px rgb(34 34 34 / 15%);
 `;
 const Cart = styled.div`
@@ -126,5 +130,5 @@ const Container = styled.div`
   display: flex;
   width: 100vw;
   max-width: 1500px;
-  padding: 24px 36px;
+  padding: 1.5rem 2.25rem;
 `;
