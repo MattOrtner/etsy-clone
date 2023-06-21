@@ -4,14 +4,14 @@ import PromiseBar from "../atoms/PromiseBar";
 
 const NoProductShoppingCart = () => {
   return (
-    <NoProductContainer>
-      <NPTopContainer>
+    <OuterContainer>
+      <TopContainer>
         <PromiseBar />
         <h1 style={{ fontWeight: 300 }}>Your cart is empty.</h1>
         <div>
           <u>Discover something unique to fill it up</u>
         </div>
-      </NPTopContainer>
+      </TopContainer>
       <FooterContainer>
         <FooterContainerTop>
           <PrivacyAndSettingContainers
@@ -66,7 +66,7 @@ const NoProductShoppingCart = () => {
           </div>
         </BottomLegalContainer>
       </FooterContainer>
-    </NoProductContainer>
+    </OuterContainer>
   );
 };
 
@@ -87,7 +87,6 @@ const Padding = styled.div`
 const PrivacyAndSettingContainers = styled.div`
   display: flex;
   justify-content: center;
-  ${"" /* gap: 8px; */}
 `;
 
 const FooterContainer = styled.div`
@@ -107,17 +106,16 @@ const FooterContainerTop = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const NoProductContainer = styled.div`
+const OuterContainer = styled.div`
   width: 100%;
-  height: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-const NPTopContainer = styled.div`
+const TopContainer = styled.div`
   width: 100%;
-  height: 45%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 1rem;
 `;
