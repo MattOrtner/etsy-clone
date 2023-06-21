@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import styled from "styled-components";
+
 import PromiseBar from "../atoms/PromiseBar";
 import PaymentMethodCluster from "../molecules/PaymentMethodCluster";
 import ShoppingCartItem from "../molecules/ShoppingCartItem";
@@ -19,7 +20,11 @@ const ShoppingCartPage = () => {
     );
     setCartTotal(sum.toString());
   }, [shoppingCart]);
-
+  const removeItem = (id) => {
+    setShoppingCart((currCart) => [
+      ...currCart.filter((item) => item.id !== id),
+    ]);
+  };
   return (
     <Container>
       {shoppingCart.length ? (
@@ -42,6 +47,7 @@ const ShoppingCartPage = () => {
                     index={index}
                     shoppingCart={shoppingCart}
                     setShoppingCart={setShoppingCart}
+                    removeItem={removeItem}
                   />
                 ))}
             </Cart>
