@@ -7,6 +7,7 @@ const ShoppingCartItem = ({
   index,
   shoppingCart,
   setShoppingCart,
+  removeItem,
 }) => {
   const [quantity, setQuantity] = useState(product.quantity);
   const [totalItemPrice, setTotalItemPrice] = useState(
@@ -19,11 +20,6 @@ const ShoppingCartItem = ({
   const handleTextAreaChange = (e) => {
     e.preventDefault();
     setTextAreaValue({ value: e.target.value });
-  };
-
-  const removeItem = (id) => {
-    const newCart = shoppingCart.filter((item) => item.id !== id);
-    setShoppingCart(newCart);
   };
 
   const handleQuantityChange = (e) => {
