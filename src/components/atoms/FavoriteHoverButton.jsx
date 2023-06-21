@@ -2,7 +2,12 @@ import { useState } from "react";
 import HeartIconContainer from "./HeartIconContainer";
 import styled from "styled-components";
 
-const FavoriteHoverButton = ({ styles }) => {
+const FavoriteHoverButton = ({
+  styles,
+  itemId,
+  handleAddFavorite,
+  isFavorite,
+}) => {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
@@ -10,8 +15,11 @@ const FavoriteHoverButton = ({ styles }) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       style={styles}
+      onClick={handleAddFavorite}
     >
       {isHovering ? (
+        <HeartIconContainer src={"red"} />
+      ) : isFavorite ? (
         <HeartIconContainer src={"red"} />
       ) : (
         <HeartIconContainer src={"outline"} />
