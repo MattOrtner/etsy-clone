@@ -1,8 +1,18 @@
-const names = ["this is a name", "Aother Awesome Name", "Cool beans for sale"];
+const names = [
+  "this is a name",
+  "Another Awesome Name",
+  "Cool beans for sale",
+  "Nice stuff",
+  "A pair of jeans",
+  "Love some socks",
+  "Sheets",
+  "tennis balls",
+  "Turbo charged frother",
+];
 
 const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
   {
-    product_name: names[2],
+    product_name: names[0],
     price: "18",
     descripiton: "This is a great product.",
     starRating: 3,
@@ -11,7 +21,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 0,
   },
   {
-    product_name: names[0],
+    product_name: names[1],
     descripiton: "This is a great product",
     quantity: 3,
     price: "20",
@@ -20,7 +30,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 1,
   },
   {
-    product_name: names[1],
+    product_name: names[2],
     price: "18",
     quantity: 3,
     descripiton: "This is a great product",
@@ -29,7 +39,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 2,
   },
   {
-    product_name: names[2],
+    product_name: names[3],
     quantity: 3,
     descripiton: "This is a great product",
     price: "14",
@@ -38,7 +48,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 3,
   },
   {
-    product_name: names[0],
+    product_name: names[4],
     price: "90",
     quantity: 3,
     descripiton: "This is a great product",
@@ -47,7 +57,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 4,
   },
   {
-    product_name: names[1],
+    product_name: names[5],
     price: "18",
     starRating: 3,
     descripiton: "This is a great product",
@@ -56,7 +66,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 5,
   },
   {
-    product_name: names[2],
+    product_name: names[6],
     price: "18",
     quantity: 3,
     starRating: 3,
@@ -65,7 +75,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 6,
   },
   {
-    product_name: names[1],
+    product_name: names[7],
     descripiton: "This is a great product",
     price: "18",
     quantity: 3,
@@ -74,7 +84,7 @@ const MULTIPLE_SINGLE_DUMMY_PRODUCTS = [
     _id: 7,
   },
   {
-    product_name: names[2],
+    product_name: names[8],
     quantity: 3,
     price: "18",
     starRating: 3,

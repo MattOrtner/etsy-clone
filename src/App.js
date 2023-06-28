@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import styled from "styled-components";
-import CUSTOMER from "./data/customer-data";
+import UserData from "./data/user-data";
 
 import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
@@ -11,11 +11,11 @@ import Footer from "./components/molecules/Footer";
 import SignInModal from "./components/organisms/SignInModal";
 import NavigationContainer from "./components/organisms/NavigationContainer";
 import HeartIconContainer from "./components/atoms/HeartIconContainer";
+import { reducer } from "./data/reducer";
 
 function App() {
-  const [shoppingCart, setShoppingCart] = useState([]);
   const [showSignInModal, setShowSignInModal] = useState(false);
-  const [user, setUser] = useState(CUSTOMER);
+  const [user, dispatch] = useReducer(reducer, UserData);
 
   const toggleSignInModal = () => {
     setShowSignInModal((show) => !show);
@@ -58,10 +58,7 @@ function App() {
         </UserDashboard>
       </HeaderContainer>
       <NavigationContainer />
-      <Outlet
-        context={[shoppingCart, setShoppingCart]}
-        userContext={[user, setUser]}
-      />
+      <Outlet context={[user, dispatch]} />
       <Footer />
     </div>
   );

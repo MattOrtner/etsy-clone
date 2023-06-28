@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
+
+import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
+
 import HighLightList from "../molecules/HighLightList";
 import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
-import axios from "axios";
-import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
 
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
@@ -46,6 +48,7 @@ const LandingPage = () => {
                   key={product._id}
                   price={product.price}
                   id={product._id}
+                  image={product.images[0]}
                 />
               ))}
           </SquarePhotoList>
