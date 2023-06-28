@@ -2,12 +2,7 @@ import { useState } from "react";
 import HeartIconContainer from "./HeartIconContainer";
 import styled from "styled-components";
 
-const FavoriteHoverButton = ({
-  styles,
-  itemId,
-  handleAddFavorite,
-  isFavorite,
-}) => {
+const FavoriteHoverButton = ({ styles, handleAddFavorite, isFavorite }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   return (

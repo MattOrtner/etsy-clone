@@ -1,17 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import FavoriteHoverButton from "./FavoriteHoverButton";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 
 const PopularItem = ({ price, id, image }) => {
+  const [user, dispatch] = useOutletContext();
   const [isHovering, setIsHovering] = useState(false);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(
+    user.favoriteProducts.includes(id)
+  );
 
   const handleAddFavorite = (e) => {
     e.preventDefault();
     setIsFavorite((curr) => !curr);
+    dispatch({ type: "is-favorite", payload: id });
   };
 
   return (
