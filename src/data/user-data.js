@@ -1,7 +1,7 @@
 const UserData = {
   name: "Matt",
   isSignedIn: true,
-  favoriteProducts: [0, 1, 2],
+  favoriteProducts: [],
   shoppingCart: [],
 };
 
