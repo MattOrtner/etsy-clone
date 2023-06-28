@@ -1,12 +1,37 @@
 import styled from "styled-components";
-import { useState } from "react";
-import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
+import { useState, useEffect } from "react";
 import PopularItem from "../atoms/PopularItem";
+import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products";
+import { useOutletContext } from "react-router-dom";
 
 const FavoritesPage = () => {
+  const [user, _] = useOutletContext();
   const [favoriteProducts, setFavoriteProducts] = useState(
-    MULTIPLE_SINGLE_DUMMY_PRODUCTS
+    user.favoriteProducts
   );
+
+  useEffect(() => {
+    if (user.favoriteProducts.length === 0) {
+      return;
+    }
+
+    // axios.get(
+    //  to the Mongo with multiple ids then cached client side
+    // )
+    const requestFavorites = () => {
+      const favs = [];
+      for (const id of user.favoriteProducts) {
+        for (const dummyProd of MULTIPLE_SINGLE_DUMMY_PRODUCTS) {
+          if (id === dummyProd._id) {
+            favs.push(dummyProd);
+          }
+        }
+      }
+      setFavoriteProducts(favs);
+    };
+    requestFavorites();
+  }, [user.favoriteProducts]);
+
   return (
     <PageContainer>
       <Title>Favorites</Title>
@@ -40,4 +65,5 @@ const FavoritesContainer = styled.div`
   padding: 1rem;
   border-radius: 1rem;
   border: 1px solid lightgray;
+  width: 1000px;
 `;

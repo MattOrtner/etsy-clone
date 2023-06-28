@@ -42,10 +42,18 @@ export function reducer(state, action) {
         ...state,
         shoppingCart: [...state.shoppingCart],
       };
-    case "add-favorite":
-      break;
-    case "remove-favorite":
-      break;
+    case "is-favorite":
+      const id = action.payload;
+      if (state.favoriteProducts.includes(id)) {
+        return {
+          ...state,
+          favoriteProducts: [
+            ...state.favoriteProducts.filter((fav) => fav !== id),
+          ],
+        };
+      } else {
+        return { ...state, favoriteProducts: [...state.favoriteProducts, id] };
+      }
     default:
       break;
   }
