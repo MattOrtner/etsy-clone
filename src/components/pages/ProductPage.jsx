@@ -16,34 +16,18 @@ import FavoriteHoverButton from "../atoms/FavoriteHoverButton.jsx";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder.jsx";
 
 const ProductPage = () => {
-  const [shoppingCart, setShoppingCart] = useOutletContext();
+  const [_, dispatch] = useOutletContext();
   const [productData, setProductData] = useState({});
   const [justAddedCartShow, setJustAddedCartShow] = useState(false);
   const [productQuantity, setProductQuantity] = useState(1);
   const { id } = useParams();
 
-  const isAlreadyInCart = (newProduct) => {
-    for (let i = 0; i < shoppingCart.length; i += 1) {
-      const element = shoppingCart[i];
-      if (element.id === newProduct.id) {
-        return i;
-      }
-    }
-    return false;
-  };
-  const addToCart = (newProduct) => {
-    const index = isAlreadyInCart(newProduct);
-    switch (index) {
-      case false:
-        setShoppingCart([...shoppingCart, newProduct]);
-        setJustAddedCartShow(true);
-        break;
-      default:
-        shoppingCart[index].quantity += 1;
-        setShoppingCart([...shoppingCart]);
-        setJustAddedCartShow(true);
-        break;
-    }
+  const handleAddToCart = (productData) => {
+    setJustAddedCartShow(true);
+    dispatch({
+      type: "add-to-cart",
+      payload: productData,
+    });
   };
 
   const handleQuantityChange = (e) => {
@@ -116,7 +100,7 @@ const ProductPage = () => {
               />
               <AddButton
                 onClick={() =>
-                  addToCart({
+                  handleAddToCart({
                     id: productData._id,
                     product_name: productData.product_name,
                     description: productData.description,

@@ -5,7 +5,7 @@ import { useState } from "react";
 import FavoriteHoverButton from "./FavoriteHoverButton";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 
-const PopularItem = ({ price, id }) => {
+const PopularItem = ({ price, id, image }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -21,12 +21,27 @@ const PopularItem = ({ price, id }) => {
       to={`/product/:${id}`}
       style={{ textDecoration: "none" }}
     >
-      <PhotoPlaceholder
-        height={"10rem"}
-        width={"15rem"}
-        backgroundColor={"lightblue"}
-        borderRadius={"0.5rem"}
-      />
+      {image ? (
+        <PhotoContainer>
+          <img
+            src={image}
+            alt="something cool"
+            style={{
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+              borderRadius: "0.5rem",
+            }}
+          />
+        </PhotoContainer>
+      ) : (
+        <PhotoPlaceholder
+          height={"10rem"}
+          width={"15rem"}
+          backgroundColor={"lightblue"}
+          borderRadius={"0.5rem"}
+        />
+      )}
       <Price>${price}.00</Price>
       {isHovering ? (
         <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
@@ -53,6 +68,11 @@ const PopularItem = ({ price, id }) => {
 
 export default PopularItem;
 
+const PhotoContainer = styled.div`
+  width: 15rem;
+  height: 10rem;
+  border-radius: 0.5rem;
+`;
 const Link = styled(NavLink)`
   position: relative;
   cursor: pointer;

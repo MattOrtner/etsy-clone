@@ -8,7 +8,7 @@ import settingsSVG from "../../assets/signed-in/cog-outline.svg";
 import tagSVG from "../../assets/signed-in/tag-outline.svg";
 import triangleSVG from "../../assets/signed-in/triangle-small-down.svg";
 import { NavLink } from "react-router-dom";
-import CUSTOMER from "../../data/customer-data";
+import CUSTOMER from "../../data/user-data";
 
 const UserProfileDropDown = ({ name }) => {
   const [isOpen, setIsOpen] = useState(false);

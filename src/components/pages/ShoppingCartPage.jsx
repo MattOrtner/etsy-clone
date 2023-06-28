@@ -9,45 +9,40 @@ import NoProductShoppingCart from "../organisms/NoProductShoppingCart";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const ShoppingCartPage = () => {
-  const [shoppingCart, setShoppingCart] = useOutletContext();
+  const [user, dispatch] = useOutletContext();
   const [paymentType, setPaymentType] = useState("");
   const [orderTotal, setCartTotal] = useState();
-  console.log("shoppingCart", shoppingCart);
+
   useEffect(() => {
-    const sum = shoppingCart.reduce(
+    const shoppingCart = user.shoppingCart;
+    const sum = user.shoppingCart.reduce(
       (acc, item) => acc + parseInt(item.price) * item.quantity,
       0
     );
     setCartTotal(sum.toString());
-  }, [shoppingCart]);
-  const removeItem = (id) => {
-    setShoppingCart((currCart) => [
-      ...currCart.filter((item) => item.id !== id),
-    ]);
-  };
+  }, [user.shoppingCart]);
   return (
     <Container>
-      {shoppingCart.length ? (
+      {user.shoppingCart.length ? (
         <ContentContainer>
           <QuantityMessage>
             <h1 style={{ fontWeight: 300 }}>
-              {shoppingCart.length === 1
-                ? `${shoppingCart.length} item in your cart`
-                : `${shoppingCart.length} items in your cart`}
+              {user.shoppingCart.length === 1
+                ? `${user.shoppingCart.length} item in your cart`
+                : `${user.shoppingCart.length} items in your cart`}
             </h1>
             <b>Keep Shopping</b>
           </QuantityMessage>
           <PromiseBar />
           <ProductCheckoutContainer>
             <Cart>
-              {shoppingCart.length &&
-                shoppingCart.map((product, index) => (
+              {user.shoppingCart.length &&
+                user.shoppingCart.map((product, index) => (
                   <ShoppingCartItem
                     product={product}
                     index={index}
-                    shoppingCart={shoppingCart}
-                    setShoppingCart={setShoppingCart}
-                    removeItem={removeItem}
+                    shoppingCart={user.shoppingCart}
+                    dispatch={dispatch}
                   />
                 ))}
             </Cart>

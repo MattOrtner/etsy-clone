@@ -40,7 +40,7 @@ const JustAddedModal = ({ onClose, show, productQuantity }) => {
             >
               <ViewCartButton>View cart & check out</ViewCartButton>
             </NavLink>
-            <KeepShoppingButton onClick={onClose}>
+            <KeepShoppingButton to={"/"} onClick={onClose}>
               Keep shopping
             </KeepShoppingButton>
           </ViewKeepShoppingContainer>
@@ -116,7 +116,7 @@ const ViewCartButton = styled.div`
   background-color: black;
   color: white;
 `;
-const KeepShoppingButton = styled.div`
+const KeepShoppingButton = styled(NavLink)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -125,9 +125,18 @@ const KeepShoppingButton = styled.div`
   border-radius: 50px;
   cursor: pointer;
   font-weight: 600;
+  text-decoration: none;
+
+  &:focus,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
+  }
   &:hover {
     transition: background-color 150ms ease-in;
     background-color: #d9d9d9;
+    text-decoration: none;
   }
 `;
 const ModalContainer = styled.div`

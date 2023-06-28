@@ -1,14 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import QuantitySelectDropdown from "./QuantitySelectDropdown";
+import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
-const ShoppingCartItem = ({
-  product,
-  index,
-  shoppingCart,
-  setShoppingCart,
-  removeItem,
-}) => {
+const ShoppingCartItem = ({ product, index, shoppingCart, dispatch }) => {
   const [quantity, setQuantity] = useState(product.quantity);
   const [totalItemPrice, setTotalItemPrice] = useState(
     product.price * product.quantity
@@ -27,9 +22,12 @@ const ShoppingCartItem = ({
     setQuantity(e.target.value);
     setTotalItemPrice(product.price * e.target.value);
     shoppingCart[index] = { ...product, quantity: parseInt(e.target.value) };
-    setShoppingCart([...shoppingCart]);
-  };
 
+    dispatch({
+      type: "change-quantity",
+      payload: { index, quantity: parseInt(e.target.value) },
+    });
+  };
   return (
     <Container key={product.id}>
       <SellerBar>
@@ -39,7 +37,12 @@ const ShoppingCartItem = ({
       <ProductInfoContainer>
         <PITopContainer>
           <ImageContainer>
-            <ImagePlaceholder></ImagePlaceholder>
+            <PhotoPlaceholder
+              height={"138px"}
+              width={"175px"}
+              backgroundColor={"orange"}
+              borderRadius={"10px"}
+            />
           </ImageContainer>
           <ProductInfo>
             {product.product_name && (
@@ -53,7 +56,11 @@ const ShoppingCartItem = ({
               }}
             >
               <b style={{ paddingRight: 25 }}>Save for later</b>
-              <RemoveButton onClick={() => removeItem(product.id)}>
+              <RemoveButton
+                onClick={() =>
+                  dispatch({ type: "remove-from-cart", payload: product.id })
+                }
+              >
                 Remove
               </RemoveButton>
             </div>
@@ -135,14 +142,7 @@ const AmountPriceContainer = styled.div`
   display: flex;
   height: 54px;
 `;
-const ImagePlaceholder = styled.div`
-  height: 138px;
-  width: 175px;
-  background-color: orange;
-  border-radius: 10px;
-`;
 const OtherInfoContainer = styled.div`
-  ${"" /* border: 1px solid red; */}
   width: 85%;
   height: 100%;
   margin: 0px 0px 0px 18px;
@@ -150,16 +150,12 @@ const OtherInfoContainer = styled.div`
 const ProductInfo = styled.div`
   width: 100%;
   height: 100%;
-  ${"" /* border: 1px solid red; */}
   margin: 0px 0px 0px 18px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 `;
-const ImageContainer = styled.div`
-  height: 100%;
-  ${"" /* border: 1px solid red; */}
-`;
+const ImageContainer = styled.div``;
 const PITopContainer = styled.div`
   display: flex;
   height: 100%;
