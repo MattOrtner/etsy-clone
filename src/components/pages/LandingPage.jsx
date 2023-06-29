@@ -8,25 +8,29 @@ import HighLightList from "../molecules/HighLightList";
 import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
+import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const LandingPage = () => {
   const [products, setProducts] = useState([]);
   const [greeting, setGreeting] = useState(
     "Discover fresh summer finds from creative sellers!"
   );
-
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/products`)
-      .then((res) => {
-        console.log(res.data);
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
+    (async () => {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/products`
+        );
+        setProducts(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
         setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
-      });
+      }
+    })();
   }, []);
+  console.log("isLoading", isLoading);
   return (
     <OutletContainer>
       <GreetingContainer>
@@ -36,24 +40,59 @@ const LandingPage = () => {
         </TitleContainer>
         <HighLightList />
       </GreetingContainer>
-      {products.length > 0 && (
-        <PopularContainer>
-          <SectionTitleContainer>
-            <SectionTitle title={"Recently viewed & more"} />
-          </SectionTitleContainer>
-          <SquarePhotoList>
-            {products &&
-              products.map((product) => (
-                <PopularItem
-                  key={product._id}
-                  price={product.price}
-                  id={product._id}
-                  image={product.images ? product.images[0] : ""}
-                />
-              ))}
-          </SquarePhotoList>
-        </PopularContainer>
-      )}
+      <PopularContainer>
+        <SectionTitleContainer>
+          <SectionTitle title={"Recently viewed & more"} />
+        </SectionTitleContainer>
+        <SquarePhotoList>
+          {isLoading ? (
+            <SquarePhotoList style={{ padding: 0 }}>
+              <PhotoPlaceholder
+                height={"10rem"}
+                width={"15rem"}
+                borderRadius={"0.5rem"}
+                backgroundColor={"red"}
+              >
+                Loading
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                height={"10rem"}
+                width={"15rem"}
+                borderRadius={"0.5rem"}
+                backgroundColor={"red"}
+              >
+                Loading
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                height={"10rem"}
+                width={"15rem"}
+                borderRadius={"0.5rem"}
+                backgroundColor={"red"}
+              >
+                Loading
+              </PhotoPlaceholder>
+              <PhotoPlaceholder
+                height={"10rem"}
+                width={"15rem"}
+                borderRadius={"0.5rem"}
+                backgroundColor={"red"}
+              >
+                Loading
+              </PhotoPlaceholder>
+            </SquarePhotoList>
+          ) : (
+            products &&
+            products.map((product) => (
+              <PopularItem
+                key={product._id}
+                price={product.price}
+                id={product._id}
+                image={product.images ? product.images[0] : ""}
+              />
+            ))
+          )}
+        </SquarePhotoList>
+      </PopularContainer>
       <PersonalRecContainer>
         <PersonalizedGifts />
       </PersonalRecContainer>
