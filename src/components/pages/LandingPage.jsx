@@ -48,7 +48,7 @@ const LandingPage = () => {
                   key={product._id}
                   price={product.price}
                   id={product._id}
-                  image={product.images[0]}
+                  image={product.images ? product.images[0] : ""}
                 />
               ))}
           </SquarePhotoList>
