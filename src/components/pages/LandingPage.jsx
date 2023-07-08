@@ -16,6 +16,7 @@ const LandingPage = () => {
     "Discover fresh summer finds from creative sellers!"
   );
   const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     (async () => {
       try {
@@ -27,10 +28,11 @@ const LandingPage = () => {
       } catch (error) {
         console.error(error);
         setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
+        setIsLoading(false);
       }
     })();
   }, []);
-  console.log("isLoading", isLoading);
+
   return (
     <OutletContainer>
       <GreetingContainer>
@@ -110,8 +112,7 @@ const OutletContainer = styled.div`
 `;
 
 const PersonalRecContainer = styled.div`
-  width: 100%;
-  margin-right: 0 auto;
+  width: 95%;
   max-width: 1500px;
 `;
 const SquarePhotoList = styled.div`
