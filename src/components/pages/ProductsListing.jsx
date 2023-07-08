@@ -53,8 +53,8 @@ const ProductsListing = () => {
                 price={product.price}
                 starRating={product.starRating}
                 numOfReviews={product.numOfReviews}
-                key={product.id}
-                id={product.id}
+                key={product._id}
+                id={product._id}
               />
             ))}
         </ProductCardContainer>

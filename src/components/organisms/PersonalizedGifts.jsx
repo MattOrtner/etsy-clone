@@ -51,7 +51,7 @@ const Container = styled.div`
   grid-template-rows: 45% 50%;
   width: 100%;
   height: 35em;
-  margin-bottom: 0px 0px 90px;
+  margin-bottom: 5.5rem;
   gap: 18px;
 `;
 const TopFirst = styled.div`
