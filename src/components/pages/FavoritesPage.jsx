@@ -36,19 +36,28 @@ const FavoritesPage = () => {
     <PageContainer>
       <Title>Favorites</Title>
       <FavoritesContainer>
-        {favoriteProducts &&
+        {favoriteProducts.length > 0 ? (
           favoriteProducts.map((product) => (
             <PopularItem
               price={product.price}
               key={product._id}
               id={product._id}
             />
-          ))}
+          ))
+        ) : (
+          <AlternativeMessage>
+            Add some items to save for later!
+          </AlternativeMessage>
+        )}
       </FavoritesContainer>
     </PageContainer>
   );
 };
 export default FavoritesPage;
+const AlternativeMessage = styled.h1`
+  font-weight: 300;
+  margin: auto;
+`;
 const Title = styled.div`
   font-weight: 400;
   font-size: 42px;
@@ -65,5 +74,7 @@ const FavoritesContainer = styled.div`
   padding: 1rem;
   border-radius: 1rem;
   border: 1px solid lightgray;
+  min-width: 62.5rem;
+  min-height: 10rem;
   max-width: 1050px;
 `;
