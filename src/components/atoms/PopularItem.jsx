@@ -24,6 +24,7 @@ const PopularItem = ({ price, id, image }) => {
       onMouseLeave={() => setIsHovering(false)}
       to={`/product/:${id}`}
       style={{ textDecoration: "none" }}
+      key={id}
     >
       {image ? (
         <PhotoContainer>

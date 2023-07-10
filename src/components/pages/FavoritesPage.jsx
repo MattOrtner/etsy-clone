@@ -65,5 +65,5 @@ const FavoritesContainer = styled.div`
   padding: 1rem;
   border-radius: 1rem;
   border: 1px solid lightgray;
-  width: 1000px;
+  max-width: 1050px;
 `;
