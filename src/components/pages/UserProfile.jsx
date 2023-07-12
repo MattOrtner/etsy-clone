@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const UserProfile = () => {
-  const [favoriteItems, setFavoriteItems] = useState([]);
+  const [user, _] = useOutletContext();
+
   return (
     <ScreenContainer>
       <TopContainer>
@@ -17,7 +17,7 @@ const UserProfile = () => {
           />
           <div style={{ padding: 10 }}>
             <div style={{ fontSize: "1.5rem", fontWeight: 500 }}>
-              <u>Matt</u>
+              <u>{user.name}</u>
             </div>
             <div style={{ display: "flex", gap: 5 }}>
               <u style={{ fontSize: "1.1rem", fontWeight: 300 }}>
@@ -57,8 +57,13 @@ const UserProfile = () => {
         </div>
       </TopContainer>
       <Content>
-        {favoriteItems.length > 0 ? (
-          "Favorite stuff" // loop over items saved in favorites array
+        {user.favoriteProducts.length > 0 ? (
+          <>
+            <h2 style={{ fontWeight: 400, fontFamily: "Georgia" }}>
+              Head over to your favorites page located next to the top of the
+              screen search bar.
+            </h2>
+          </>
         ) : (
           <>
             <PhotoPlaceholder
