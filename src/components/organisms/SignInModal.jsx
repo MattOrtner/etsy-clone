@@ -1,19 +1,32 @@
-import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import SocialLoginButton from "../atoms/SocialLoginButton";
 
-const SignInModal = ({ onClose, show }) => {
+const SignInModal = ({ dispatch, onClose, show }) => {
+  const [emailAndPass, setEmailAndPass] = useState({
+    email: "",
+    password: "",
+  });
+
   if (!show) {
     return null;
   }
+  const handleInputs = (e) => {
+    e.preventDefault();
+    setEmailAndPass({ ...emailAndPass, [e.target.name]: e.target.value });
+  };
 
+  const fakeSignIn = (e) => {
+    e.preventDefault();
+    dispatch({ type: "sign-in", payload: true });
+  };
+  console.log("emailAndPass", emailAndPass);
   return (
     <ModalContainer onClick={onClose}>
       <ModalContentContainer onClick={(e) => e.stopPropagation()}>
         <RegisterContainer>
           <h2 style={{ color: "#222" }}>Sign in</h2>
-          <div style={{ fontSize: 0, width: "22%" }}>spacer</div>
-          <div style={{ fontSize: 0, width: "22%" }}>spacer</div>
+          <div style={{ fontSize: 0, width: "46%" }}>spacer</div>
           <RegisterButton>Register</RegisterButton>
         </RegisterContainer>
         <InputContainer>
@@ -23,7 +36,13 @@ const SignInModal = ({ onClose, show }) => {
           >
             Email address
           </label>
-          <Input type="email" name="email" id="email" required />
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            onChange={handleInputs}
+            required
+          />
         </InputContainer>
         <InputContainer>
           <label
@@ -32,7 +51,13 @@ const SignInModal = ({ onClose, show }) => {
           >
             Password
           </label>
-          <Input type="password" name="password" id="password" required />
+          <Input
+            type="password"
+            name="password"
+            id="password"
+            onChange={handleInputs}
+            required
+          />
         </InputContainer>
         <EngageContainer>
           <CheckContainer>
@@ -54,7 +79,7 @@ const SignInModal = ({ onClose, show }) => {
           </CheckContainer>
           <u style={{ cursor: "pointer" }}>Forgot your password?</u>
         </EngageContainer>
-        <SignInButton>Sign in</SignInButton>
+        <SignInButton onClick={fakeSignIn}>Sign in</SignInButton>
         <div
           style={{
             display: "flex",
@@ -137,8 +162,8 @@ const SignInButton = styled.div`
   cursor: pointer;
   margin-top: 10px;
   &:hover {
-    transition: all 300ms ease-out;
-    transform: scale(1.02);
+    transition: all 200ms ease-out;
+    transform: scale(1.03);
   }
 `;
 const Input = styled.input`

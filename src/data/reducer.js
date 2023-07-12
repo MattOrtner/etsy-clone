@@ -54,6 +54,10 @@ export function reducer(state, action) {
       } else {
         return { ...state, favoriteProducts: [...state.favoriteProducts, id] };
       }
+    case "sign-in":
+      return { ...state, isSignedIn: true };
+    case "sign-out":
+      return { ...state, isSignedIn: false };
     default:
       break;
   }

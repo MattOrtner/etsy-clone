@@ -42,11 +42,15 @@ function App() {
                   styles={{ margin: ".25rem" }}
                 />
               </Link>
-              <UserProfileDropDown name={user.name} />
+              <UserProfileDropDown name={user.name} dispatch={dispatch} />
             </>
           ) : (
             <>
-              <SignInModal onClose={toggleSignInModal} show={showSignInModal} />
+              <SignInModal
+                dispatch={dispatch}
+                onClose={toggleSignInModal}
+                show={showSignInModal}
+              />
               <SignInButton onClick={toggleSignInModal}>Sign In</SignInButton>
             </>
           )}

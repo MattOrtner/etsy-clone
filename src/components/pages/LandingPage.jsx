@@ -53,7 +53,7 @@ const LandingPage = () => {
                 height={"10rem"}
                 width={"15rem"}
                 borderRadius={"0.5rem"}
-                backgroundColor={"red"}
+                backgroundColor={"#f5D9E5"}
               >
                 Loading
               </PhotoPlaceholder>
@@ -61,7 +61,7 @@ const LandingPage = () => {
                 height={"10rem"}
                 width={"15rem"}
                 borderRadius={"0.5rem"}
-                backgroundColor={"red"}
+                backgroundColor={"#f5D9E5"}
               >
                 Loading
               </PhotoPlaceholder>
@@ -69,7 +69,7 @@ const LandingPage = () => {
                 height={"10rem"}
                 width={"15rem"}
                 borderRadius={"0.5rem"}
-                backgroundColor={"red"}
+                backgroundColor={"#f5D9E5"}
               >
                 Loading
               </PhotoPlaceholder>
@@ -77,7 +77,7 @@ const LandingPage = () => {
                 height={"10rem"}
                 width={"15rem"}
                 borderRadius={"0.5rem"}
-                backgroundColor={"red"}
+                backgroundColor={"#f5D9E5"}
               >
                 Loading
               </PhotoPlaceholder>

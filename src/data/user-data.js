@@ -1,6 +1,6 @@
 const UserData = {
-  name: "Matt",
-  isSignedIn: true,
+  name: "Fake User",
+  isSignedIn: false,
   favoriteProducts: [],
   shoppingCart: [],
 };
