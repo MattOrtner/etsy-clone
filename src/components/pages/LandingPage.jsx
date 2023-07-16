@@ -11,7 +11,7 @@ import PersonalizedGifts from "../organisms/PersonalizedGifts";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const LandingPage = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
   const [greeting, setGreeting] = useState(
     "Discover fresh summer finds from creative sellers!"
   );
@@ -20,10 +20,11 @@ const LandingPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(
+        const { data: response } = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/api/products`
         );
-        setProducts(response.data);
+        // setProducts(JSON.parse(response.data));
+        setProducts(response);
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -32,7 +33,8 @@ const LandingPage = () => {
       }
     })();
   }, []);
-
+  console.log("products", products);
+  console.log("type", typeof products);
   return (
     <OutletContainer>
       <GreetingContainer>
@@ -48,7 +50,7 @@ const LandingPage = () => {
         </SectionTitleContainer>
         <SquarePhotoList>
           {isLoading ? (
-            <SquarePhotoList style={{ padding: 0 }}>
+            <>
               <PhotoPlaceholder
                 height={"10rem"}
                 width={"15rem"}
@@ -81,7 +83,7 @@ const LandingPage = () => {
               >
                 Loading
               </PhotoPlaceholder>
-            </SquarePhotoList>
+            </>
           ) : (
             products &&
             products.map((product) => (
@@ -130,7 +132,7 @@ const PopularContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 335px;
+  /* height: 335px; */
   width: 100%;
   max-width: 1500px;
   overflow: hidden;
@@ -165,4 +167,5 @@ const GreetingContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-bottom: 2rem;
 `;
