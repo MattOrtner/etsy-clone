@@ -11,7 +11,7 @@ import PersonalizedGifts from "../organisms/PersonalizedGifts";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const LandingPage = () => {
-  const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
+  const [products, setProducts] = useState([]);
   const [greeting, setGreeting] = useState(
     "Discover fresh summer finds from creative sellers!"
   );
@@ -23,7 +23,6 @@ const LandingPage = () => {
         const { data: response } = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/api/products`
         );
-        // setProducts(JSON.parse(response.data));
         setProducts(response);
         setIsLoading(false);
       } catch (error) {

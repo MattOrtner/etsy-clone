@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 import accountSVG from "../../assets/signed-in/account.svg";
 import clipBoardSVG from "../../assets/signed-in/clipboard-text-outline.svg";
@@ -7,13 +8,16 @@ import msgSVG from "../../assets/signed-in/message-processing-outline.svg";
 import settingsSVG from "../../assets/signed-in/cog-outline.svg";
 import tagSVG from "../../assets/signed-in/tag-outline.svg";
 import triangleSVG from "../../assets/signed-in/triangle-small-down.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const UserProfileDropDown = ({ name, dispatch }) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
   const handleSignOut = (e) => {
     e.preventDefault();
+    // axios request to api/users/sign-out passing email
+
+    navigate("/");
     dispatch({ type: "sign-out" });
   };
 

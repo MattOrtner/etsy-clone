@@ -76,7 +76,8 @@ const UserProfile = () => {
               <NothingMessage>Nothing to see here yet</NothingMessage>
               <p style={{ fontSize: "1.2rem", fontWeight: 300 }}>
                 Start favoriting items to compare, shop, and keep track of
-                things you love.
+                things you love. <br />
+                or <br /> Click that + button to start sharing your items.
               </p>
             </CenterPiece>
           </>
