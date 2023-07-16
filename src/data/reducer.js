@@ -55,9 +55,15 @@ export function reducer(state, action) {
         return { ...state, favoriteProducts: [...state.favoriteProducts, id] };
       }
     case "sign-in":
-      return { ...state, isSignedIn: true };
+      return { ...action.payload };
     case "sign-out":
-      return { ...state, isSignedIn: false };
+      const emptyState = {
+        name: "",
+        isSignedIn: false,
+        favoriteProducts: [],
+        shoppingCart: [],
+      };
+      return { ...emptyState };
     default:
       break;
   }

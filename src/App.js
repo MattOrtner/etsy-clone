@@ -1,4 +1,5 @@
 import { useState, useReducer } from "react";
+import axios from "axios";
 import { NavLink, Outlet } from "react-router-dom";
 import styled from "styled-components";
 import UserData from "./data/user-data";
@@ -20,7 +21,17 @@ function App() {
   const toggleSignInModal = () => {
     setShowSignInModal((show) => !show);
   };
-
+  const handleSignIn = async (emailAndPass) => {
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/api/users/sign-in`,
+        emailAndPass
+      );
+      dispatch({ type: "sign-in", payload: result.data });
+    } catch (error) {
+      console.error(error, "client: login error");
+    }
+  };
   return (
     <div>
       <HeaderContainer>
@@ -47,7 +58,7 @@ function App() {
           ) : (
             <>
               <SignInModal
-                dispatch={dispatch}
+                handleSignIn={handleSignIn}
                 onClose={toggleSignInModal}
                 show={showSignInModal}
               />

@@ -23,7 +23,6 @@ const LandingPage = () => {
         const { data: response } = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/api/products`
         );
-        // setProducts(JSON.parse(response.data));
         setProducts(response);
         setIsLoading(false);
       } catch (error) {

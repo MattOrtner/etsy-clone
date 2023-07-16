@@ -15,8 +15,11 @@ import {
   testQuantity,
   testLWH,
 } from "../../new-product-tests/tests";
+import { useOutletContext } from "react-router-dom";
 
 const CreateListing = () => {
+  const [user, _] = useOutletContext();
+
   const [images, setImages] = useState([]);
   const [productName, setProductName] = useState("");
   const [renewalOption, setRenewalOption] = useState("");
@@ -74,7 +77,7 @@ const CreateListing = () => {
       const imageStrings = images.reduce((acc, image) => {
         return (acc = [...acc, image.data_url]);
       }, []);
-      console.log("imageStrings", imageStrings);
+
       const createdProduct = {
         product_name: productName,
         price: price,
@@ -85,9 +88,9 @@ const CreateListing = () => {
         product_type: productType,
         about_details: aboutDetails,
         images: imageStrings,
+        store_id: user.store._id,
       };
-      console.log("createdProduct", createdProduct);
-      // const stringified = JSON.stringify(createdProduct);
+
       axios
         .post(
           `${process.env.REACT_APP_SERVER_URL}/api/products`,

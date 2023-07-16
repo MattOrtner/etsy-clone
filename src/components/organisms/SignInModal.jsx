@@ -1,8 +1,9 @@
 import { useState } from "react";
+
 import styled from "styled-components";
 import SocialLoginButton from "../atoms/SocialLoginButton";
 
-const SignInModal = ({ dispatch, onClose, show }) => {
+const SignInModal = ({ handleSignIn, onClose, show }) => {
   const [emailAndPass, setEmailAndPass] = useState({
     email: "",
     password: "",
@@ -16,11 +17,6 @@ const SignInModal = ({ dispatch, onClose, show }) => {
     setEmailAndPass({ ...emailAndPass, [e.target.name]: e.target.value });
   };
 
-  const fakeSignIn = (e) => {
-    e.preventDefault();
-    dispatch({ type: "sign-in", payload: true });
-  };
-  console.log("emailAndPass", emailAndPass);
   return (
     <ModalContainer onClick={onClose}>
       <ModalContentContainer onClick={(e) => e.stopPropagation()}>
@@ -79,7 +75,9 @@ const SignInModal = ({ dispatch, onClose, show }) => {
           </CheckContainer>
           <u style={{ cursor: "pointer" }}>Forgot your password?</u>
         </EngageContainer>
-        <SignInButton onClick={fakeSignIn}>Sign in</SignInButton>
+        <SignInButton onClick={() => handleSignIn(emailAndPass)}>
+          Sign in
+        </SignInButton>
         <div
           style={{
             display: "flex",
