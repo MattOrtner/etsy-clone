@@ -85,7 +85,7 @@ const LandingPage = () => {
               </PhotoPlaceholder>
             </>
           ) : (
-            products &&
+            typeof products === "object" &&
             products.map((product) => (
               <PopularItem
                 key={product._id}
