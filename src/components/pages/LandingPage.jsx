@@ -11,7 +11,7 @@ import PersonalizedGifts from "../organisms/PersonalizedGifts";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
 const LandingPage = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
   const [greeting, setGreeting] = useState(
     "Discover fresh summer finds from creative sellers!"
   );
