@@ -14,7 +14,8 @@ const UserProfileDropDown = ({ name, email, dispatch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleSignOut = async () => {
+  const handleSignOut = async (e) => {
+    e.preventDefault()
     try {
       const isConfirmation = await axios.put(
         `${process.env.REACT_APP_SERVER_URL}/api/users/sign-out`,
