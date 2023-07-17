@@ -5,8 +5,8 @@ import SocialLoginButton from "../atoms/SocialLoginButton";
 
 const SignInModal = ({ handleSignIn, onClose, show }) => {
   const [emailAndPass, setEmailAndPass] = useState({
-    email: "",
-    password: "",
+    email: "anotherAwesomeGuy@cool.com",
+    password: "anotherReallyAwesome",
   });
 
   if (!show) {
@@ -36,6 +36,7 @@ const SignInModal = ({ handleSignIn, onClose, show }) => {
             type="email"
             name="email"
             id="email"
+            value={emailAndPass.email}
             onChange={handleInputs}
             required
           />
@@ -51,6 +52,7 @@ const SignInModal = ({ handleSignIn, onClose, show }) => {
             type="password"
             name="password"
             id="password"
+            value={emailAndPass.password}
             onChange={handleInputs}
             required
           />

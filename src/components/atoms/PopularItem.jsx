@@ -11,7 +11,6 @@ const PopularItem = ({ price, id, image }) => {
   const [isFavorite, setIsFavorite] = useState(
     user.favoriteProducts.includes(id)
   );
-
   const handleAddFavorite = (e) => {
     e.preventDefault();
     setIsFavorite((curr) => !curr);

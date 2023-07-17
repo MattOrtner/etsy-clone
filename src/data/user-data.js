@@ -1,8 +1,9 @@
-const UserData = {
-  name: "Fake User",
+const UserDataStructure = {
+  name: "User Data Person",
   isSignedIn: false,
   favoriteProducts: [],
   shoppingCart: [],
+  _id: "1234789",
 };
 
-export default UserData;
+export default UserDataStructure;

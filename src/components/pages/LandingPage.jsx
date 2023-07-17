@@ -16,7 +16,6 @@ const LandingPage = () => {
     "Discover fresh summer finds from creative sellers!"
   );
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     (async () => {
       try {
@@ -33,7 +32,7 @@ const LandingPage = () => {
     })();
   }, []);
   console.log("products", products);
-  console.log("type", typeof products);
+
   return (
     <OutletContainer>
       <GreetingContainer>
@@ -84,7 +83,7 @@ const LandingPage = () => {
               </PhotoPlaceholder>
             </>
           ) : (
-            typeof products === "object" &&
+            products &&
             products.map((product) => (
               <PopularItem
                 key={product._id}
