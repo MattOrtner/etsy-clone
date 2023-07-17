@@ -2,7 +2,7 @@ import { useState, useReducer } from "react";
 import axios from "axios";
 import { NavLink, Outlet } from "react-router-dom";
 import styled from "styled-components";
-import UserData from "./data/user-data";
+import UserDataStructure from "./data/user-data";
 
 import logoIcon from "./assets/etsy_logo.svg";
 import magnifyingGlassIcon from "./assets/magnifying_glass.svg";
@@ -16,11 +16,12 @@ import { reducer } from "./data/reducer";
 
 function App() {
   const [showSignInModal, setShowSignInModal] = useState(false);
-  const [user, dispatch] = useReducer(reducer, UserData);
+  const [user, dispatch] = useReducer(reducer, UserDataStructure);
 
   const toggleSignInModal = () => {
     setShowSignInModal((show) => !show);
   };
+
   const handleSignIn = async (emailAndPass) => {
     try {
       const result = await axios.post(
@@ -53,7 +54,11 @@ function App() {
                   styles={{ margin: ".25rem" }}
                 />
               </Link>
-              <UserProfileDropDown name={user.name} dispatch={dispatch} />
+              <UserProfileDropDown
+                name={user.name}
+                email={user.email}
+                dispatch={dispatch}
+              />
             </>
           ) : (
             <>

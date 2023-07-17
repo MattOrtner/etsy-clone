@@ -10,13 +10,20 @@ import tagSVG from "../../assets/signed-in/tag-outline.svg";
 import triangleSVG from "../../assets/signed-in/triangle-small-down.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 
-const UserProfileDropDown = ({ name, dispatch }) => {
+const UserProfileDropDown = ({ name, email, dispatch }) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  const handleSignOut = (e) => {
-    e.preventDefault();
-    // axios request to api/users/sign-out passing email
 
+  const handleSignOut = async () => {
+    try {
+      const isConfirmation = await axios.put(
+        `${process.env.REACT_APP_SERVER_URL}/api/users/sign-out`,
+        { email: email }
+      );
+      console.log("isConfirmation", isConfirmation);
+    } catch (error) {
+      console.error(error, "error");
+    }
     navigate("/");
     dispatch({ type: "sign-out" });
   };

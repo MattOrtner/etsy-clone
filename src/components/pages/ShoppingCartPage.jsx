@@ -14,7 +14,6 @@ const ShoppingCartPage = () => {
   const [orderTotal, setCartTotal] = useState();
 
   useEffect(() => {
-    const shoppingCart = user.shoppingCart;
     const sum = user.shoppingCart.reduce(
       (acc, item) => acc + parseInt(item.price) * item.quantity,
       0
