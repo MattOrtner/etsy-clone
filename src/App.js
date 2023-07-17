@@ -21,7 +21,6 @@ function App() {
   const toggleSignInModal = () => {
     setShowSignInModal((show) => !show);
   };
-
   const handleSignIn = async (emailAndPass) => {
     try {
       const result = await axios.post(
