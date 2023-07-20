@@ -15,13 +15,13 @@ const UserProfileDropDown = ({ name, email, dispatch }) => {
   const navigate = useNavigate();
 
   const handleSignOut = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const isConfirmation = await axios.put(
+      const isSignedOut = await axios.put(
         `${process.env.REACT_APP_SERVER_URL}/api/users/sign-out`,
         { email: email }
       );
-      console.log("isConfirmation", isConfirmation);
+      console.log("isSignedOut", isSignedOut);
     } catch (error) {
       console.error(error, "error");
     }
