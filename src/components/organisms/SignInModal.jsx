@@ -22,11 +22,15 @@ const SignInModal = ({ onClose, show, dispatch }) => {
 
   const handleSignIn = async () => {
     try {
-      const result = await axios.post(
+      const { data } = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/users/sign-in`,
         emailAndPass
       );
-      dispatch({ type: "sign-in", payload: result.data });
+      if (data.noMatch) {
+        console.log("data.noMatch", data.noMatch);
+      } else {
+        dispatch({ type: "sign-in", payload: data });
+      }
     } catch (error) {
       console.error(error, "client: login error");
     }
