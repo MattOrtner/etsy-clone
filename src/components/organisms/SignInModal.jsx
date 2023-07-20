@@ -1,12 +1,15 @@
 import { useState } from "react";
+import axios from "axios";
 
 import styled from "styled-components";
 import SocialLoginButton from "../atoms/SocialLoginButton";
+import RegistrationForm from "./RegistrationForm";
 
-const SignInModal = ({ handleSignIn, onClose, show }) => {
+const SignInModal = ({ onClose, show, dispatch }) => {
+  const [isRegistering, setIsRegistering] = useState(false);
   const [emailAndPass, setEmailAndPass] = useState({
-    email: "anotherAwesomeGuy@cool.com",
-    password: "anotherReallyAwesome",
+    email: "",
+    password: "",
   });
 
   if (!show) {
@@ -17,115 +20,145 @@ const SignInModal = ({ handleSignIn, onClose, show }) => {
     setEmailAndPass({ ...emailAndPass, [e.target.name]: e.target.value });
   };
 
+  const handleSignIn = async () => {
+    try {
+      const result = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/api/users/sign-in`,
+        emailAndPass
+      );
+      dispatch({ type: "sign-in", payload: result.data });
+    } catch (error) {
+      console.error(error, "client: login error");
+    }
+  };
   return (
     <ModalContainer onClick={onClose}>
       <ModalContentContainer onClick={(e) => e.stopPropagation()}>
-        <RegisterContainer>
-          <h2 style={{ color: "#222" }}>Sign in</h2>
-          <div style={{ fontSize: 0, width: "46%" }}>spacer</div>
-          <RegisterButton>Register</RegisterButton>
-        </RegisterContainer>
-        <InputContainer>
-          <label
-            style={{ fontWeight: 500, color: "#222222", paddingBottom: "5px" }}
-            htmlFor="email"
-          >
-            Email address
-          </label>
-          <Input
-            type="email"
-            name="email"
-            id="email"
-            value={emailAndPass.email}
-            onChange={handleInputs}
-            required
+        {isRegistering ? (
+          <RegistrationForm
+            dispatch={dispatch}
+            setIsRegistering={setIsRegistering}
           />
-        </InputContainer>
-        <InputContainer>
-          <label
-            style={{ fontWeight: 500, color: "#222222", paddingBottom: "5px" }}
-            htmlFor="password"
-          >
-            Password
-          </label>
-          <Input
-            type="password"
-            name="password"
-            id="password"
-            value={emailAndPass.password}
-            onChange={handleInputs}
-            required
-          />
-        </InputContainer>
-        <EngageContainer>
-          <CheckContainer>
-            <input
+        ) : (
+          <>
+            <RegisterContainer>
+              <h2 style={{ color: "#222" }}>Sign in</h2>
+              <div style={{ fontSize: 0, width: "46%" }}>spacer</div>
+              <RegisterButton onClick={() => setIsRegistering((curr) => !curr)}>
+                Register
+              </RegisterButton>
+            </RegisterContainer>
+            <InputContainer>
+              <label
+                style={{
+                  fontWeight: 500,
+                  color: "#222222",
+                  paddingBottom: "5px",
+                }}
+                htmlFor="email"
+              >
+                Email address
+              </label>
+              <Input
+                type="email"
+                name="email"
+                id="email"
+                value={emailAndPass.email}
+                onChange={handleInputs}
+                required
+              />
+            </InputContainer>
+            <InputContainer>
+              <label
+                style={{
+                  fontWeight: 500,
+                  color: "#222222",
+                  paddingBottom: "5px",
+                }}
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <Input
+                type="password"
+                name="password"
+                id="password"
+                value={emailAndPass.password}
+                onChange={handleInputs}
+                required
+              />
+            </InputContainer>
+            <EngageContainer>
+              <CheckContainer>
+                <input
+                  style={{
+                    accentColor: "black",
+                    height: 30,
+                    width: 23,
+                    border: "1px solid black",
+                    cursor: "pointer",
+                  }}
+                  type="checkbox"
+                  name="staysigned"
+                  id=""
+                />
+                <label style={{ fontSize: 18 }} htmlFor="staysigned">
+                  Stay signed in
+                </label>
+              </CheckContainer>
+              <u style={{ cursor: "pointer" }}>Forgot your password?</u>
+            </EngageContainer>
+            <SignInButton onClick={() => handleSignIn(emailAndPass)}>
+              Sign in
+            </SignInButton>
+            <div
               style={{
-                accentColor: "black",
-                height: 30,
-                width: 23,
-                border: "1px solid black",
-                cursor: "pointer",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
               }}
-              type="checkbox"
-              name="staysigned"
-              id=""
+            >
+              <u style={{ padding: "15px 0px", color: "#595959" }}>
+                Trouble signing in?
+              </u>
+              <div style={{ zIndex: 3, padding: "15px 0px", color: "#595959" }}>
+                OR
+              </div>
+            </div>
+            <SocialLoginButton
+              name="Google"
+              border={"black"}
+              color={"black"}
+              logo="orange"
             />
-            <label style={{ fontSize: 18 }} htmlFor="staysigned">
-              Stay signed in
-            </label>
-          </CheckContainer>
-          <u style={{ cursor: "pointer" }}>Forgot your password?</u>
-        </EngageContainer>
-        <SignInButton onClick={() => handleSignIn(emailAndPass)}>
-          Sign in
-        </SignInButton>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
-          <u style={{ padding: "15px 0px", color: "#595959" }}>
-            Trouble signing in?
-          </u>
-          <div style={{ zIndex: 3, padding: "15px 0px", color: "#595959" }}>
-            OR
-          </div>
-        </div>
-        <SocialLoginButton
-          name="Google"
-          border={"black"}
-          color={"black"}
-          logo="orange"
-        />
-        <SocialLoginButton
-          name="Facebook"
-          border={"black"}
-          color={"black"}
-          logo="blue"
-        />
-        <SocialLoginButton
-          name="Apple"
-          border={"black"}
-          color={"black"}
-          logo="gray"
-        />
-        <p
-          style={{
-            color: "#595959",
-            fontSize: 18,
-            margin: 18,
-            fontFamily: "Graphik Webfont",
-          }}
-        >
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint
-          blanditiis temporibus error rem quis architecto ullam voluptatum
-          voluptatibus, provident, omnis ipsum. Sed sequi hic nihil nemo quasi
-          quisquam praesentium ratione.
-        </p>
+            <SocialLoginButton
+              name="Facebook"
+              border={"black"}
+              color={"black"}
+              logo="blue"
+            />
+            <SocialLoginButton
+              name="Apple"
+              border={"black"}
+              color={"black"}
+              logo="gray"
+            />
+            <p
+              style={{
+                color: "#595959",
+                fontSize: 18,
+                margin: 18,
+                fontFamily: "Graphik Webfont",
+              }}
+            >
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint
+              blanditiis temporibus error rem quis architecto ullam voluptatum
+              voluptatibus, provident, omnis ipsum. Sed sequi hic nihil nemo
+              quasi quisquam praesentium ratione.
+            </p>
+          </>
+        )}
       </ModalContentContainer>
       <CloseButtonContainer>
         <CloseButton>X</CloseButton>
