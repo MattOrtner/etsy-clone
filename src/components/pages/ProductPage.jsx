@@ -36,12 +36,21 @@ const ProductPage = () => {
   };
 
   useEffect(() => {
-    const newId = id.substring(1);
-    axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/api/products/${newId}`)
-      .then((res) => setProductData(res.data))
-      .catch((err) => setProductData(MULTIPLE_SINGLE_DUMMY_PRODUCTS[newId]));
-  }, []);
+    (async () => {
+      try {
+        const newId = id.substring(1);
+        const { data: response } = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/products/${newId}`
+        );
+        const configedImages = response.images.map((imgString) => {
+          return { original: imgString, thumbnail: imgString };
+        });
+        setProductData({ ...response, images: configedImages });
+      } catch (err) {
+        console.error(err, "error");
+      }
+    })();
+  }, [id]);
 
   return (
     <PageContainer>
@@ -50,7 +59,10 @@ const ProductPage = () => {
         show={justAddedCartShow}
         productQuantity={productQuantity}
       />
-      <LeftProductPageContainer productName={productData.product_name} />
+      <LeftProductPageContainer
+        productName={productData.product_name}
+        images={productData.images}
+      />
       <RightContainer>
         <TopRight>
           <ProductInfo>
