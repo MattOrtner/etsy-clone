@@ -13,9 +13,9 @@ export default SectionTitle;
 
 const Container = styled.div`
   width: 100%;
-  padding-left: 40px;
 `;
 
-const Title = styled.h2`
-  font-weight: 500;
+const Title = styled.h1`
+  padding-left: 7rem;
+  font-size: 1.5rem;
 `;

@@ -44,7 +44,7 @@ const LandingPage = () => {
       </GreetingContainer>
       <PopularContainer>
         <SectionTitleContainer>
-          <SectionTitle title={"Recently viewed & more"} />
+          <SectionTitle title={"Todays Popular Buys"} />
         </SectionTitleContainer>
         <SquarePhotoList>
           {isLoading ? (
