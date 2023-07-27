@@ -60,7 +60,9 @@ const CreateListing = () => {
     price,
     description,
     "dimensions",
-    dimensions
+    dimensions,
+    "user.id",
+    user.id
   );
   const handleSubmit = () => {
     if (
@@ -88,7 +90,7 @@ const CreateListing = () => {
         product_type: productType,
         about_details: aboutDetails,
         images: imageStrings,
-        store_id: user.store._id,
+        seller_id: user.id,
       };
 
       axios
@@ -97,7 +99,8 @@ const CreateListing = () => {
           createdProduct
         )
         .then((res) => {
-          console.log(res.status);
+          console.log("res.status", res.status);
+          console.log("res", res);
         })
         .catch((error) => {
           console.error(error, "error");
