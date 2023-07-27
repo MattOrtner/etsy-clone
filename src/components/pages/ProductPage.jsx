@@ -45,9 +45,13 @@ const ProductPage = () => {
         const configedImages = response.images.map((imgString) => {
           return { original: imgString, thumbnail: imgString };
         });
-        setProductData({ ...response, images: configedImages });
+        if (response.status) {
+          setProductData(MULTIPLE_SINGLE_DUMMY_PRODUCTS[id.substring(1)]);
+        } else {
+          setProductData({ ...response, images: configedImages });
+        }
       } catch (err) {
-        console.error(err, "error");
+        setProductData({ ...MULTIPLE_SINGLE_DUMMY_PRODUCTS[id.substring(1)] });
       }
     })();
   }, [id]);
