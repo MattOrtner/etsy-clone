@@ -31,7 +31,6 @@ const LandingPage = () => {
       }
     })();
   }, []);
-  console.log("products", products);
 
   return (
     <OutletContainer>

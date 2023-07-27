@@ -64,6 +64,11 @@ export function reducer(state, action) {
         shoppingCart: [],
       };
       return { ...emptyState };
+    case "add-product":
+      return {
+        ...state,
+        full_inventory: [...state.full_inventory, action.payload],
+      };
     default:
       break;
   }
