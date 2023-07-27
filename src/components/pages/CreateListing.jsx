@@ -4,6 +4,7 @@ import styled from "styled-components";
 import CreateProductPhotoSection from "../organisms/CreateProductPhotoSection";
 import CreateProductListingSection from "../molecules/CreateProductListingSection";
 import CreateProductPriceInventory from "../molecules/CreateProductPriceInventory";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import {
   testPhoto,
   testProductType,
@@ -15,10 +16,10 @@ import {
   testQuantity,
   testLWH,
 } from "../../new-product-tests/tests";
-import { useOutletContext } from "react-router-dom";
 
 const CreateListing = () => {
-  const [user, _] = useOutletContext();
+  const [user, dispatch] = useOutletContext();
+  const navigate = useNavigate();
 
   const [images, setImages] = useState([]);
   const [productName, setProductName] = useState("");
@@ -39,31 +40,6 @@ const CreateListing = () => {
     "",
   ]);
 
-  console.log(
-    "images",
-    images,
-    "productName",
-    productName,
-    "renewalOption",
-    renewalOption,
-    "productType",
-    productType,
-    "aboutDetails",
-    aboutDetails,
-    "description",
-    description,
-    "price",
-    price,
-    description,
-    "quantity",
-    quantity,
-    price,
-    description,
-    "dimensions",
-    dimensions,
-    "user.id",
-    user.id
-  );
   const handleSubmit = () => {
     if (
       testPhoto(images) &&
@@ -99,15 +75,15 @@ const CreateListing = () => {
           createdProduct
         )
         .then((res) => {
-          console.log("res.status", res.status);
-          console.log("res", res);
+          dispatch({ type: "add-product", payload: res.data });
+          navigate("/user-profile");
         })
         .catch((error) => {
           console.error(error, "error");
           console.log(error, "log");
         });
     } else {
-      console.log("tests failed good luck in your next life");
+      return console.log("One of the fields ...  wasn't filled in correctly");
     }
   };
 
