@@ -1,9 +1,12 @@
 import { Link, useOutletContext } from "react-router-dom";
+import { useState } from "react";
 import styled from "styled-components";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 
-const UserProfile = () => {
+const UserProfilePage = () => {
   const [user, _] = useOutletContext();
+  const [inventory, setInventory] = useState((user.fullInventory = []));
+  console.log("user", user);
 
   return (
     <ScreenContainer>
@@ -26,24 +29,14 @@ const UserProfile = () => {
               <u style={{ fontSize: "1.1rem", fontWeight: 300 }}>About</u>
             </div>
           </div>
-          <Link
-            to="/create-listing"
-            style={{ textDecoration: "none", color: "inherit" }}
-          >
-            <PhotoPlaceholder
-              height={"3rem"}
-              width={"3rem"}
-              backgroundColor={"lightblue"}
-              borderRadius={".5rem"}
-              border={true}
-            >
-              +
-            </PhotoPlaceholder>
-          </Link>
         </ProfileHeader>
         <div style={{ display: "flex", gap: 5 }}>
           <div>
-            <div>stnah3th3r5z513t234d</div>
+            {user.hasOwnProperty("id") ? (
+              <div>nice</div>
+            ) : (
+              <div>{user._id}</div>
+            )}
             <div>
               <u>0 Sales</u>
             </div>
@@ -57,6 +50,34 @@ const UserProfile = () => {
         </div>
       </TopContainer>
       <Content>
+        <div style={{ width: "100%" }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              margin: "10rem 0rem",
+              gap: 10,
+            }}
+          >
+            <h1 style={{ fontWeight: 400, fontFamily: "Georgia" }}>
+              {user.storeName}
+            </h1>
+            <Link
+              to="/create-listing"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <PhotoPlaceholder
+                height={"4rem"}
+                width={"4rem"}
+                backgroundColor={"lightblue"}
+                borderRadius={"1rem"}
+                border={true}
+              >
+                +
+              </PhotoPlaceholder>
+            </Link>
+          </div>
+        </div>
         {user.favoriteProducts.length > 0 ? (
           <>
             <h2 style={{ fontWeight: 400, fontFamily: "Georgia" }}>
@@ -86,7 +107,7 @@ const UserProfile = () => {
     </ScreenContainer>
   );
 };
-export default UserProfile;
+export default UserProfilePage;
 
 const CenterPiece = styled.div`
   text-align: center;
@@ -123,5 +144,4 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 20rem;
 `;
