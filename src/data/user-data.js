@@ -1,8 +1,9 @@
 const UserDataStructure = {
-  name: "User Data Person",
+  name: "User Placeholder",
   isSignedIn: false,
   favoriteProducts: [],
   shoppingCart: [],
+  storeName: "Store Name Placeholder",
   _id: "1234789",
 };
 

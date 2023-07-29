@@ -10,7 +10,7 @@ import LandingPage from "./components/pages/LandingPage";
 import ProductPage from "./components/pages/ProductPage";
 import ProductListings from "./components/pages/ProductsListing";
 import ShoppingCartPage from "./components/pages/ShoppingCartPage";
-import UserProfile from "./components/pages/UserProfile";
+import UserProfilePage from "./components/pages/UserProfilePage";
 import CreateListing from "./components/pages/CreateListing";
 import FavoritesPage from "./components/pages/FavoritesPage";
 import ScrollToTop from "./ScrollToTop";
@@ -33,7 +33,7 @@ root.render(
             <Route path="/cart" element={<ShoppingCartPage />} />
           </Route>
           <Route path="/user-profile" element={<WrapperComp />}>
-            <Route path="/user-profile" element={<UserProfile />} />
+            <Route path="/user-profile" element={<UserProfilePage />} />
           </Route>
           <Route
             path="/purchases-reviews"
