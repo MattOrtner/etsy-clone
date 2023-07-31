@@ -67,7 +67,12 @@ export function reducer(state, action) {
     case "add-product":
       return {
         ...state,
-        full_inventory: [...state.full_inventory, action.payload],
+        fullItemInventory: [...state.fullItemInventory, action.payload],
+      };
+    case "fetch-inventory-data":
+      return {
+        ...state,
+        fullItemInventory: [...action.payload],
       };
     default:
       break;
