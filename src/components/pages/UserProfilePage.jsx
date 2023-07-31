@@ -153,6 +153,7 @@ const UserProfilePage = () => {
   );
 };
 export default UserProfilePage;
+
 const InventoryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
