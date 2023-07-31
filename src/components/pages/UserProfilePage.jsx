@@ -5,17 +5,19 @@ import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 import axios from "axios";
 
 const UserProfilePage = () => {
-  const [user, _] = useOutletContext();
-  const [inventory, setInventory] = useState((user.fullItemInventory = []));
-
+  const [user, dispatch] = useOutletContext();
+  const [isLoading, setIsLoading] = useState(false);
+  
   useEffect(() => {
     (async () => {
       try {
         if (user.inventory) {
+          setIsLoading(true);
           const { data: response } = await axios.get(
             `${process.env.REACT_APP_SERVER_URL}/api/users/${user.id}/inventory`
           );
-          setInventory(response);
+          dispatch({ type: "fetch-inventory-data", payload: response });
+          setIsLoading(false);
         }
       } catch (err) {
         console.error(err, "err");
@@ -89,27 +91,33 @@ const UserProfilePage = () => {
             </Link>
           </div>
         </div>
-        <InventoryContainer>
-          {inventory &&
-            inventory.map((product) => (
-              <ProductContainer key={product.id}>
-                <img
-                  src={product.images[0]}
-                  alt={product.product_name}
-                  width={100}
-                  height={"auto"}
-                />
-                <div>{product.product_name}</div>
-                <div>${product.price}</div>
-                <div>{product.description}</div>
-                <DetailContainer>
-                  <div>quantity: {product.quantity}</div>
-                  <div>renewal: {product.renewal_option}</div>
-                  <div>type: {product.product_type}</div>
-                </DetailContainer>
-              </ProductContainer>
-            ))}
-        </InventoryContainer>
+        {isLoading ? (
+          <h1 style={{ fontWeight: 350, fontFamily: "Georgia" }}>
+            Fetching your inventory, one second please.
+          </h1>
+        ) : (
+          <InventoryContainer>
+            {user.fullItemInventory &&
+              user.fullItemInventory.map((product) => (
+                <ProductContainer key={product.id}>
+                  <img
+                    src={product.images[0]}
+                    alt={product.product_name}
+                    width={100}
+                    height={"auto"}
+                  />
+                  <div>{product.product_name}</div>
+                  <div>${product.price}</div>
+                  <div>{product.description}</div>
+                  <DetailContainer>
+                    <div>quantity: {product.quantity}</div>
+                    <div>renewal: {product.renewal_option}</div>
+                    <div>type: {product.product_type}</div>
+                  </DetailContainer>
+                </ProductContainer>
+              ))}
+          </InventoryContainer>
+        )}
         {user.inventory.length > 0 ? (
           <h2
             style={{
@@ -148,6 +156,8 @@ export default UserProfilePage;
 
 const InventoryContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
 `;
 const DetailContainer = styled.div`
@@ -165,7 +175,7 @@ const ProductContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
-  min-width: 225px;
+  max-width: 225px;
 `;
 
 const CenterPiece = styled.div`
