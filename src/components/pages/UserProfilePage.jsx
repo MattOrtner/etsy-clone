@@ -1,12 +1,27 @@
 import { Link, useOutletContext } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
+import axios from "axios";
 
 const UserProfilePage = () => {
   const [user, _] = useOutletContext();
-  const [inventory, setInventory] = useState((user.fullInventory = []));
-  console.log("user", user);
+  const [inventory, setInventory] = useState((user.fullItemInventory = []));
+
+  useEffect(() => {
+    (async () => {
+      try {
+        if (user.inventory) {
+          const { data: response } = await axios.get(
+            `${process.env.REACT_APP_SERVER_URL}/api/users/${user.id}/inventory`
+          );
+          setInventory(response);
+        }
+      } catch (err) {
+        console.error(err, "err");
+      }
+    })();
+  }, [user.id, user.inventory]);
 
   return (
     <ScreenContainer>
@@ -32,11 +47,7 @@ const UserProfilePage = () => {
         </ProfileHeader>
         <div style={{ display: "flex", gap: 5 }}>
           <div>
-            {user.hasOwnProperty("id") ? (
-              <div>nice</div>
-            ) : (
-              <div>{user._id}</div>
-            )}
+            {user.id ? <div>{user.id}</div> : <div>nice</div>}
             <div>
               <u>0 Sales</u>
             </div>
@@ -50,12 +61,12 @@ const UserProfilePage = () => {
         </div>
       </TopContainer>
       <Content>
-        <div style={{ width: "100%" }}>
+        <div>
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              margin: "10rem 0rem",
+              margin: "5rem 0rem",
               gap: 10,
             }}
           >
@@ -78,13 +89,38 @@ const UserProfilePage = () => {
             </Link>
           </div>
         </div>
-        {user.favoriteProducts.length > 0 ? (
-          <>
-            <h2 style={{ fontWeight: 400, fontFamily: "Georgia" }}>
-              Head over to your favorites page located next to the top of the
-              screen search bar.
-            </h2>
-          </>
+        <InventoryContainer>
+          {inventory &&
+            inventory.map((product) => (
+              <ProductContainer key={product.id}>
+                <img
+                  src={product.images[0]}
+                  alt={product.product_name}
+                  width={100}
+                  height={"auto"}
+                />
+                <div>{product.product_name}</div>
+                <div>${product.price}</div>
+                <div>{product.description}</div>
+                <DetailContainer>
+                  <div>quantity: {product.quantity}</div>
+                  <div>renewal: {product.renewal_option}</div>
+                  <div>type: {product.product_type}</div>
+                </DetailContainer>
+              </ProductContainer>
+            ))}
+        </InventoryContainer>
+        {user.inventory.length > 0 ? (
+          <h2
+            style={{
+              fontWeight: 400,
+              fontFamily: "Georgia",
+              margin: "6rem auto",
+            }}
+          >
+            Head over to your favorites page located next to the top of the
+            screen search bar.
+          </h2>
         ) : (
           <>
             <PhotoPlaceholder
@@ -96,9 +132,10 @@ const UserProfilePage = () => {
             <CenterPiece>
               <NothingMessage>Nothing to see here yet</NothingMessage>
               <p style={{ fontSize: "1.2rem", fontWeight: 300 }}>
-                Start favoriting items to compare, shop, and keep track of
-                things you love. <br />
-                or <br /> Click that + button to start sharing your items.
+                Add products to your store with the plus button located next to
+                your store name. <br />
+                or <br /> Favorite items to compare, shop, and keep track of
+                things you love.
               </p>
             </CenterPiece>
           </>
@@ -108,6 +145,28 @@ const UserProfilePage = () => {
   );
 };
 export default UserProfilePage;
+
+const InventoryContainer = styled.div`
+  display: flex;
+  gap: 0.75rem;
+`;
+const DetailContainer = styled.div`
+  margin-top: 1rem;
+  border: 1px solid gray;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+`;
+
+const ProductContainer = styled.div`
+  border: 2px solid gray;
+  padding: 10px;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  min-width: 225px;
+`;
 
 const CenterPiece = styled.div`
   text-align: center;
