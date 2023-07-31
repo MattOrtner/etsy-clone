@@ -7,7 +7,7 @@ import axios from "axios";
 const UserProfilePage = () => {
   const [user, dispatch] = useOutletContext();
   const [isLoading, setIsLoading] = useState(false);
-  console.log("user", user);
+  
   useEffect(() => {
     (async () => {
       try {
