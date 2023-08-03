@@ -74,6 +74,12 @@ export function reducer(state, action) {
         ...state,
         fullItemInventory: [...action.payload],
       };
+    case "remove-product":
+      const incomingId = action.payload;
+      const updatedInventory = state.fullItemInventory.filter(
+        (product) => product._id !== incomingId
+      );
+      return { ...state, fullItemInventory: updatedInventory };
     default:
       break;
   }

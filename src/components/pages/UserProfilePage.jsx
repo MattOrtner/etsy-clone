@@ -3,15 +3,16 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
 import axios from "axios";
+import InventoryItem from "../molecules/InventoryItem";
 
 const UserProfilePage = () => {
   const [user, dispatch] = useOutletContext();
   const [isLoading, setIsLoading] = useState(false);
-  console.log("user", user);
+
   useEffect(() => {
     (async () => {
       try {
-        if (user.inventory) {
+        if (user.inventory.length) {
           setIsLoading(true);
           const { data: response } = await axios.get(
             `${process.env.REACT_APP_SERVER_URL}/api/users/${user.id}/inventory`
@@ -19,6 +20,7 @@ const UserProfilePage = () => {
           dispatch({ type: "fetch-inventory-data", payload: response });
           setIsLoading(false);
         }
+        setIsLoading(false);
       } catch (err) {
         console.error(err, "err");
       }
@@ -68,7 +70,7 @@ const UserProfilePage = () => {
             style={{
               display: "flex",
               alignItems: "center",
-              margin: "5rem 0rem",
+              margin: "3rem 0rem",
               gap: 10,
             }}
           >
@@ -97,25 +99,20 @@ const UserProfilePage = () => {
           </h1>
         ) : (
           <InventoryContainer>
-            {user.fullItemInventory &&
-              user.fullItemInventory.map((product) => (
-                <ProductContainer key={product.id}>
-                  <img
-                    src={product.images[0]}
-                    alt={product.product_name}
-                    width={100}
-                    height={"auto"}
+            {user.fullItemInventory.length
+              ? user.fullItemInventory.map((product) => (
+                  <InventoryItem
+                    id={product._id}
+                    image={product.images[0]}
+                    name={product.name}
+                    price={product.price}
+                    description={product.description}
+                    quantity={product.quantity}
+                    type={product.product_type}
+                    renewal_option={product.renewal_option}
                   />
-                  <div>{product.product_name}</div>
-                  <div>${product.price}</div>
-                  <div>{product.description}</div>
-                  <DetailContainer>
-                    <div>quantity: {product.quantity}</div>
-                    <div>renewal: {product.renewal_option}</div>
-                    <div>type: {product.product_type}</div>
-                  </DetailContainer>
-                </ProductContainer>
-              ))}
+                ))
+              : ""}
           </InventoryContainer>
         )}
         {user.inventory.length > 0 ? (
@@ -153,33 +150,16 @@ const UserProfilePage = () => {
   );
 };
 export default UserProfilePage;
-
 const InventoryContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
 `;
-const DetailContainer = styled.div`
-  margin-top: 1rem;
-  border: 1px solid gray;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-`;
-
-const ProductContainer = styled.div`
-  border: 2px solid gray;
-  padding: 10px;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 5px;
-  max-width: 225px;
-`;
 
 const CenterPiece = styled.div`
   text-align: center;
+  margin: 1rem 0px;
   border-bottom: 1 solid black;
 `;
 const NothingMessage = styled.div`
