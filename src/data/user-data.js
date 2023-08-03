@@ -4,6 +4,7 @@ const UserDataStructure = {
   favoriteProducts: [],
   shoppingCart: [],
   storeName: "Store Name Placeholder",
+  fullItemInventory: [],
   _id: "1234789",
 };
 

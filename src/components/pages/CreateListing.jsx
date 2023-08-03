@@ -80,7 +80,6 @@ const CreateListing = () => {
         })
         .catch((error) => {
           console.error(error, "error");
-          console.log(error, "log");
         });
     } else {
       return console.log("One of the fields ...  wasn't filled in correctly");
