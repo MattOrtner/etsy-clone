@@ -157,30 +157,6 @@ const InventoryContainer = styled.div`
   gap: 0.75rem;
 `;
 
-const InventoryContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem;
-`;
-const DetailContainer = styled.div`
-  margin-top: 1rem;
-  border: 1px solid gray;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-`;
-
-const ProductContainer = styled.div`
-  border: 2px solid gray;
-  padding: 10px;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 5px;
-  max-width: 225px;
-`;
-
 const CenterPiece = styled.div`
   text-align: center;
   margin: 1rem 0px;
