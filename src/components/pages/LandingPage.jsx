@@ -9,6 +9,7 @@ import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
+const { REACT_APP_API_URL } = process.env;
 
 const LandingPage = () => {
   const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
@@ -17,17 +18,25 @@ const LandingPage = () => {
   );
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    // (async () => {
+    //   try {
+    //     const { data: response } = await axios.get(
+    //       `${process.env.REACT_APP_SERVER_URL}/api/products`
+    //     );
+    //     setProducts(response);
+    //     setIsLoading(false);
+    //   } catch (error) {
+    //     console.error(error);
+    //     setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
+    //     setIsLoading(false);
+    //   }
+    // })();
     (async () => {
       try {
-        const { data: response } = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/products`
-        );
-        setProducts(response);
-        setIsLoading(false);
+        const { data: response } = await axios.get(`${REACT_APP_API_URL}`);
+        console.log("response", response);
       } catch (error) {
-        console.error(error);
-        setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
-        setIsLoading(false);
+        console.error("error", error);
       }
     })();
   }, []);
