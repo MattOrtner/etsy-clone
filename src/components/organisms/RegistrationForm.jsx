@@ -1,4 +1,5 @@
 import { useState } from "react";
+import bcrypt from "bcryptjs";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -10,16 +11,18 @@ const RegistrationForm = ({ dispatch, setIsRegistering }) => {
   });
 
   const handleRegister = async () => {
+    const hash = bcrypt.hashSync(signUpData.password, 10);
     try {
       const { data: response } = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/users/sign-up`,
-        signUpData
+        { ...signUpData, password: hash }
       );
       dispatch({ type: "sign-in", payload: response });
     } catch (error) {
       console.error("error", error);
     }
   };
+
   const handleInputs = (e) => {
     e.preventDefault();
     setSignUpData({ ...signUpData, [e.target.name]: e.target.value });

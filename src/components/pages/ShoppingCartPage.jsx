@@ -38,6 +38,7 @@ const ShoppingCartPage = () => {
               {user.shoppingCart.length &&
                 user.shoppingCart.map((product, index) => (
                   <ShoppingCartItem
+                    key={product.id}
                     product={product}
                     index={index}
                     shoppingCart={user.shoppingCart}

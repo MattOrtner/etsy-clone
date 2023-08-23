@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-
+import bcrypt from "bcryptjs";
 import styled from "styled-components";
 import SocialLoginButton from "../atoms/SocialLoginButton";
 import RegistrationForm from "./RegistrationForm";
@@ -21,10 +21,12 @@ const SignInModal = ({ onClose, show, dispatch }) => {
   };
 
   const handleSignIn = async () => {
+    const hash = bcrypt.hashSync(emailAndPass.password, 10);
+
     try {
       const { data } = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/users/sign-in`,
-        emailAndPass
+        { email: emailAndPass.email, password: hash }
       );
       if (data.noMatch) {
         console.log("data.noMatch", data.noMatch);
@@ -188,19 +190,20 @@ const CheckContainer = styled.div`
 `;
 const SignInButton = styled.div`
   display: flex;
+  border-radius: 2rem;
   justify-content: center;
   align-items: center;
   background-color: black;
   color: white;
   height: 3rem;
-  border-radius: 2rem;
   font-size: 18px;
   font-weight: 600;
+  padding: 6px 0;
   cursor: pointer;
-  margin-top: 10px;
   &:hover {
-    transition: all 200ms ease-out;
+    transition: all 0.2s ease-out;
     transform: scale(1.03);
+    box-shadow: 0 0 11px #a4a4a4;
   }
 `;
 const Input = styled.input`
@@ -273,7 +276,8 @@ const ModalContentContainer = styled.form`
   flex-direction: column;
   padding: 15px;
   width: 30%;
-  height: 90%;
+  height: 900px;
+  max-height: 750px;
   background-color: #ffff;
   z-index: 5;
   max-width: 384px;
