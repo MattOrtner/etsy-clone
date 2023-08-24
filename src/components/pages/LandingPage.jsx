@@ -33,7 +33,9 @@ const LandingPage = () => {
     // })();
     (async () => {
       try {
-        const { data: response } = await axios.get(`${REACT_APP_API_URL}`);
+        const { data: response } = await axios.get(
+          `${REACT_APP_API_URL}/api/users`
+        );
         console.log("response", response);
       } catch (error) {
         console.error("error", error);
