@@ -18,7 +18,7 @@ const UserProfileDropDown = ({ name, email, dispatch }) => {
     e.preventDefault();
     try {
       const isSignedOut = await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/api/users/sign-out`,
+        `${process.env.REACT_APP_API_URL}/api/users/signInOut`,
         { email: email }
       );
       console.log("isSignedOut", isSignedOut);

@@ -16,32 +16,32 @@ const LandingPage = () => {
   const [greeting, setGreeting] = useState(
     "Discover fresh summer finds from creative sellers!"
   );
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    // (async () => {
-    //   try {
-    //     const { data: response } = await axios.get(
-    //       `${process.env.REACT_APP_SERVER_URL}/api/products`
-    //     );
-    //     setProducts(response);
-    //     setIsLoading(false);
-    //   } catch (error) {
-    //     console.error(error);
-    //     setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
-    //     setIsLoading(false);
-    //   }
-    // })();
-    (async () => {
-      try {
-        const { data: response } = await axios.get(
-          `${REACT_APP_API_URL}/api/users`
-        );
-        console.log("response", response);
-      } catch (error) {
-        console.error("error", error);
-      }
-    })();
-  }, []);
+  // const [isLoading, setIsLoading] = useState(true);
+  // useEffect(() => {
+  // (async () => {
+  //   try {
+  //     const { data: response } = await axios.get(
+  //       `${process.env.REACT_APP_SERVER_URL}/api/products`
+  //     );
+  //     setProducts(response);
+  //     setIsLoading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //     setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
+  //     setIsLoading(false);
+  //   }
+  // })();
+  //   (async () => {
+  //     try {
+  //       const { data: response } = await axios.get(
+  //         `${REACT_APP_API_URL}/api/users`
+  //       );
+  //       console.log("response", response);
+  //     } catch (error) {
+  //       console.error("error", error);
+  //     }
+  //   })();
+  // }, []);
 
   return (
     <OutletContainer>
@@ -56,8 +56,8 @@ const LandingPage = () => {
         <SectionTitleContainer>
           <SectionTitle title={"Todays Popular Buys"} />
         </SectionTitleContainer>
-        <SquarePhotoList>
-          {isLoading ? (
+        {/* <SquarePhotoList> */}
+        {/* {isLoading ? (
             <>
               <PhotoPlaceholder
                 height={"10rem"}
@@ -104,7 +104,7 @@ const LandingPage = () => {
               />
             ))
           )}
-        </SquarePhotoList>
+        </SquarePhotoList> */}
       </PopularContainer>
       <PersonalRecContainer>
         <PersonalizedGifts />
