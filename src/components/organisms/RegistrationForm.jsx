@@ -14,9 +14,10 @@ const RegistrationForm = ({ dispatch, setIsRegistering }) => {
     const hash = bcrypt.hashSync(signUpData.password, 10);
     try {
       const { data: response } = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/users/sign-up`,
+        `${process.env.REACT_APP_API_URL}api/users`,
         { ...signUpData, password: hash }
       );
+
       dispatch({ type: "sign-in", payload: response });
     } catch (error) {
       console.error("error", error);
