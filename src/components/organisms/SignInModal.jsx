@@ -24,9 +24,9 @@ const SignInModal = ({ onClose, show, dispatch }) => {
     const hash = bcrypt.hashSync(emailAndPass.password, 10);
 
     try {
-      const { data } = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/users/sign-in`,
-        { email: emailAndPass.email, password: hash }
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/users/signInOut`,
+        { email: emailAndPass.email, password: hash, isSigningIn: true }
       );
       if (data.noMatch) {
         console.log("data.noMatch", data.noMatch);
