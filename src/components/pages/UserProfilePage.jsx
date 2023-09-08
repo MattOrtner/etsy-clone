@@ -12,10 +12,10 @@ const UserProfilePage = () => {
   useEffect(() => {
     (async () => {
       try {
-        if (user.inventory.length) {
+        if (user.inventory.length > 0) {
           setIsLoading(true);
           const { data: response } = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/api/users/${user.id}/inventory`
+            `${process.env.REACT_APP_API_URL}/api/users/${user.id}/inventory`
           );
           dispatch({ type: "fetch-inventory-data", payload: response });
           setIsLoading(false);
