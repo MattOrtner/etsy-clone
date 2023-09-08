@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import bcrypt from "bcryptjs";
 import styled from "styled-components";
 import SocialLoginButton from "../atoms/SocialLoginButton";
 import RegistrationForm from "./RegistrationForm";
@@ -21,12 +20,10 @@ const SignInModal = ({ onClose, show, dispatch }) => {
   };
 
   const handleSignIn = async () => {
-    const hash = bcrypt.hashSync(emailAndPass.password, 10);
-
     try {
       const { data } = await axios.put(
         `${process.env.REACT_APP_API_URL}api/users/signInOut`,
-        { email: emailAndPass.email, password: hash, isSigningIn: true }
+        { ...emailAndPass, isSigningIn: true }
       );
       if (data.noMatch) {
         console.log("data.noMatch", data.noMatch);

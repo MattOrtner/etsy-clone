@@ -1,5 +1,4 @@
 import { useState } from "react";
-import bcrypt from "bcryptjs";
 import axios from "axios";
 import styled from "styled-components";
 
@@ -11,11 +10,10 @@ const RegistrationForm = ({ dispatch, setIsRegistering }) => {
   });
 
   const handleRegister = async () => {
-    const hash = bcrypt.hashSync(signUpData.password, 10);
     try {
       const { data: response } = await axios.post(
         `${process.env.REACT_APP_API_URL}api/users`,
-        { ...signUpData, password: hash }
+        { ...signUpData }
       );
 
       dispatch({ type: "sign-in", payload: response });
