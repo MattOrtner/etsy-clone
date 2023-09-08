@@ -20,6 +20,8 @@ const SignInModal = ({ onClose, show, dispatch }) => {
   };
 
   const handleSignIn = async () => {
+    const hash = bcrypt.hashSync(emailAndPass.password, 10);
+
     try {
       const { data } = await axios.put(
         `${process.env.REACT_APP_API_URL}api/users/signInOut`,
