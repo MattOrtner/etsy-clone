@@ -28,7 +28,7 @@ const SignInModal = ({ onClose, show, dispatch }) => {
       if (data.noMatch) {
         console.log("data.noMatch", data.noMatch);
       } else {
-        dispatch({ type: "sign-in", payload: data });
+        dispatch({ type: "sign-in", payload: data.user });
       }
     } catch (error) {
       console.error(error, "client: login error");

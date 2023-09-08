@@ -12,6 +12,9 @@ const UserProfilePage = () => {
   useEffect(() => {
     (async () => {
       try {
+        // CHECK !!!!
+        // THIS SHOULD BATCH REQUEST EACH INDIVIDUAL INVENTORY ID'S
+        // ALLOWING THEM TO MAKE CHANGES
         if (user.inventory.length > 0) {
           setIsLoading(true);
           const { data: response } = await axios.get(
@@ -99,8 +102,8 @@ const UserProfilePage = () => {
           </h1>
         ) : (
           <InventoryContainer>
-            {user.fullItemInventory.length
-              ? user.fullItemInventory.map((product) => (
+            {user.inventory.length > 0
+              ? user.inventory.map((product) => (
                   <InventoryItem
                     id={product._id}
                     image={product.images[0]}
