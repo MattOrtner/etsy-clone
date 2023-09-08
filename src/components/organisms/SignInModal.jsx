@@ -26,12 +26,7 @@ const SignInModal = ({ onClose, show, dispatch }) => {
     try {
       const { data } = await axios.put(
         `${process.env.REACT_APP_API_URL}/api/users/signInOut`,
-        { email: emailAndPass.email, password: hash, isSigningIn: true },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { email: emailAndPass.email, password: hash, isSigningIn: true }
       );
       if (data.noMatch) {
         console.log("data.noMatch", data.noMatch);
