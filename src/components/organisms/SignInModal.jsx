@@ -25,6 +25,7 @@ const SignInModal = ({ onClose, show, dispatch }) => {
         `${process.env.REACT_APP_API_URL}api/users/signInOut`,
         { ...emailAndPass, isSigningIn: true }
       );
+      console.log("data", data);
       if (data.noMatch) {
         console.log("data.noMatch", data.noMatch);
       } else {
