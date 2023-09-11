@@ -3,17 +3,17 @@ import { useOutletContext, useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import MULTIPLE_SINGLE_DUMMY_PRODUCTS from "../../data/multiple-dummie-products.js";
+import storeData from "../../data/store-data";
 
-import checkIcon from "../../assets/check.svg";
-import CustomStarRating from "../atoms/CustomStarRating";
-import StoreData from "../../data/store-data";
-import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import LeftProductPageContainer from "../organisms/LeftProductPageContainer";
 import JustAddedModal from "../organisms/JustAddedModal";
+import DropDownInfoContainer from "../molecules/DropDownInfoContainer";
 import QuantitySelectDropdown from "../molecules/QuantitySelectDropdown";
 import HeartIconContainer from "../atoms/HeartIconContainer";
+import CustomStarRating from "../atoms/CustomStarRating";
 import FavoriteHoverButton from "../atoms/FavoriteHoverButton.jsx";
 import PhotoPlaceholder from "../atoms/PhotoPlaceholder.jsx";
+import checkIcon from "../../assets/check.svg";
 
 const ProductPage = () => {
   const [_, dispatch] = useOutletContext();
@@ -39,16 +39,17 @@ const ProductPage = () => {
     (async () => {
       try {
         const newId = id.substring(1);
-        const { data: response } = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/products/${newId}`
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/products/${newId}`
         );
-        const configedImages = response.images.map((imgString) => {
+        console.log("ProductsPage - ProductInfo", data);
+        const configedImages = data.images.map((imgString) => {
           return { original: imgString, thumbnail: imgString };
         });
-        if (response.status) {
+        if (!data) {
           setProductData(MULTIPLE_SINGLE_DUMMY_PRODUCTS[id.substring(1)]);
         } else {
-          setProductData({ ...response, images: configedImages });
+          setProductData({ ...data, images: configedImages });
         }
       } catch (err) {
         setProductData({ ...MULTIPLE_SINGLE_DUMMY_PRODUCTS[id.substring(1)] });
@@ -64,7 +65,7 @@ const ProductPage = () => {
         productQuantity={productQuantity}
       />
       <LeftProductPageContainer
-        productName={productData.product_name}
+        productName={productData.productName}
         images={productData.images}
       />
       <RightContainer>
@@ -72,7 +73,7 @@ const ProductPage = () => {
           <ProductInfo>
             <CompanyInfoContainer>
               <CompanyInfoTop>
-                <CompanyName>NameOfCompany</CompanyName>
+                <CompanyName>{storeData.storeName}</CompanyName>
                 <FollowContainer>
                   <HeartIconContainer
                     src={"outline"}
@@ -82,16 +83,16 @@ const ProductPage = () => {
                 </FollowContainer>
               </CompanyInfoTop>
               <SellerRatings>
-                {StoreData.isStarSeller && <StarSeller>Star Seller</StarSeller>}
+                {storeData.isStarSeller && <StarSeller>Star Seller</StarSeller>}
                 <Spacer>|</Spacer>
-                <SellerRatings>{StoreData.totalStoreSales} sales</SellerRatings>
+                <SellerRatings>{storeData.totalStoreSales} sales</SellerRatings>
                 <Spacer>|</Spacer>
                 <StarIconsContainer>
                   <CustomStarRating name="store rating" value={4} />
                 </StarIconsContainer>
               </SellerRatings>
             </CompanyInfoContainer>
-            <ProductName>{productData.product_name}</ProductName>
+            <ProductName>{productData.productName}</ProductName>
             <PriceContainer>
               <ProductPrice>${productData.price}.00</ProductPrice>
               <InStockContainer>
@@ -117,8 +118,8 @@ const ProductPage = () => {
               <AddButton
                 onClick={() =>
                   handleAddToCart({
-                    id: productData._id,
-                    product_name: productData.product_name,
+                    id: productData.id,
+                    productName: productData.productName,
                     description: productData.description,
                     quantity: productQuantity,
                     price: productData.price,
@@ -156,7 +157,7 @@ const ProductPage = () => {
                 Over 20 people have this in their carts right now.
               </div>
             </Messages>
-            {StoreData.isStarSeller && (
+            {storeData.isStarSeller && (
               <Messages>
                 <PhotoPlaceholder
                   width={"60px"}
@@ -171,7 +172,7 @@ const ProductPage = () => {
                 </div>
               </Messages>
             )}
-            {StoreData.isGiftWrapping && (
+            {storeData.isGiftWrapping && (
               <Messages>
                 <PhotoPlaceholder
                   width={"60px"}
@@ -192,17 +193,17 @@ const ProductPage = () => {
               <p>{productData.description}</p>
             </DropDownInfoContainer>
           )}
-          {StoreData.acceptsReturns ? (
+          {storeData.acceptsReturns ? (
             <DropDownInfoContainer title="Shipping and return policies">
-              <p>{StoreData.trueMessage}</p>
+              <p>{storeData.acceptReturnMessage}</p>
             </DropDownInfoContainer>
           ) : (
             <DropDownInfoContainer title="Shipping and return policies">
-              <p>{StoreData.falseMessage}</p>
+              <p>{storeData.denyReturnMessage}</p>
             </DropDownInfoContainer>
           )}
           <DropDownInfoContainer title="Meet your sellers">
-            <p>{StoreData.meetYourSellers}</p>
+            <p>{storeData.storeBio}</p>
           </DropDownInfoContainer>
         </BottomRight>
       </RightContainer>
