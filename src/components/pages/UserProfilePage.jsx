@@ -7,21 +7,20 @@ import InventoryItem from "../molecules/InventoryItem";
 
 const UserProfilePage = () => {
   const [user, dispatch] = useOutletContext();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       try {
-        // CHECK !!!!
-        // THIS SHOULD BATCH REQUEST EACH INDIVIDUAL INVENTORY ID'S
-        // ALLOWING THEM TO MAKE CHANGES
         if (user.inventory.length > 0) {
           setIsLoading(true);
-          const { data: response } = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/api/users/${user.id}/inventory`
+          const {
+            data: { products },
+          } = await axios.get(
+            `${process.env.REACT_APP_API_URL}/api/products/user/inventory/${user.id}`
           );
-          dispatch({ type: "fetch-inventory-data", payload: response });
-          setIsLoading(false);
+
+          dispatch({ type: "fetch-inventory-data", payload: products });
         }
         setIsLoading(false);
       } catch (err) {
@@ -56,7 +55,7 @@ const UserProfilePage = () => {
           <div>
             {user.id ? <div>{user.id}</div> : <div>nice</div>}
             <div>
-              <u>0 Sales</u>
+              <u>{user.storeData ? user.storeData.starRating : ""}</u>
             </div>
           </div>
           <PhotoPlaceholder
@@ -67,7 +66,7 @@ const UserProfilePage = () => {
           />
         </div>
       </TopContainer>
-      <Content>
+      <Body>
         <div>
           <div
             style={{
@@ -97,40 +96,44 @@ const UserProfilePage = () => {
           </div>
         </div>
         {isLoading ? (
-          <h1 style={{ fontWeight: 350, fontFamily: "Georgia" }}>
-            Fetching your inventory, one second please.
+          <h1
+            style={{
+              fontWeight: 350,
+              fontFamily: "Georgia",
+              padding: "2rem 4rem",
+              border: "1px solid gray",
+              borderRadius: "1.75rem",
+            }}
+          >
+            Fetching inventory, one moment...
           </h1>
         ) : (
           <InventoryContainer>
             {user.inventory.length > 0
-              ? user.inventory.map((product) => (
-                  <InventoryItem
-                    id={product._id}
-                    image={product.images[0]}
-                    name={product.name}
-                    price={product.price}
-                    description={product.description}
-                    quantity={product.quantity}
-                    type={product.product_type}
-                    renewal_option={product.renewal_option}
-                  />
-                ))
+              ? user.fullItemInventory
+                ? user.fullItemInventory.map((product) => (
+                    <InventoryItem
+                      id={product.id}
+                      key={product.id}
+                      images={
+                        product.images
+                          ? product.images
+                          : "No Images for this product"
+                      }
+                      name={product.name}
+                      price={product.price}
+                      description={product.description}
+                      quantity={product.quantity}
+                      type={product.productType}
+                      renewalOption={product.renewalOption}
+                    />
+                  ))
+                : ""
               : ""}
           </InventoryContainer>
         )}
-        {user.inventory.length > 0 ? (
-          <h2
-            style={{
-              fontWeight: 400,
-              fontFamily: "Georgia",
-              margin: "6rem auto",
-            }}
-          >
-            Head over to your favorites page located next to the top of the
-            screen search bar.
-          </h2>
-        ) : (
-          <>
+        {user.inventory.length < 0 && (
+          <div>
             <PhotoPlaceholder
               height={"9rem"}
               width={"9rem"}
@@ -146,9 +149,9 @@ const UserProfilePage = () => {
                 things you love.
               </p>
             </CenterPiece>
-          </>
+          </div>
         )}
-      </Content>
+      </Body>
     </ScreenContainer>
   );
 };
@@ -158,6 +161,7 @@ const InventoryContainer = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.75rem;
+  padding-bottom: 2rem;
 `;
 
 const CenterPiece = styled.div`
@@ -191,7 +195,7 @@ const TopContainer = styled.div`
   align-items: center;
   margin: 0 20px;
 `;
-const Content = styled.div`
+const Body = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
