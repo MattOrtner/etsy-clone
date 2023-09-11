@@ -24,7 +24,6 @@ const LandingPage = () => {
         );
         setProducts(data);
         setIsLoading(false);
-        console.log("data -> GET/products ", data);
       } catch (error) {
         console.error(error);
         setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);

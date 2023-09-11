@@ -42,7 +42,7 @@ const ProductPage = () => {
         const { data } = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/products/${newId}`
         );
-        console.log("ProductsPage - ProductInfo", data);
+
         const configedImages = data.images.map((imgString) => {
           return { original: imgString, thumbnail: imgString };
         });
