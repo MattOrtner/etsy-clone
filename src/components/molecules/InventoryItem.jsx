@@ -5,42 +5,26 @@ import { useOutletContext } from "react-router-dom";
 
 const InventoryItem = ({
   id,
-  image,
+  images,
   name,
   price,
   description,
   quantity,
   type,
-  renewal_option,
+  renewalOption,
 }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [user, dispatch] = useOutletContext();
 
-  const removeProductId = (productID) => {
-    const inventory = [];
-    for (const id of user.inventory) {
-      if (id !== productID) {
-        inventory.push(id);
-      }
-    }
-    return inventory;
-  };
-  const confirmDelete = async (productID) => {
+  const confirmDelete = async (productId) => {
     try {
       const { data: productResponse } = await axios.delete(
-        `${process.env.REACT_APP_SERVER_URL}/api/products/${productID}`
+        `${process.env.REACT_APP_API_URL}api/products/delete-product`,
+        { data: { productId: productId, userId: user.id } }
       );
-      console.log("productResponse", productResponse);
-      const newInventory = removeProductId(productID);
 
-      const { data: userResponse } = await axios.put(
-        `${process.env.REACT_APP_SERVER_URL}/api/users/${user.id}`,
-        { inventory: newInventory }
-      );
-      console.log("userResponse", userResponse);
-
-      if (productResponse && userResponse) {
-        dispatch({ type: "remove-product", payload: productID });
+      if (productResponse) {
+        dispatch({ type: "remove-product", payload: productId });
       }
     } catch (error) {
       console.error(error, "error");
@@ -55,7 +39,7 @@ const InventoryItem = ({
   return (
     <ProductContainer key={id}>
       <div style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <img src={image} alt={name} width={100} height={"auto"} />
+        <img src={images[0]} alt={name} width={100} height={"auto"} />
         {isDeleting ? (
           <div style={{ display: "flex", flexDirection: "column", gap: 3 }}>
             <button style={{}} onClick={cancelleRemove}>
@@ -79,7 +63,7 @@ const InventoryItem = ({
       <div>{description}</div>
       <DetailContainer>
         <div>quantity: {quantity}</div>
-        <div>renewal: {renewal_option}</div>
+        <div>renewal: {renewalOption}</div>
         <div>type: {type}</div>
       </DetailContainer>
     </ProductContainer>
