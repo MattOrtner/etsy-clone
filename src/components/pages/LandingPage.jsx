@@ -8,40 +8,30 @@ import HighLightList from "../molecules/HighLightList";
 import SectionTitle from "../atoms/SectionTitle";
 import PopularItem from "../atoms/PopularItem";
 import PersonalizedGifts from "../organisms/PersonalizedGifts";
-import PhotoPlaceholder from "../atoms/PhotoPlaceholder";
-const { REACT_APP_API_URL } = process.env;
+import LoadingBlocks from "../molecules/LoadingBlocks";
 
 const LandingPage = () => {
   const [products, setProducts] = useState(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
   const [greeting, setGreeting] = useState(
-    "Discover fresh summer finds from creative sellers!"
+    "Discover our top Fall finds from creative sellers!"
   );
-  // const [isLoading, setIsLoading] = useState(true);
-  // useEffect(() => {
-  // (async () => {
-  //   try {
-  //     const { data: response } = await axios.get(
-  //       `${process.env.REACT_APP_SERVER_URL}/api/products`
-  //     );
-  //     setProducts(response);
-  //     setIsLoading(false);
-  //   } catch (error) {
-  //     console.error(error);
-  //     setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
-  //     setIsLoading(false);
-  //   }
-  // })();
-  //   (async () => {
-  //     try {
-  //       const { data: response } = await axios.get(
-  //         `${REACT_APP_API_URL}/api/users`
-  //       );
-  //       console.log("response", response);
-  //     } catch (error) {
-  //       console.error("error", error);
-  //     }
-  //   })();
-  // }, []);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/products`
+        );
+        setProducts(data);
+        setIsLoading(false);
+        console.log("data -> GET/products ", data);
+      } catch (error) {
+        console.error(error);
+        setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
+        setIsLoading(false);
+      }
+    })();
+  }, []);
 
   return (
     <OutletContainer>
@@ -56,55 +46,21 @@ const LandingPage = () => {
         <SectionTitleContainer>
           <SectionTitle title={"Todays Popular Buys"} />
         </SectionTitleContainer>
-        {/* <SquarePhotoList> */}
-        {/* {isLoading ? (
-            <>
-              <PhotoPlaceholder
-                height={"10rem"}
-                width={"15rem"}
-                borderRadius={"0.5rem"}
-                backgroundColor={"#f5D9E5"}
-              >
-                Loading
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                height={"10rem"}
-                width={"15rem"}
-                borderRadius={"0.5rem"}
-                backgroundColor={"#f5D9E5"}
-              >
-                Loading
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                height={"10rem"}
-                width={"15rem"}
-                borderRadius={"0.5rem"}
-                backgroundColor={"#f5D9E5"}
-              >
-                Loading
-              </PhotoPlaceholder>
-              <PhotoPlaceholder
-                height={"10rem"}
-                width={"15rem"}
-                borderRadius={"0.5rem"}
-                backgroundColor={"#f5D9E5"}
-              >
-                Loading
-              </PhotoPlaceholder>
-            </>
+        <SquarePhotoList>
+          {isLoading ? (
+            <LoadingBlocks />
           ) : (
-            typeof products === "object" &&
             products.length > 0 &&
             products.map((product) => (
               <PopularItem
-                key={product._id}
+                key={product.id}
                 price={product.price}
-                id={product._id}
+                id={product.id}
                 image={product.images ? product.images[0] : ""}
               />
             ))
           )}
-        </SquarePhotoList> */}
+        </SquarePhotoList>
       </PopularContainer>
       <PersonalRecContainer>
         <PersonalizedGifts />
