@@ -7,8 +7,8 @@ import RegistrationForm from "./RegistrationForm";
 const SignInModal = ({ onClose, show, dispatch }) => {
   const [isRegistering, setIsRegistering] = useState(false);
   const [emailAndPass, setEmailAndPass] = useState({
-    email: "",
-    password: "",
+    email: "aoeu@somewhere.com",
+    password: "aoeuaoeu",
   });
 
   if (!show) {

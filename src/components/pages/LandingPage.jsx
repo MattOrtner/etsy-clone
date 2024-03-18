@@ -24,7 +24,6 @@ const LandingPage = () => {
         );
         setProducts(data);
         setIsLoading(false);
-        console.log("data -> GET/products ", data);
       } catch (error) {
         console.error(error);
         setProducts(MULTIPLE_SINGLE_DUMMY_PRODUCTS);
@@ -53,6 +52,7 @@ const LandingPage = () => {
             products.length > 0 &&
             products.map((product) => (
               <PopularItem
+                name={product.name}
                 key={product.id}
                 price={product.price}
                 id={product.id}

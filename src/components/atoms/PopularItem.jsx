@@ -5,7 +5,7 @@ import { useState } from "react";
 import FavoriteHoverButton from "./FavoriteHoverButton";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 
-const PopularItem = ({ price, id, image }) => {
+const PopularItem = ({ price, id, image, name }) => {
   const [user, dispatch] = useOutletContext();
   const [isHovering, setIsHovering] = useState(false);
   const [isFavorite, setIsFavorite] = useState(
@@ -29,7 +29,7 @@ const PopularItem = ({ price, id, image }) => {
         <PhotoContainer>
           <img
             src={image}
-            alt="something cool"
+            alt={name}
             style={{
               height: "100%",
               width: "100%",
