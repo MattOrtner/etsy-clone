@@ -52,6 +52,7 @@ const LandingPage = () => {
             products.length > 0 &&
             products.map((product) => (
               <PopularItem
+                name={product.name}
                 key={product.id}
                 price={product.price}
                 id={product.id}

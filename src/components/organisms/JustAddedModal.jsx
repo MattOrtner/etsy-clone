@@ -54,7 +54,7 @@ const JustAddedModal = ({ onClose, show, productQuantity }) => {
           </RelatedItemsContainer>
           <RecItemsContainer>
             {colorsForImagePlaceholders.map((color, i) => (
-              <ModalRecomendation index={i} color={color} />
+              <ModalRecomendation index={i} key={i} color={color} />
             ))}
           </RecItemsContainer>
         </BottomContainer>
